@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+    <UserName>//input[@id='username']</UserName>
+    <Password>//input[@id='password']</Password>
+    <LoginGo>//button[@id='go']</LoginGo>
+    <ForgotPasswordLink>//a[text()='Forgot Password?']</ForgotPasswordLink>
+    <AdditionalHelp>//a[text()='Need Additional Help?']</AdditionalHelp>
+    <DisplayUserName>//span[@class='dds-app-user-name']</DisplayUserName>
+    <UserNameButton>//div[@class='dropdown dds-app-user']//button</UserNameButton>
+    <Logout>//button[text()='Logout']</Logout>
+    <AcceptCookie>//a[@id='hs-eu-confirmation-button']</AcceptCookie>
+    <CallUs>//li[contains(text(),'Call us at')]</CallUs>
+    <CallUsNumber>//li[contains(text(),'Call us at')]//strong</CallUsNumber>
+    <MailUs>//li[contains(text(),'Send an email to')]</MailUs>
+    <MailLink>//a[@href='mailto:dealersuccess@drivedominion.com']</MailLink>
+    <MailUsEmail>//li[contains(text(),'Send an email to')]//strong</MailUsEmail>
+    <ForgotPasswordLabel>//div[@class='panel-black sso-login-panel']//h3</ForgotPasswordLabel>
+    <ForgotPasswordMessage>//div[@class='panel-black sso-login-panel']//p</ForgotPasswordMessage>
+    <ForgoPasswordEmail>//input[@id='Username']</ForgoPasswordEmail>
+</locators>

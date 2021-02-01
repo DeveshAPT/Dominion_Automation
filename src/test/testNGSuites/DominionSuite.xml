@@ -1,0 +1,64 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" verbose="1" name="Dominion_Test"
+	annotations="JDK">
+	<listeners>
+		<listener class-name="Listeners.TestListener" />
+		<listener class-name="Listeners.AnnotationTransformer" />
+	</listeners>
+
+	<test name="Chrome" junit="false" preserve-order="true">
+		<parameter name="Browser" value="Chrome" />
+		<groups>
+			<run>
+				<include name="web" />
+			</run>
+		</groups>
+		<classes>
+			<class name="testScripts.DominionScript">
+				<methods>
+					<include name="DominionAccess" />
+					<include name="ForgotPassword" />
+					<include name="AdditionalHelp" />
+					<include name="DominionMenuNavigation" />
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+<test name="Firefox" junit="false" preserve-order="true">
+		<parameter name="Browser" value="Firefox" />
+		<groups>
+			<run>
+				<include name="web" />
+			</run>
+		</groups>
+		<classes>
+			<class name="testScripts.DominionScript">
+				<methods>
+					<include name="DominionAccess" />
+					<include name="ForgotPassword" />
+					<include name="AdditionalHelp" />
+					<include name="DominionMenuNavigation" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Edge" junit="false" preserve-order="true">
+		<parameter name="Browser" value="Edge" />
+		<groups>
+			<run>
+				<include name="web" />
+			</run>
+		</groups>
+		<classes>
+			<class name="testScripts.DominionScript">
+				<methods>
+					<include name="DominionAccess" />
+					<include name="ForgotPassword" />
+					<include name="AdditionalHelp" />
+					<include name="DominionMenuNavigation" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

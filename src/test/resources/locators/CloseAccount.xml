@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+<RegisteredBackButton>//a[text()='Back']</RegisteredBackButton>
+<MoveOutDateInput>//input[@class='mx-input']</MoveOutDateInput>
+<MoveOutContinue>//button[text()='Continue']</MoveOutContinue>
+<PostCodeInput>//input[@id='customerPostcode']</PostCodeInput>
+<FinalAddress>//input[@value='Find address']</FinalAddress>
+<SelectAddress>//select[@id='selectedAddress']</SelectAddress>
+<ConfirmCloseAccount>//button[text()='Confirm and close account']</ConfirmCloseAccount>
+<CloseAccountStart>//a[text()='Start']</CloseAccountStart>
+<LastName>//input[@id='inpName']</LastName>
+<CustomerNumber>//input[@id='customerNumber']</CustomerNumber>
+<PaymentReference>//input[@id='customerRefNumber']</PaymentReference>
+
+</locators>

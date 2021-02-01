@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+    <MainMenu>//ul[@class='dds-app-nav']//li</MainMenu>
+    <SubMenu>//ul[@class='dds-app-nav-sub']//li</SubMenu>
+    <Preferences>//ul[@class='dds-app-nav']//span[text()='System Preferences']</Preferences>
+    <Settings>//ul[@class='dds-app-nav-sub']//a[text()='SubText']</Settings>
+    <InventoryChart>//div[@id='chartContainer']</InventoryChart>
+    <DashboardAttention>//div[@class='dashboard-Attention-Menu container']</DashboardAttention>
+    <GridCard>//div[@id='gridCard']</GridCard>
+    <InventoryGrid>//table[@id='jqgInventory']</InventoryGrid>
+    <AppraisalGrid>//table[@id='jqgAppraisals']</AppraisalGrid>
+    <SourcingGrid>//table[@id='jqgBuyList']</SourcingGrid>
+    <ReportBuilderForm>//form[@id='Form']</ReportBuilderForm>
+    <ReportType>//select[@id='availableReports']</ReportType>
+    <ReportName>//input[@id='ReportName']</ReportName>
+    <ReportFields>//ul[@id='sortable1']</ReportFields>
+    <SelectedFields>//ul[@id='sortable2']</SelectedFields>
+    <UsersGrid>//table[@id='jqgUsers']</UsersGrid>
+    <MySetting>//div[@class='card-header']</MySetting>
+    <MySettingTopMenu>//ul[@id='ulTabs']//li</MySettingTopMenu>
+    <MySettingMidMenu>//ul[@id='ulSubTabs']//li</MySettingMidMenu>
+    <Warranties>//table[@id='jqgWarranties']</Warranties>
+</locators>

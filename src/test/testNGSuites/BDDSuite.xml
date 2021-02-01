@@ -1,0 +1,11 @@
+ <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1"   verbose="1" name="Unified Test" annotations="JDK">
+
+<test name="BDD- Web" junit="false" preserve-order="true">
+<parameter name = "Browser" value="FireFox"/>
+		<classes>
+			<class name="bddRunner.SouthernwaterRunner">	
+			</class>
+		</classes>	
+	</test>
+</suite>

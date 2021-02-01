@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" parallel ="methods"  verbose="1" configfailurepolicy="continue" name="CrossBrowser"  annotations="JDK">
+<listeners>
+<listener class-name="Listeners.TestListener"/>
+ <listener class-name="Listeners.AnnotationTransformer"/>
+</listeners>
+	
+<test name="CrossBrowser-FireFox" junit="false" preserve-order="true">
+	<parameter name = "browserName" value="FireFox"/>
+	<parameter name = "browserVersion" value="ANY"/>
+	<parameter name = "platform" value="windows"/>
+		<classes>
+			<class name="bddRunner.SouthernwaterRunner"/>
+		</classes>	
+	</test>
+
+	
+<test name="CrossBrowser-chrome" junit="false" preserve-order="true">
+	<parameter name = "browserName" value="chrome"/>
+	<parameter name = "browserVersion" value="ANY"/>
+	<parameter name = "platform" value="windows"/>
+		<classes>
+			<class name="bddRunner.SouthernwaterRunner"/>
+		</classes>	
+	</test>
+</suite>
+

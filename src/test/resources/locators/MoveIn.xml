@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+<AcceptCokies>//button[@id='onetrust-accept-btn-handler']</AcceptCokies>
+<CreateAnAccountHeading>//div/h1[text()='Create an account']</CreateAnAccountHeading>
+<StartButton>//a[text()='Start']</StartButton>
+<CancelButton>//a[text()='Cancel']</CancelButton>
+<MovingDetails>//div/h1[text()='Moving details']</MovingDetails>
+<CustomerPostCode>//input[@id="customerpostcode"]</CustomerPostCode> 
+<FindAddressButton>//div/input[@value='Find address']</FindAddressButton>
+<SelectAddress>//select[@id='selectedAddress']</SelectAddress>
+<YourMovingDateLabel>//div/label[text()='Your moving date']</YourMovingDateLabel>
+<MoveOutDate>//*[@id="moveOutDate"]/div/input</MoveOutDate>
+<NumberOfOccupants>//label[text()='Number of occupants']/following-sibling::input</NumberOfOccupants>
+<CommonContinue>//div//*[contains(text(),'Continue')]</CommonContinue>
+<ContinueButton>//button[contains(text(),'Continue')]</ContinueButton>
+<ContinueLink>//a[contains(text(),'Continue')]</ContinueLink>
+<YourDetailsHeader>//h1[text()='Your details']</YourDetailsHeader>
+<SelectTitle>//*[@id="title"]</SelectTitle>
+<Titledropdow>//select[@id='title']</Titledropdow>
+<FirstName>//input[@id="inpFirstName"]</FirstName>
+<MiddleName>//input[@id="inpMiddleName"]</MiddleName>
+<LastName>//input[@id="inpName"]</LastName>
+<DateOfBirth>//*[@id="moveOutDate"]/div/input</DateOfBirth>
+<UserMobileNumber>//input[@id="userMobileNo"]</UserMobileNumber>
+<UserEmailAddress>//input[@id="inpEmail"]</UserEmailAddress>
+<PaymentDeatils>//h1[text()='Payment details']</PaymentDeatils>
+<AccountHolderName>//input[@id="accountHolderName"]</AccountHolderName>
+<SortCodeOne>//*[@id="sortCodeOne"]</SortCodeOne>
+<SortCodeTwo>//*[@id="sortCodeTwo"]</SortCodeTwo>
+<SortCodeThree>//*[@id="sortCodeThree"]</SortCodeThree>
+<BankAccountNumber>//*[@id="bankAccountNo"]</BankAccountNumber>
+<CheckAndConfirmHeader>//h1[text()='Check and confirm']</CheckAndConfirmHeader>
+<VerifyName>//*[@id="content"]/div/div[2]/div[1]/div[2]/div[2]/p</VerifyName>
+<VerifyEmail>//*[@id="content"]/div/div[2]/div[1]/div[2]/div[5]/p</VerifyEmail>
+<VerifyNumberOfOccupants>//*[@id="content"]/div/div[2]/div[1]/div[3]/div[5]/p</VerifyNumberOfOccupants>
+<AccountNumberLabel>//div/h3[text()='Account number']</AccountNumberLabel>
+<VerifyAccountNumber>//*[@id="content"]/div/div[2]/div[1]/div[4]/div[3]/div[3]/p</VerifyAccountNumber>
+<ConfirmDetailsButton>//button[contains(text(),'Confirm details')]</ConfirmDetailsButton>
+<BackButton>//div/a[text()='Back']</BackButton>
+<BackLink>//button[contains(text(),'Back')]</BackLink>
+<ThereIsAProblemErrorMessage>//*[text()='There’s a problem']</ThereIsAProblemErrorMessage>
+<CorrectErrorsToContinueErrorMessage>//*[text()='You’ll need to correct the errors to continue.']</CorrectErrorsToContinueErrorMessage>
+<HeaderUKPostCodeErrorMessage>//*[text()='Please enter a valid UK postcode']</HeaderUKPostCodeErrorMessage>
+<HeaderYourMovingDateErrorMessage>//*[text()='Please enter your moving date']</HeaderYourMovingDateErrorMessage>
+<HeaderNumberOfOccupantsErrorMessage>//*[text()='Please enter the number of occupants.']</HeaderNumberOfOccupantsErrorMessage>
+<ValidUkPostCodeErrorMessage>//*[contains(@class,'invalid-feedback') and contains(text(),'Please enter a valid UK postcode')]</ValidUkPostCodeErrorMessage>
+<MovingDateErroeMessage>//*[contains(@class,'invalid-feedback') and contains(text(),'Please enter your moving date')]</MovingDateErroeMessage>
+<NumberOfOccupantsErrorMessage>//div[contains(@class,'invalid-feedback')]/span[contains(text(),'Please enter the number of occupants')]</NumberOfOccupantsErrorMessage>
+<EnterYourAddressManually>//*[@content='Enter your address manually']</EnterYourAddressManually>
+<PleaseSelectAnAddress>//*[text()='Please select an address']</PleaseSelectAnAddress>
+<CorrespondenceYes>//input[@id='correspondenceAddressYes']/parent::div//label</CorrespondenceYes>
+<CorrespondenceNo>//input[@id='correspondenceAddressYes']/parent::div//label</CorrespondenceNo>
+<DirectDebitNo>//input[@id='payment-details__1-receipt-of-bill']/parent::div//label</DirectDebitNo>
+<DirectDebitYes>//input[@id='payment-details__1-direct-debit']/parent::div/label</DirectDebitYes>
+<MoveInCustomerLabel>//div[@class='review-detail-section'][1]//h3</MoveInCustomerLabel>
+<GeneratedMoveInCustomerNumber>//div[@class='review-detail-section'][1]//p</GeneratedMoveInCustomerNumber>
+<MoveInPayRefLabel>//div[@class='review-detail-section'][2]//h3</MoveInPayRefLabel>
+<GeneratedMoveInPayRefNumber>//div[@class='review-detail-section'][2]//p</GeneratedMoveInPayRefNumber>
+<VerifyEmailHeading>//h1[text()='Verify your email address']</VerifyEmailHeading>
+<Finish>//button[contains(text(),'Finish')]</Finish>
+<ConfirmationMessage>//h1[text()='Confirmation']</ConfirmationMessage>
+<Mobile>//a[@id='mobile']</Mobile>
+<Home>//a[@id='home']</Home>
+<PayMonthly>//input[@id='payMonthely']/parent::div/label</PayMonthly>
+<PayFull>//input[@id='payFull']/parent::div/label</PayFull>
+<DayOne>//input[@id='dayOne']/parent::div/label</DayOne>
+<DayFive>//input[@id='dayFive']/parent::div/label</DayFive>
+<DayTen>//input[@id='dayTen']/parent::div/label</DayTen>
+<DayFifteen>//input[@id='dayFifteen']/parent::div/label</DayFifteen>
+<DayTwenty>//input[@id='dayTwenty']/parent::div/label</DayTwenty>
+<DayTwentyFive>//input[@id='dayTwentyFive']/parent::div/label</DayTwentyFive>
+<MandatoryFields>//div[@class='feedback-box mb-4 feedback-box--harley']//ul//a</MandatoryFields>
+<PaymentDetailMandatoryMessage>//div[@class='feedback-box mb-4 feedback-box--harley']//p</PaymentDetailMandatoryMessage>
+<CheckAndConfirm>//h1[text()='Check and confirm']</CheckAndConfirm>
+<updateAddress>//h3[text()='New address']/parent::div/p/div</updateAddress>
+<SouthernWaterLogo>//img[@alt='Southern Water Logo']</SouthernWaterLogo>
+<VisitedStep>//div[@class='progress-steps__step progress-steps__step--visited']</VisitedStep>
+<ActiveStep>//div[@class='progress-steps__step progress-steps__step--active']//span</ActiveStep>
+<PendingStep>//div[@class='progress-steps__step']//span</PendingStep>
+<StepIndicator>//div[@class='progress-steps__step-indicator']//span</StepIndicator>
+<AreYou>//h3[text()=' Are you new to Southern Water? ']</AreYou>
+<NewCustomerlabel>//input[@id='new-customer']/parent::div/label</NewCustomerlabel>
+<ExistingCustomer>//input[@id='existing-customer']/parent::div/label</ExistingCustomer>
+<NewAddress>//h2[text()='HH2']</NewAddress>
+<CheckLabel>//div/h3[@class='review-detail__sub-head']</CheckLabel>
+<CheckValues>//div/p[@class='review-detail-text']</CheckValues>
+<TextLabel>//label[text()='HH2']</TextLabel>
+<YourDetailEdit>//button[@id='your-details']</YourDetailEdit>
+<MovingEdit>//button[@id='moving-details']</MovingEdit>
+<PaymentEdit>//button[@id='payment-details']</PaymentEdit>
+</locators>

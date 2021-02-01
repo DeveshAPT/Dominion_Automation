@@ -1,0 +1,42 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="1" name="SouthernWater_Accessibility_Test" annotations="JDK">
+    <listeners>
+        <listener class-name="Listeners.TestListener"/>
+        <listener class-name="Listeners.AnnotationTransformer"/>
+    </listeners>
+    <!-- <test name="API Test" junit="false" preserve-order="true">
+            <groups>
+                <run>
+                       <include name="api" />
+                </run>
+            </groups>
+            <classes>
+                <class name="testScripts.Employee">
+                    <methods>
+                        <include name="EmployeeAPITest"/>
+                    </methods>
+                </class>
+            </classes>
+        </test> -->
+    <test name="Web" junit="false" preserve-order="true">
+        <parameter name="Browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="web"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="testScripts.DominionScript">
+                <methods>
+                    <include name="DominionAccess"/>
+                </methods>
+            </class>
+            <class name="testScripts.Accessibility">
+                <methods>
+                    <include name="Dominion_Accessibility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
