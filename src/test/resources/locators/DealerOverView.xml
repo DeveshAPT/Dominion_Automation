@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+    <Franchise>//div[@class='dds-dealership-info']//button[@class='btn btn-link']</Franchise>
+    <DisplayDealerName>//div[@class='dds-dealership-info']//div[@class='form-group dds-combobox']//input</DisplayDealerName>
+    <FranchiseDropdown>//div[@class='modal-dialog modal-sm-dealer']//select[@id='ddlFranchise']</FranchiseDropdown>
+    <DealerNames>//div[@class='modal-content']//div[@class='form-group dds-combobox']//input</DealerNames>
+    <DealerPopup>//div[@class='dropdown-menu medium show']//button</DealerPopup>
+    <Cancel>//div[@class='modal-content']//button[text()='CANCEL']</Cancel>
+    <Save>//div[@class='modal-content']//button[text()='SAVE']</Save>
+</locators>

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import pageHelper.web.DealerOverViewHelper;
 import pageHelper.web.DominionLoginHelper;
 import pageHelper.api.EmployeeHelper;
 import pageHelper.api.SPQR;
@@ -17,11 +18,15 @@ public class pageController {
 		public static final ThreadLocal<SPQR> SP= new InheritableThreadLocal<>();
 		public static final ThreadLocal<EmployeeHelper> EmployeeService= new InheritableThreadLocal<>();
 		public static final ThreadLocal<DominionLoginHelper> domLogin= new InheritableThreadLocal<>();
+		public static final ThreadLocal<DealerOverViewHelper> dealer= new InheritableThreadLocal<>();
 		
 		public void initPage(WebDriver driver) throws IOException
 		{
 			DominionLoginHelper DM=new DominionLoginHelper(driver);
 			domLogin.set(DM);
+
+			DealerOverViewHelper DL=new DealerOverViewHelper(driver);
+			dealer.set(DL);
 		}
 		
 		public void initPage(RequestSpecification dr,Response respoence)

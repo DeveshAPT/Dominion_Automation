@@ -16,16 +16,17 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="DominionAccess" />
+					<!--<include name="DominionAccess" />
 					<include name="ForgotPassword" />
 					<include name="AdditionalHelp" />
-					<include name="DominionMenuNavigation" />
+					<include name="DominionMenuNavigation" />-->
+					<include name="DominionFranchiseDealer"/>
 				</methods>
 			</class>
 		</classes>
 
 	</test>
-<test name="Firefox" junit="false" preserve-order="true">
+<!--<test name="Firefox" junit="false" preserve-order="true">
 		<parameter name="Browser" value="Firefox" />
 		<groups>
 			<run>
@@ -60,5 +61,5 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test>-->
 </suite>

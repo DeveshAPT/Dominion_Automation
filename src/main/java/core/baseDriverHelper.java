@@ -989,12 +989,6 @@ public class baseDriverHelper implements apiHelper, webHelper {
         //Thread.sleep(3000);
     }
 
-    public String GetText(WebElement el) {
-        String actual = el.getText().toUpperCase().toString();
-        //		String actual1=el.getText().toUpperCase().toString();
-        return actual;
-    }
-
     public String GetInputValue(WebElement el) {
         String actual = el.getAttribute("value");
         return actual;
@@ -1460,6 +1454,12 @@ public class baseDriverHelper implements apiHelper, webHelper {
     @Override
     public void VerifyText(WebElement el, String Expectedtext) {
         Assert.assertTrue(el.getText().contains(Expectedtext));
+    }
+
+    @Override
+    public String GetText(WebElement el)
+    {
+      return el.getText();
     }
 
     @Override

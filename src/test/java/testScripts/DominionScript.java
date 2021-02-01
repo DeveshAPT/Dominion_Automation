@@ -92,4 +92,17 @@ public class DominionScript extends driver {
         domLogin.get().VerifyMenuNavigation("Help");
 
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Verify Dealer Change on Franchise")
+    @Epic("Automation")
+    @Feature("Default Dealer")
+    @Story("MICTEST-241")
+    @Step("Verify Default Dealer Change")
+    public void DominionFranchiseDealer(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        dealer.get().VerifyDefaultDealerChanges();
+    }
 }
