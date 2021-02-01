@@ -3,4 +3,5 @@
 /test-results/
 /lib/
 /ExtentReports/
+/allure-results/
 /debug.log
