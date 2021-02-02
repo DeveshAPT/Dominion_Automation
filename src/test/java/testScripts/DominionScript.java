@@ -1,5 +1,6 @@
 package testScripts;
 
+import com.relevantcodes.extentreports.LogStatus;
 import io.qameta.allure.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -17,7 +18,7 @@ public class DominionScript extends driver {
     @Feature("Feature Login")
     @Story("MICTEST-236")
     @Step("Verify Login")
-    public void DominionAccess(String Browser) throws Throwable {
+    public void MCITEST_236(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().Logout();
@@ -32,7 +33,7 @@ public class DominionScript extends driver {
     @Feature("Forgot Password")
     @Story("MICTEST-240")
     @Step("Verify Forgot Password")
-    public void ForgotPassword(String Browser) throws Throwable {
+    public void MICTEST_240(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickForgotPassword();
         domLogin.get().VerifyForgotPasswordScreen();
@@ -47,7 +48,7 @@ public class DominionScript extends driver {
     @Feature("Additional Help Link")
     @Story("MICTEST-243")
     @Step("Verify Additional Help")
-    public void AdditionalHelp(String Browser) throws Throwable {
+    public void MICTEST_243(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickAdditionalHelp();
         domLogin.get().VerifyAdditionalHelpPage();
@@ -60,7 +61,7 @@ public class DominionScript extends driver {
     @Feature("Menu Navigation")
     @Story("MICTEST-239")
     @Step("Verify Menu Navigation")
-    public void DominionMenuNavigation(String Browser) throws Throwable {
+    public void MICTEST_239(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
@@ -100,11 +101,16 @@ public class DominionScript extends driver {
     @Feature("Default Dealer")
     @Story("MICTEST-241")
     @Step("Verify Default Dealer Change")
-    public void DominionFranchiseDealer(String Browser) throws Throwable {
+    public void MCITEST_241(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         dealer.get().VerifyDefaultDealerChanges();
+        dealer.get().EnterTestStep("< ------------------------- Step 1 Completed ------------------------- >");
         dealer.get().ChangeDealerVerification();
+        dealer.get().EnterTestStep("< ------------------------- Step 2 Completed ------------------------- >");
         dealer.get().DealerNotChangeCancel();
+        dealer.get().EnterTestStep("< ------------------------- Step 3 Completed ------------------------- >");
+        dealer.get().ClickOutSideDealerSelectionBox();
+        dealer.get().EnterTestStep("< ------------------------- Step 4 Completed ------------------------- >");
     }
 }

@@ -8,4 +8,6 @@
     <DealerPopup>//div[@class='dropdown-menu medium show']//button</DealerPopup>
     <Cancel>//div[@class='modal-content']//button[text()='CANCEL']</Cancel>
     <Save>//div[@class='modal-content']//button[text()='SAVE']</Save>
+    <FranchisePopup>//div[@id='divFranchise']</FranchisePopup>
+    <DealerPopupDiv>//div[@class='dropdown-menu medium show']</DealerPopupDiv>
 </locators>

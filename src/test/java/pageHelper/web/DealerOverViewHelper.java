@@ -20,17 +20,20 @@ public class DealerOverViewHelper {
         System.out.println("First Constructor");
     }
 
-    public void DisplayDealer() throws Exception {
+    public String DisplayDealer() throws Exception
+    {
+        String temp=null;
         WebElement ele ;
         if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerName"))) {
             ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerName"));
-            displaydealer1 = ele.getAttribute("value");
+            temp = ele.getAttribute("value");
         } else if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"))) {
             ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"));
-            displaydealer1 = ele.getText();
+            temp = ele.getText();
         }
         System.out.println(displaydealer1);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name : '" + displaydealer1 + "'");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name : '" + temp + "'");
+        return  temp;
     }
 
     public void ClickFranchise() throws Exception {
@@ -132,16 +135,15 @@ public class DealerOverViewHelper {
         CancelClick();
     }
 
+    public void EnterTestStep(String TestMessage)
+    {
+        ExtentTestManager.getTest().log(LogStatus.PASS, TestMessage);
+    }
+
     public void ChangeDealerVerification() throws Exception {
         WebElement ele ;
-        if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerName"))) {
-            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerName"));
-            displaydealer1 = ele.getAttribute("value");
-        } else if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"))) {
-            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"));
-            displaydealer1 = ele.getText();
-        }
 
+        displaydealer1= DisplayDealer();
         System.out.println(displaydealer1);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name : '" + displaydealer1 + "'");
 
@@ -149,9 +151,7 @@ public class DealerOverViewHelper {
         ChangeFranchise();
         SaveClick();
 
-        ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerName"));
-        displaydealer2 = ele.getAttribute("value");
-
+        displaydealer2= DisplayDealer();
         System.out.println(displaydealer2);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name Change: '" + displaydealer2 + "'");
 
@@ -161,14 +161,7 @@ public class DealerOverViewHelper {
 
     public void DealerNotChangeCancel() throws Exception {
         WebElement ele ;
-        if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerName"))) {
-            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerName"));
-            displaydealer1 = ele.getAttribute("value");
-        } else if (webDriver.IsPresent(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"))) {
-            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerNameSpan"));
-            displaydealer1 = ele.getText();
-        }
-
+        displaydealer1= DisplayDealer();
         System.out.println(displaydealer1);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name : '" + displaydealer1 + "'");
 
@@ -177,13 +170,32 @@ public class DealerOverViewHelper {
         ChangeDealer();
         CancelClick();
 
-        ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DisplayDealerName"));
-        displaydealer2 = ele.getAttribute("value");
+        displaydealer2= DisplayDealer();
+        Assert.assertTrue(displaydealer1.equalsIgnoreCase(displaydealer2), "Dealer Change after Cancel Click");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer not Changed after Cancel Click");
 
-        System.out.println(displaydealer2);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Display Dealer Name Change: '" + displaydealer2 + "'");
+        Assert.assertTrue(webDriver.IsPresent(dealerLoc.getlocator("//locators/FranchisePopup")), "Franchise Pop up is not disappeared");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Franchise Pop up is disappeared");
+    }
 
-        Assert.assertTrue(displaydealer1.equalsIgnoreCase(displaydealer2), "Default Dealer not Change on Franchise Changes");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Change display on screen");
+    public void ClickOutSideDealerSelectionBox() throws Exception
+    {
+        ClickFranchise();
+
+        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerNames")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click : On Dealers List");
+
+        List<WebElement> dealers = webDriver.getwebelements(dealerLoc.getlocator("//locators/DealerPopup"));
+
+        Assert.assertTrue(dealers.size()>0, "Dealer Pop is not pop");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Pop is open");
+
+        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerPopupDiv")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click : Outside the Div");
+
+        List<WebElement> dealers2 = webDriver.getwebelements(dealerLoc.getlocator("//locators/DealerPopup"));
+
+        Assert.assertFalse(dealers2.size()>0, "Dealer Popup is still visible");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Popup is disappeared");
     }
 }

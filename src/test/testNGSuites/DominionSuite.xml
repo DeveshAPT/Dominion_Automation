@@ -8,6 +8,7 @@
 
 	<test name="Chrome" junit="false" preserve-order="true">
 		<parameter name="Browser" value="Chrome" />
+		<!--<parameter name="Browser" value="headless" />-->
 		<groups>
 			<run>
 				<include name="web" />
@@ -16,17 +17,17 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<!--<include name="DominionAccess" />
-					<include name="ForgotPassword" />
-					<include name="AdditionalHelp" />
-					<include name="DominionMenuNavigation" />-->
-					<include name="DominionFranchiseDealer"/>
+				<!--	<include name="MCITEST_236" />
+					<include name="MICTEST_240" />
+					<include name="MICTEST_243" />
+					<include name="MICTEST_239" />-->
+					<include name="MCITEST_241"/>
 				</methods>
 			</class>
 		</classes>
 
 	</test>
-<!--<test name="Firefox" junit="false" preserve-order="true">
+	<!--<test name="Firefox" junit="false" preserve-order="true">
 		<parameter name="Browser" value="Firefox" />
 		<groups>
 			<run>
@@ -36,10 +37,11 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="DominionAccess" />
-					<include name="ForgotPassword" />
-					<include name="AdditionalHelp" />
-					<include name="DominionMenuNavigation" />
+					<include name="MCITEST_236" />
+					<include name="MICTEST_240" />
+					<include name="MICTEST_243" />
+					<include name="MICTEST_239" />
+					<include name="MCITEST_241"/>
 				</methods>
 			</class>
 		</classes>
@@ -54,10 +56,11 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="DominionAccess" />
-					<include name="ForgotPassword" />
-					<include name="AdditionalHelp" />
-					<include name="DominionMenuNavigation" />
+					<include name="MCITEST_236" />
+					<include name="MICTEST_240" />
+					<include name="MICTEST_243" />
+					<include name="MICTEST_239" />
+					<include name="MCITEST_241"/>
 				</methods>
 			</class>
 		</classes>
