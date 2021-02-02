@@ -76,11 +76,14 @@ public class TestListener extends driver implements ITestListener {
         /*ExtentTestManager.startTest(iTestResult.getTestContext().getSuite().getXmlSuite().getName().toString() +
                 "-" + iTestResult.getTestContext().getCurrentXmlTest().getName().toString() +
                 "-" + iTestResult.getTestContext().getAttribute("testName").toString() +
-                "-" + TestName.get().toString(), " THIs is Demo Test");*/
+                "-" + TestName.get().toString(), " THIs is Demo Test");
 
         ExtentTestManager.startTest(iTestResult.getTestContext().getSuite().getXmlSuite().getName().toString() +
                                     " - " + iTestResult.getTestContext().getCurrentXmlTest().getName().toString() +
-                                    " - "+ iTestResult.getMethod().getMethodName().toString(),"");
+                                    " - "+ iTestResult.getMethod().getMethodName().toString(),"");*/
+
+        ExtentTestManager.startTest(iTestResult.getTestContext().getCurrentXmlTest().getName().toString() +
+                " - "+ iTestResult.getMethod().getMethodName().toString(),"");
 
         //"-"+ iTestResult.getMethod().getMethodName().toString()
     }

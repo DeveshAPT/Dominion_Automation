@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+<Addvehicle>//div[@id='addVehicleMenu']/*</Addvehicle>
+    <SingleVehicle>//div[@id='addVehicleLinkContainer']//div[text()='Single Vehicle']</SingleVehicle>
+    <BatchVehicle>//div[@id='addVehicleLinkContainer']//div[text()='Batch Vehicles']</BatchVehicle>
+    <AddvehiclePopUp>//div[@id='addVehicleModal']//div[@id='addToInventoryBody']</AddvehiclePopUp>
+    <Passenger>//input[@id='Passenger']</Passenger>
+    <Used>//input[@id='Used']</Used>
+    <Average>//input[@id='Average']</Average>
+</locators>

@@ -113,4 +113,18 @@ public class DominionScript extends driver {
         dealer.get().ClickOutSideDealerSelectionBox();
         dealer.get().EnterTestStep("< ------------------------- Step 4 Completed ------------------------- >");
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Verify Adding new Car Functionality")
+    @Epic("Automation")
+    @Feature("Add Car")
+    @Story("MICTEST-308")
+    @Step("Verify Adding new Car")
+    public void MCITEST_308(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Inventory");
+        invent.get().AddVehicle();
+    }
 }

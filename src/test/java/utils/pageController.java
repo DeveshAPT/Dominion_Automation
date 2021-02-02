@@ -10,7 +10,7 @@ import pageHelper.web.DealerOverViewHelper;
 import pageHelper.web.DominionLoginHelper;
 import pageHelper.api.EmployeeHelper;
 import pageHelper.api.SPQR;
-
+import pageHelper.web.InventoryHelper;
 
 
 public class pageController {
@@ -19,6 +19,8 @@ public class pageController {
 		public static final ThreadLocal<EmployeeHelper> EmployeeService= new InheritableThreadLocal<>();
 		public static final ThreadLocal<DominionLoginHelper> domLogin= new InheritableThreadLocal<>();
 		public static final ThreadLocal<DealerOverViewHelper> dealer= new InheritableThreadLocal<>();
+		public static final ThreadLocal<InventoryHelper> invent= new InheritableThreadLocal<>();
+
 		
 		public void initPage(WebDriver driver) throws IOException
 		{
@@ -27,6 +29,9 @@ public class pageController {
 
 			DealerOverViewHelper DL=new DealerOverViewHelper(driver);
 			dealer.set(DL);
+
+			InventoryHelper In=new InventoryHelper(driver);
+			invent.set(In);
 		}
 		
 		public void initPage(RequestSpecification dr,Response respoence)
