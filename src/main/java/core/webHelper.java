@@ -166,7 +166,7 @@ public interface webHelper {
 	public List<WebElement> getwebelements(String locator) throws InterruptedException;
 	boolean IsPresent(String locator);
 	boolean IsNotPresent(String locator);
-	public void CleasrAndSendKeys(WebElement el,String value) throws InterruptedException, IOException;
+	public void ClearAndSendKeys(WebElement el,String value) throws InterruptedException, IOException;
 	public void SafeJavaScriptClick(WebElement element) throws InterruptedException;
 	public void Moveon(WebElement el);
 	public void switchtofram(WebElement el);

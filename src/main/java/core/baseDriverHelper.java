@@ -689,7 +689,7 @@ public class baseDriverHelper implements apiHelper, webHelper {
     }
 
     @Override
-    public void CleasrAndSendKeys(WebElement el, String value) throws InterruptedException, IOException {
+    public void ClearAndSendKeys(WebElement el, String value) throws InterruptedException, IOException {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         try {
