@@ -23,7 +23,9 @@ import io.github.sridharbandi.AccessibilityRunner;
 import io.github.sridharbandi.util.Standard;
 
 import org.apache.log4j.xml.DOMConfigurator;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -210,6 +212,19 @@ public class driver extends pageController
 
 //		  accessibilitySniffer=new AccessibilitySniffer(driver);
 
+	}
+	public static String getBrowser() {
+		Log.info("Getting system browser name . . .");
+		Capabilities cap = ((RemoteWebDriver) WEB_DRIVER_THREAD_LOCAL.get()).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		return browserName;
+	}
+	public static String getVersion() {
+		Log.info("Getting browser version . . .");
+		Capabilities cap = ((RemoteWebDriver) WEB_DRIVER_THREAD_LOCAL.get()).getCapabilities();
+		String v = cap.getVersion().toString();
+		Log.info("Browser version: " + v);
+		return v;
 	}
 
 	@BeforeMethod(groups = { "mobile" })

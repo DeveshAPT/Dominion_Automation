@@ -73,7 +73,16 @@ public class TestListener extends driver implements ITestListener {
         //  Filename=iTestResult.getTestContext().getAttribute("testName").toString();
         System.out.println("Test name from Exfel" + Filename);
 
-        ExtentTestManager.startTest(iTestResult.getTestContext().getSuite().getXmlSuite().getName().toString() + "-" + iTestResult.getTestContext().getCurrentXmlTest().getName().toString() + "-" + iTestResult.getTestContext().getAttribute("testName").toString() + "-" + TestName.get().toString(), " THIs is Demo Test");
+        /*ExtentTestManager.startTest(iTestResult.getTestContext().getSuite().getXmlSuite().getName().toString() +
+                "-" + iTestResult.getTestContext().getCurrentXmlTest().getName().toString() +
+                "-" + iTestResult.getTestContext().getAttribute("testName").toString() +
+                "-" + TestName.get().toString(), " THIs is Demo Test");*/
+
+        ExtentTestManager.startTest(iTestResult.getTestContext().getSuite().getXmlSuite().getName().toString() +
+                                    " - " + iTestResult.getTestContext().getCurrentXmlTest().getName().toString() +
+                                    " - "+ iTestResult.getMethod().getMethodName().toString(),"");
+
+        //"-"+ iTestResult.getMethod().getMethodName().toString()
     }
 
     public void onTestSuccess(ITestResult iTestResult) {

@@ -105,5 +105,6 @@ public class DominionScript extends driver {
         domLogin.get().DominionLogin();
         dealer.get().VerifyDefaultDealerChanges();
         dealer.get().ChangeDealerVerification();
+        dealer.get().DealerNotChangeCancel();
     }
 }

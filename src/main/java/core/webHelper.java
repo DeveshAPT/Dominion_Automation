@@ -138,8 +138,7 @@ public interface webHelper {
 	*/
 	
 	/** Verify the visual text for the element
-	 * @param el Webelement under test
-	 * @param Expectedtext expected text should displayed
+
 	 * Nothing to be returned here.
 	 * @throws IOException 
 	 * @throws InterruptedException 

@@ -84,6 +84,12 @@ public class baseDriver implements apiDriver, webDriver,desktopDriver,mobileDriv
 			options.addArguments("--disable-popup-blocking");
 
 
+			//HeadLess
+			options.addArguments("--headless");
+			options.addArguments("--window-size=1920,1080");
+
+
+
 
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
