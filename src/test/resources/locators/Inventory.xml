@@ -10,4 +10,10 @@
     <AlertMessage>//div[@id='alertMessageAddVehicle']</AlertMessage>
     <VinNumber>//div[@class='vehicleInformation']//span</VinNumber>
     <VinInput>//input[@id='Vin']</VinInput>
+    <MandatoryMessage>//div[@id='allFieldsRequiredMessage']</MandatoryMessage>
+    <YearSpan>//span[@id='select2-Years-container']//span</YearSpan>
+    <YearDropdown>//select[@id='Years']</YearDropdown>
+    <Make>//select[@id='Makes']</Make>
+    <Model>//select[@id='Models']</Model>
+    <Stock>//input[@id='StockNumber']</Stock>
 </locators>
