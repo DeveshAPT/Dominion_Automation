@@ -14,6 +14,8 @@
     <YearSpan>//span[@id='select2-Years-container']//span</YearSpan>
     <YearDropdown>//select[@id='Years']</YearDropdown>
     <Make>//select[@id='Makes']</Make>
+    <MakeSpan>//span[@id='select2-Makes-container']//span</MakeSpan>
     <Model>//select[@id='Models']</Model>
+    <ModelSpan>//span[@id='select2-Models-container']//span</ModelSpan>
     <Stock>//input[@id='StockNumber']</Stock>
 </locators>

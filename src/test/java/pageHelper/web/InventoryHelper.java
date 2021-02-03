@@ -83,22 +83,20 @@ public class InventoryHelper
 
         String year=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearSpan")));
         System.out.println(year);
+
         String stock=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")));
         System.out.println(stock);
-        Select yeardropdown=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-        List<WebElement> selectedYear=yeardropdown.getAllSelectedOptions();
 
-        Select make=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
-        List<WebElement> selectedMake=make.getAllSelectedOptions();
+        String maketext=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/MakeSpan")));
+        System.out.println(maketext);
 
-        Select model=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
-        List<WebElement> selectedModel=model.getAllSelectedOptions();
+        String modeltext=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/ModelSpan")));
+        System.out.println(modeltext);
 
         Assert.assertTrue(year.contains("Year"),"Year is not blank for empty VIN number ");
         Assert.assertTrue(stock.isEmpty(),"Stock is not blank for empty VIN number ");
-        Assert.assertTrue(selectedYear.size()==1,"Year is not blank for empty VIN number ");
-        Assert.assertTrue(selectedMake.size()==0,"Make is not blank for empty VIN number");
-        Assert.assertTrue(selectedModel.size()==0,"Model is not blank for empty VIN number ");
+        Assert.assertTrue(maketext.contains("Make"),"Make is not blank for empty VIN number ");
+        Assert.assertTrue(modeltext.contains("Model"),"Model is not blank for empty VIN number ");
         //Assert.assertTrue(year.contains("Year")&& stock==""&&selectedYear.size()==1&&selectedMake.size()==0&&selectedModel.size()==0,"Year, Make, Model and Stock are showing not blank for empty VIN number ");
 
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")),Vin+ Keys.ENTER);
@@ -113,26 +111,38 @@ public class InventoryHelper
         }
         else {
             sft.fail("Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
+            sft.assertFalse(true,"Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
         }
 
         Boolean yr=webDriver.IsPresent(inventoryLoc.getlocator("//locators/YearSpan"));
         System.out.println(yr);
 
+        Boolean mke=webDriver.IsPresent(inventoryLoc.getlocator("//locators/MakeSpan"));
+        System.out.println(yr);
+
+        Boolean mdl=webDriver.IsPresent(inventoryLoc.getlocator("//locators/ModelSpan"));
+        System.out.println(yr);
+
         stock=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")));
         System.out.println(stock);
 
-        yeardropdown=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-        selectedYear=yeardropdown.getAllSelectedOptions();
+        Assert.assertFalse(yr,"Year is showing blank for VIN ("+Vin+") number ");
+        Assert.assertFalse(stock.isEmpty(),"Stock is showing blank for VIN ("+Vin+") number ");
+        Assert.assertFalse(mke,"Make is Showing blank for VIN ("+Vin+") number ");
+        Assert.assertFalse(mdl,"Model is Showing blank for  VIN ("+Vin+") number ");
+
+        Select yeardropdown=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+        List<WebElement> selectedYear=yeardropdown.getAllSelectedOptions();
         String temp1=selectedYear.get(0).getText();
         System.out.println(temp1);
 
-        make=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
-        selectedMake=make.getAllSelectedOptions();
+        Select make=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
+        List<WebElement> selectedMake=make.getAllSelectedOptions();
         String temp2=selectedMake.get(0).getText();
         System.out.println(temp2);
 
-        model=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
-        selectedModel=model.getAllSelectedOptions();
+        Select model=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
+        List<WebElement> selectedModel=model.getAllSelectedOptions();
         String temp3=selectedModel.get(0).getText();
         System.out.println(temp3);
 
