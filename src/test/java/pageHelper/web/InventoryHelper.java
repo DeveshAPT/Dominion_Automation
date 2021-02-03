@@ -14,30 +14,30 @@ import org.testng.asserts.SoftAssert;
 import utils.xmlreader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class InventoryHelper
-{
+public class InventoryHelper {
     xmlreader inventoryLoc = new xmlreader("src\\test\\resources\\locators\\Inventory.xml");
     public webHelper webDriver;
 
 
-    public InventoryHelper(WebDriver driver)
-    {
+    public InventoryHelper(WebDriver driver) {
         webDriver = new baseDriverHelper(driver);
         System.out.println("First Constructor");
     }
 
     public String GetVinNumber() throws InterruptedException, DocumentException {
-        List<WebElement> vinlist=webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinNumber"));
-        WebElement ele=vinlist.get(0);
-        String html=ele.getAttribute("innerHTML");
-        System.out.println("%n"+html);
-        String [] values=html.split(">");
-        html=values[2];
-        html=html.replaceAll("\\s", "");
-        System.out.println("%n"+html);
-        return  html;
+        List<WebElement> vinlist = webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinNumber"));
+        WebElement ele = vinlist.get(0);
+        String html = ele.getAttribute("innerHTML");
+        System.out.println("%n" + html);
+        String[] values = html.split(">");
+        html = values[2];
+        html = html.replaceAll("\\s", "");
+        System.out.println("%n" + html);
+        return html;
     }
 
     public void ClickAddVehicle() throws Exception {
@@ -55,25 +55,25 @@ public class InventoryHelper
     }
 
     public void PopupWithDefaultValues() throws InterruptedException, DocumentException {
-        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/AddVehiclePopUp")),"Add Vehicle Popup is not appeared");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/AddVehiclePopUp")), "Add Vehicle Popup is not appeared");
 
-        WebElement ele=webDriver.getwebelement(inventoryLoc.getlocator("//locators/Passenger"));
-        String isChecked=ele.getAttribute("checked");
+        WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Passenger"));
+        String isChecked = ele.getAttribute("checked");
 
-        System.out.println("/n"+isChecked);
-        Assert.assertTrue(isChecked.equalsIgnoreCase("true"),"By default Passenger radio button is not Checked");
+        System.out.println("/n" + isChecked);
+        Assert.assertTrue(isChecked.equalsIgnoreCase("true"), "By default Passenger radio button is not Checked");
 
-        ele=webDriver.getwebelement(inventoryLoc.getlocator("//locators/Used"));
-        isChecked=ele.getAttribute("checked");
+        ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Used"));
+        isChecked = ele.getAttribute("checked");
 
-        System.out.println("/n"+isChecked);
-        Assert.assertTrue(isChecked.equalsIgnoreCase("true"),"By default Used radio button is not Checked");
+        System.out.println("/n" + isChecked);
+        Assert.assertTrue(isChecked.equalsIgnoreCase("true"), "By default Used radio button is not Checked");
 
-        ele=webDriver.getwebelement(inventoryLoc.getlocator("//locators/Average"));
-        isChecked=ele.getAttribute("checked");
+        ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Average"));
+        isChecked = ele.getAttribute("checked");
 
-        System.out.println("/n"+isChecked);
-        Assert.assertTrue(isChecked.equalsIgnoreCase("true"),"By default Average radio button is not Checked");
+        System.out.println("/n" + isChecked);
+        Assert.assertTrue(isChecked.equalsIgnoreCase("true"), "By default Average radio button is not Checked");
 
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : 'Add Vehicle Pop is displayed and , Passenger, Used and Average radio buttons are checked by default'");
 
@@ -81,40 +81,37 @@ public class InventoryHelper
 
     public void CheckExistingVinNumberAlert(String Vin) throws InterruptedException, DocumentException, IOException {
 
-        String year=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearSpan")));
+        String year = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearSpan")));
         System.out.println(year);
 
-        String stock=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")));
+        String stock = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")));
         System.out.println(stock);
 
-        String maketext=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/MakeSpan")));
+        String maketext = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/MakeSpan")));
         System.out.println(maketext);
 
-        String modeltext=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/ModelSpan")));
+        String modeltext = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/ModelSpan")));
         System.out.println(modeltext);
 
-        Assert.assertTrue(year.contains("Year"),"Year is not blank for empty VIN number ");
-        Assert.assertTrue(stock.isEmpty(),"Stock is not blank for empty VIN number ");
-        Assert.assertTrue(maketext.contains("Make"),"Make is not blank for empty VIN number ");
-        Assert.assertTrue(modeltext.contains("Model"),"Model is not blank for empty VIN number ");
-        //Assert.assertTrue(year.contains("Year")&& stock==""&&selectedYear.size()==1&&selectedMake.size()==0&&selectedModel.size()==0,"Year, Make, Model and Stock are showing not blank for empty VIN number ");
+        Assert.assertTrue(year.contains("Year"), "Year is not blank for empty VIN number ");
+        Assert.assertTrue(stock.isEmpty(), "Stock is not blank for empty VIN number ");
+        Assert.assertTrue(maketext.contains("Make"), "Make is not blank for empty VIN number ");
+        Assert.assertTrue(modeltext.contains("Model"), "Model is not blank for empty VIN number ");
 
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")),Vin+ Keys.ENTER);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter Vin :'"+Vin+"' and Press Enter");
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), Vin + Keys.ENTER);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter Vin :'" + Vin + "' and Press Enter");
         Thread.sleep(1000);
-        String text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AlertMessage")));
+        String text = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AlertMessage")));
         System.out.println(text);
-        SoftAssert sft=new SoftAssert();
-        if(text.contains("THIS VIN ALREADY EXISTS."))
-        {
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Verified :'THIS VIN ALREADY EXISTS.' Message displayed for Vin Number : "+ Vin);
-        }
-        else {
+        SoftAssert sft = new SoftAssert();
+        if (text.contains("THIS VIN ALREADY EXISTS.")) {
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Verified :'THIS VIN ALREADY EXISTS.' Message displayed for Vin Number : " + Vin);
+        } else {
             sft.fail("Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
-            sft.assertFalse(true,"Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
+            sft.assertFalse(true, "Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
         }
 
-        Boolean yr=webDriver.IsPresent(inventoryLoc.getlocator("//locators/YearSpan"));
+        /*Boolean yr=webDriver.IsPresent(inventoryLoc.getlocator("//locators/YearSpan"));
         System.out.println(yr);
 
         Boolean mke=webDriver.IsPresent(inventoryLoc.getlocator("//locators/MakeSpan"));
@@ -148,23 +145,190 @@ public class InventoryHelper
 
         Assert.assertTrue(year.contains("Year")&& stock!=""&&selectedYear.size()>0&&selectedMake.size()>0&&selectedModel.size()>0
                 ,"Year, Make, Model and Stock are not showing value for empty VIN number ");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Year("+temp1+"),Make("+temp2+"),Model("+temp3+") and Stock("+stock+") displayed for Vin Number : "+ Vin);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Year("+temp1+"),Make("+temp2+"),Model("+temp3+") and Stock("+stock+") displayed for Vin Number : "+ Vin);*/
 
     }
-    public void MandatoryFieldVerification() throws InterruptedException, DocumentException {
-        String text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/MandatoryMessage")));
+
+    public void MandatoryFieldVerification() throws Exception {
+        List<String> errorList = new ArrayList<String>();
+        errorList.add("Please provide a valid Vin.");
+        errorList.add("Please provide a valid Stock.");
+        errorList.add("Please provide a valid Year.");
+        errorList.add("Please provide a valid Model.");
+        errorList.add("Please provide a valid Make.");
+        errorList.add("Please provide a valid Engine.");
+        errorList.add("Please provide a valid Transmission.");
+        errorList.add("Please provide a valid Trim.");
+        errorList.add("Please provide a valid Style.");
+
+        String text = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/MandatoryMessage")));
         System.out.println(text);
-        Assert.assertTrue(text.contains("All fields are required unless noted as optional."),"Mandatory Field Message : 'All fields are required unless noted as optional.' is not displayed");
+        Assert.assertTrue(text.contains("All fields are required unless noted as optional."), "Mandatory Field Message : 'All fields are required unless noted as optional.' is not displayed");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified :'All fields are required unless noted as optional.' is displayed ");
 
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), "" + Keys.ENTER);
+
+        // ExtentTestManager.getTest().log(LogStatus.PASS, "Enter Vin :'"+Vin+"' and Press Enter");
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddBtn")));
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
+        List<WebElement> error = webDriver.getwebelements(inventoryLoc.getlocator("//locators/ErrorMessage"));
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < error.size(); i++) {
+            WebElement ele = error.get(i);
+            text = ele.getText();
+            if (errorList.indexOf(text) > -1) {
+                str.append(text + "<br>");
+                errorList.remove(text);
+            } else
+                Assert.fail("Mandatory Field Message : '" + text + " not matched");
+
+        }
+        int k = errorList.size();
+        Assert.assertTrue(k == 0, "All Mandatory Field Error message not  verified ");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified :'" + str.toString() + "'");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : non mandatory fields 'Mileage','Fuel Type','Segment' and 'Segment Size'");
+    }
+
+    public void MileageValidation() throws InterruptedException, DocumentException, IOException {
+        WebElement mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
+        webDriver.ClearAndSendKeys(mileage, "ABCd");
+        mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
+        String temp = mileage.getAttribute("value");
+        Assert.assertTrue(temp.isEmpty(), "Failed: Mileage Field Can accept alphabetic values");
+
+        webDriver.ClearAndSendKeys(mileage, "%$#");
+        mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
+        temp = mileage.getAttribute("value");
+        Assert.assertTrue(temp.isEmpty(), "Failed: Mileage Field Can Special Characters also");
+
+        webDriver.ClearAndSendKeys(mileage, "1234567890");
+        mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
+        temp = mileage.getAttribute("value");
+        Assert.assertFalse(temp.length() > 9, "Failed: Mileage Field Can accept more then 9 Characters");
+
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Mileage accept only numeric value and max length upto 9");
+    }
+
+    public void BlankFuelSegmentSize() throws InterruptedException, DocumentException {
+        Select fuel = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/FuelType")));
+        List<WebElement> opt = fuel.getOptions();
+        Assert.assertTrue(opt.isEmpty(), "Fuel type populate without for blank VIN number");
+
+        Select segment = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Segment")));
+        opt = segment.getOptions();
+        Assert.assertTrue(opt.isEmpty(), "Segment type populate without for blank VIN number");
+
+        Select size = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/SegmentSize")));
+        opt = size.getOptions();
+        Assert.assertTrue(opt.isEmpty(), "Size type populate without for blank VIN number");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Fuel Type, Segment and Segment Size are not populate for empty VIN");
+    }
+
+    public String GenerateRandom(int size) {
+        String[] alp = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        Random rnd = new Random();
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            if (i % 2 == 0 || i % 3 == 0) {
+                str.append(Integer.toString(rnd.nextInt(9)));
+            } else if (i % 3 == 0 || i % 5 == 0) {
+                str.append(alp[rnd.nextInt(26)]);
+            } else
+                str.append(alp[rnd.nextInt(26)]);
+        }
+        return str.toString();
     }
 
     public void AddVehicle() throws Exception {
-        String vinNumber=GetVinNumber();
+        String newVIN = "VIN" + GenerateRandom(14);
+        System.out.println(newVIN);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), newVIN + Keys.TAB);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : "+newVIN);
+
+        String stk = GenerateRandom(26);
+        System.out.println(stk);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
+        WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock"));
+        String temp = ele.getAttribute("value");
+        Assert.assertTrue(temp.length() == 25, "Failed : Stock can accept more then 25 characters");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Stock can accept max 25 Character : ");
+        stk = "NUM" + GenerateRandom(7);
+        System.out.println(stk);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : "+stk );
+        YearRangeVerification();
+    }
+    public void YearRangeVerification() throws Exception {
+    Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+     List<WebElement> years=yearsDrop.getOptions();
+        for( WebElement ele : years) {
+            String temp = ele.getText();
+            if (!temp.equalsIgnoreCase("Select"))
+            {
+                int yr = Integer.parseInt(temp);
+                Assert.assertTrue(yr >= 1900 && yr <= 2022, "Failed : Year Option : " + Integer.toString(yr) + " out of range 1900 to 2022 ");
+            }
+        }
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Year option are within range 1900 to 2022" );
+        SelectYear("2018");
+        SelectMake("Load All Makes...");
+        SelectMake("Audi");
+        SelectModel("Other");
+        CustomMakeAddAndValidation();
+    }
+
+    public void SelectYear(String year) throws Exception
+    {
+        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+        List<WebElement> years=yearsDrop.getOptions();
+        yearsDrop.selectByValue(year);
+    }
+
+    public void SelectMake(String make) throws Exception
+    {
+        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+        List<WebElement> years=yearsDrop.getOptions();
+        yearsDrop.selectByValue(make);
+    }
+
+    public void CustomMakeAddAndValidation() throws Exception
+    {
+        Random rnd=new Random();
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomModelSpan")),"Failed : Custom Model is not display for other Model");
+        String text =webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Model");
+
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomTrimsSpan")),"Failed : Custom Trims is not display for other Model");
+        text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Trims");
+
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomStyleSpan")),"Failed : Custom Style is not display for other Model");
+        text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Trims");
+
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelSpan")),"TestModel"+Integer.toString(rnd.nextInt(9999)));
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsInput")),"TestTrim"+Integer.toString(rnd.nextInt(9999)));
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleInput")),"TestStyle"+Integer.toString(rnd.nextInt(9999)));
+    }
+    public void SelectModel(String model) throws Exception
+    {
+        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
+        List<WebElement> years=yearsDrop.getOptions();
+        yearsDrop.selectByValue(model);
+    }
+
+    public void AddNewVehicleAndValidation() throws Exception {
+
+        String vinNumber = GetVinNumber();
         ClickAddVehicle();
         SelectSingleVehicle();
         PopupWithDefaultValues();
         CheckExistingVinNumberAlert(vinNumber);
         MandatoryFieldVerification();
+        MileageValidation();
+        BlankFuelSegmentSize();
+        AddVehicle();
     }
 }

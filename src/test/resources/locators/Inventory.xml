@@ -17,5 +17,19 @@
     <MakeSpan>//span[@id='select2-Makes-container']//span</MakeSpan>
     <Model>//select[@id='Models']</Model>
     <ModelSpan>//span[@id='select2-Models-container']//span</ModelSpan>
+    <CustomModelSpan>//span[@id='select2-Models-container']</CustomModelSpan>
+    <CustomModelInput>//input[@id='CustomModel']</CustomModelInput>
+    <Trims>//select[@id='Trims']</Trims>
+    <CustomTrimsSpan>//span[@id='select2-Trims-container']</CustomTrimsSpan>
+    <CustomTrimsInput>//input[@id='CustomTrim']</CustomTrimsInput>
+    <Styles>//select[@id='Styles']</Styles>
+    <CustomStyleSpan>//span[@id='select2-Styles-container']</CustomStyleSpan>
+    <CustomStyleInput>//input[@id='CustomStyle']</CustomStyleInput>
     <Stock>//input[@id='StockNumber']</Stock>
+    <AddBtn>//button[@id='btnAddVehicle']</AddBtn>
+    <ErrorMessage>//label[@class='is-invalid']</ErrorMessage>
+    <MileageInput>//input[@name='Mileage']</MileageInput>
+    <FuelType>//select[@id='FuelTypes']</FuelType>
+    <Segment>//select[@id='Segments']</Segment>
+    <SegmentSize>//select[@id='SegmentSizes']</SegmentSize>
 </locators>

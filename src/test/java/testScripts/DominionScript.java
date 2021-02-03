@@ -125,6 +125,6 @@ public class DominionScript extends driver {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Inventory");
-        invent.get().AddVehicle();
+        invent.get().AddNewVehicleAndValidation();
     }
 }
