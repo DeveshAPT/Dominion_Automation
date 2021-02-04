@@ -210,6 +210,11 @@ public class InventoryHelper {
 
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Mileage accept only numeric value and max length upto 9");
     }
+    public  void EnterMileage(String mileageIN) throws IOException, InterruptedException, DocumentException {
+        WebElement mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
+        webDriver.ClearAndSendKeys(mileage, mileageIN);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter : Mileage as "+mileageIN);
+    }
 
     public void BlankFuelSegmentSize() throws InterruptedException, DocumentException {
         Select fuel = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/FuelType")));
@@ -277,6 +282,8 @@ public class InventoryHelper {
         SelectMake("Audi");
         SelectModel("Other");
         CustomMakeAddAndValidation();
+        EnterMileage("20");
+
     }
 
     public void SelectYear(String year) throws Exception
@@ -288,9 +295,17 @@ public class InventoryHelper {
 
     public void SelectMake(String make) throws Exception
     {
-        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-        List<WebElement> years=yearsDrop.getOptions();
-        yearsDrop.selectByValue(make);
+        Select makeDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
+
+        makeDrop.selectByVisibleText(make);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Make As " +make);
+    }
+
+    public void SelectModel(String model) throws Exception
+    {
+        Select modelDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
+        modelDrop.selectByVisibleText(model);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Model As " +model);
     }
 
     public void CustomMakeAddAndValidation() throws Exception
@@ -308,15 +323,15 @@ public class InventoryHelper {
         text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleSpan")));
         Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Trims");
 
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelSpan")),"TestModel"+Integer.toString(rnd.nextInt(9999)));
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsInput")),"TestTrim"+Integer.toString(rnd.nextInt(9999)));
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleInput")),"TestStyle"+Integer.toString(rnd.nextInt(9999)));
-    }
-    public void SelectModel(String model) throws Exception
-    {
-        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
-        List<WebElement> years=yearsDrop.getOptions();
-        yearsDrop.selectByValue(model);
+        String custModel="TestModel"+Integer.toString(rnd.nextInt(9999));
+        String custTrims="TestTrim"+Integer.toString(rnd.nextInt(9999));
+        String custStyle="TestStyle"+Integer.toString(rnd.nextInt(9999));
+
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelInput")),custModel);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsInput")),custTrims);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleInput")),custStyle);
+
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter  : Model("+custModel+"), Trims("+custTrims+") and Style("+custStyle+") for Other Model");
     }
 
     public void AddNewVehicleAndValidation() throws Exception {
