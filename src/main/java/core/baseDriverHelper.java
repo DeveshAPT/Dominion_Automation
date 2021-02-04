@@ -232,20 +232,6 @@ public class baseDriverHelper implements apiHelper, webHelper {
     }
 
 
-    public void Getloadingcomplete(String locator) throws InterruptedException {
-        Thread.sleep(1000);
-        try {
-            wait.until(ExpectedConditions.attributeToBe(By.xpath(locator), "style", "display: none;"));
-            //getwebelement(xml.getlocator("//locators/StandrdQuote"));
-            System.out.println("Waiting Loading mask");
-            Thread.sleep(5000);
-        } catch (StaleElementReferenceException e2) {
-            Thread.sleep(5000);
-        } catch (TimeoutException e) {
-            Thread.sleep(5000);
-        }
-
-    }
 
 
     public void Switchtotabandsignthequote() throws Exception {
@@ -1166,6 +1152,21 @@ public class baseDriverHelper implements apiHelper, webHelper {
         driver.switchTo().defaultContent();
     }
 
+    @Override
+    public void WaitloadingComplete() throws InterruptedException {
+        Thread.sleep(1000);
+        try {
+            wait.until(ExpectedConditions.attributeToBe(By.xpath("//div[@class='modal fade show']"), "style", "display: none;"));
+            System.out.println("Waiting Loading mask");
+            Thread.sleep(5000);
+        } catch (StaleElementReferenceException e2) {
+            Thread.sleep(5000);
+        } catch (TimeoutException e) {
+            Thread.sleep(5000);
+        }
+
+    }
+
 	@Override
     public void WaitForpageload() throws Exception {
 
@@ -1358,6 +1359,32 @@ public class baseDriverHelper implements apiHelper, webHelper {
             driver.switchTo().window(parentWinHandle);
         } else {
             System.out.println("No popup displayed");
+        }
+    }
+
+
+
+    @Override
+    public void WaitforControlClickable(final String locator) throws Exception
+    {
+        WaitForpageload();
+        if (locator.startsWith("//") || locator.startsWith("("))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+            System.out.println("Code for Loading");
+            Thread.sleep(2000);
+        } else if (locator.startsWith("name"))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(By.name(locator.split("=")[1])));
+            System.out.println("Code for Loading");
+            Thread.sleep(2000);
+
+        } else if (locator.startsWith("id"))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(By.id(locator.split("=")[1])));
+            System.out.println("Code for Loading");
+            Thread.sleep(2000);
+
         }
     }
 

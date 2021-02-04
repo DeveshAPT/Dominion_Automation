@@ -177,8 +177,11 @@ public interface webHelper {
 	public int TabSize();
 	public void CloseAllTabs();
 	public void WaitForpageload() throws Exception;
+	public void WaitforControlClickable(String loc) throws Exception;
+	public void WaitloadingComplete() throws InterruptedException;
 	public void MoveonAndClick(String  loc1, String loc2) throws InterruptedException;
 	public void JavaScriptMouseHover(WebElement element);
 	public void ScrollIntoView(WebElement element) throws InterruptedException;
 	public String GetText(WebElement el);
+
 }

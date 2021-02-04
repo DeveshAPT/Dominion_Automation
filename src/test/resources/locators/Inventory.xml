@@ -32,4 +32,10 @@
     <FuelType>//select[@id='FuelTypes']</FuelType>
     <Segment>//select[@id='Segments']</Segment>
     <SegmentSize>//select[@id='SegmentSizes']</SegmentSize>
+    <Engine>//select[@id='Engines']</Engine>
+    <Transmission>//select[@id='Transmissions']</Transmission>
+    <AddButton>//button[@id='btnAddVehicle']</AddButton>
+    <vehicleDetail>//div[@class='vehicle-panel-info']</vehicleDetail>
+    <VehicleTabs>//ul[@id='ulTabs']//li</VehicleTabs>
+    <Save>//button[@id='btnSave']</Save>
 </locators>

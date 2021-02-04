@@ -210,10 +210,11 @@ public class InventoryHelper {
 
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Mileage accept only numeric value and max length upto 9");
     }
-    public  void EnterMileage(String mileageIN) throws IOException, InterruptedException, DocumentException {
+
+    public void EnterMileage(String mileageIN) throws IOException, InterruptedException, DocumentException {
         WebElement mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
         webDriver.ClearAndSendKeys(mileage, mileageIN);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter : Mileage as "+mileageIN);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter : Mileage as " + mileageIN);
     }
 
     public void BlankFuelSegmentSize() throws InterruptedException, DocumentException {
@@ -250,7 +251,7 @@ public class InventoryHelper {
         String newVIN = "VIN" + GenerateRandom(14);
         System.out.println(newVIN);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), newVIN + Keys.TAB);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : "+newVIN);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : " + newVIN);
 
         String stk = GenerateRandom(26);
         System.out.println(stk);
@@ -262,76 +263,201 @@ public class InventoryHelper {
         stk = "NUM" + GenerateRandom(7);
         System.out.println(stk);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : "+stk );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : " + stk);
         YearRangeVerification();
-    }
-    public void YearRangeVerification() throws Exception {
-    Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-     List<WebElement> years=yearsDrop.getOptions();
-        for( WebElement ele : years) {
-            String temp = ele.getText();
-            if (!temp.equalsIgnoreCase("Select"))
-            {
-                int yr = Integer.parseInt(temp);
-                Assert.assertTrue(yr >= 1900 && yr <= 2022, "Failed : Year Option : " + Integer.toString(yr) + " out of range 1900 to 2022 ");
-            }
-        }
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Year option are within range 1900 to 2022" );
         SelectYear("2018");
         SelectMake("Load All Makes...");
         SelectMake("Audi");
         SelectModel("Other");
         CustomMakeAddAndValidation();
+        BlankFieldsForCustomeModel();
+        SelectMake("Ford");
+        SelectModel("Flex");
+        SelectTrims("SEL");
+        SelectStyle("SEL 4dr Crossover");
+        AutoSelectedFieldsForExistingModel();
         EnterMileage("20");
+        AddAndVerifyVehicleScreen();
+    }
+
+    public void YearRangeVerification() throws Exception {
+        Select yearsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+        List<WebElement> years = yearsDrop.getOptions();
+        for (WebElement ele : years) {
+            String temp = ele.getText();
+            if (!temp.equalsIgnoreCase("Select")) {
+                int yr = Integer.parseInt(temp);
+                Assert.assertTrue(yr >= 1900 && yr <= 2022, "Failed : Year Option : " + Integer.toString(yr) + " out of range 1900 to 2022 ");
+            }
+        }
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Year option are within range 1900 to 2022");
 
     }
 
-    public void SelectYear(String year) throws Exception
-    {
-        Select yearsDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-        List<WebElement> years=yearsDrop.getOptions();
+    public void SelectYear(String year) throws Exception {
+        Select yearsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
+        List<WebElement> years = yearsDrop.getOptions();
         yearsDrop.selectByValue(year);
     }
 
-    public void SelectMake(String make) throws Exception
-    {
-        Select makeDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
+    public void SelectMake(String make) throws Exception {
+        Select makeDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
 
         makeDrop.selectByVisibleText(make);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Make As " +make);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Make As " + make);
     }
 
-    public void SelectModel(String model) throws Exception
-    {
-        Select modelDrop=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
+    public void SelectModel(String model) throws Exception {
+        Select modelDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
         modelDrop.selectByVisibleText(model);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Model As " +model);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Model As " + model);
     }
 
-    public void CustomMakeAddAndValidation() throws Exception
-    {
-        Random rnd=new Random();
-        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomModelSpan")),"Failed : Custom Model is not display for other Model");
-        String text =webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelSpan")));
-        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Model");
+    public void SelectTrims(String trims) throws InterruptedException, DocumentException {
+        Select trimsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Trims")));
+        trimsDrop.selectByVisibleText(trims);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Trims As " + trimsDrop);
+    }
 
-        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomTrimsSpan")),"Failed : Custom Trims is not display for other Model");
-        text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsSpan")));
-        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Trims");
+    public void SelectStyle(String styles) throws InterruptedException, DocumentException {
+        Select styleDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Styles")));
+        styleDrop.selectByVisibleText(styles);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Trims As " + styles);
+    }
 
-        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomStyleSpan")),"Failed : Custom Style is not display for other Model");
-        text=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleSpan")));
-        Assert.assertTrue(text.equalsIgnoreCase("Other"),"Failed : Other is not selected for Custom Trims");
+    public void CustomMakeAddAndValidation() throws Exception {
+        Random rnd = new Random();
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomModelSpan")), "Failed : Custom Model is not display for other Model");
+        String text = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"), "Failed : Other is not selected for Custom Model");
 
-        String custModel="TestModel"+Integer.toString(rnd.nextInt(9999));
-        String custTrims="TestTrim"+Integer.toString(rnd.nextInt(9999));
-        String custStyle="TestStyle"+Integer.toString(rnd.nextInt(9999));
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomTrimsSpan")), "Failed : Custom Trims is not display for other Model");
+        text = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"), "Failed : Other is not selected for Custom Trims");
 
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelInput")),custModel);
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsInput")),custTrims);
-        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleInput")),custStyle);
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomStyleSpan")), "Failed : Custom Style is not display for other Model");
+        text = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleSpan")));
+        Assert.assertTrue(text.equalsIgnoreCase("Other"), "Failed : Other is not selected for Custom Trims");
 
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter  : Model("+custModel+"), Trims("+custTrims+") and Style("+custStyle+") for Other Model");
+        String custModel = "TestModel" + Integer.toString(rnd.nextInt(9999));
+        String custTrims = "TestTrim" + Integer.toString(rnd.nextInt(9999));
+        String custStyle = "TestStyle" + Integer.toString(rnd.nextInt(9999));
+
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomModelInput")), custModel);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomTrimsInput")), custTrims);
+        webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/CustomStyleInput")), custStyle);
+
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Enter  : Model(" + custModel + "), Trims(" + custTrims + ") and Style(" + custStyle + ") for Other Model");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : User Can enter Other Model also");
+    }
+
+    public void BlankFieldsForCustomeModel() throws InterruptedException, DocumentException {
+        Select engine = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Engine")));
+        List<WebElement> opt = engine.getAllSelectedOptions();
+        Assert.assertTrue(opt.isEmpty(), "Fuel type is auto-selected for Other Model");
+
+        Select tran = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Transmission")));
+        opt = tran.getAllSelectedOptions();
+        Assert.assertTrue(opt.size() == 1, "Transmission type is  auto-selected for Other Model");
+
+        Select fuel = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/FuelType")));
+        opt = fuel.getAllSelectedOptions();
+        Assert.assertTrue(opt.size() == 1, "Fuel type is  auto-selected for Other Model");
+
+        Select segment = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Segment")));
+        opt = segment.getAllSelectedOptions();
+        Assert.assertTrue(opt.size() == 1, "Segment type is  auto-selected for Other Model");
+
+        Select size = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/SegmentSize")));
+        opt = size.getAllSelectedOptions();
+        Assert.assertTrue(opt.size() == 1, "Size type is not auto-selected for Other Model");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are not auto selected  for Other Model");
+    }
+
+    public void AutoSelectedFieldsForExistingModel() throws InterruptedException, DocumentException {
+        Select engine = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Engine")));
+        String selText = engine.getFirstSelectedOption().getText();
+        List<WebElement> opt = engine.getOptions();
+        boolean found = false;
+        for (WebElement ele : opt) {
+            String temp = ele.getText();
+            if (temp.equalsIgnoreCase(selText)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Fuel type is auto-selected for Existing Model");
+
+        Select tran = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Transmission")));
+        opt = tran.getOptions();
+        selText = tran.getFirstSelectedOption().getText();
+        found = false;
+        for (WebElement ele : opt) {
+            String temp = ele.getText();
+            if (temp.equalsIgnoreCase(selText)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Transmission type is auto-selected for Existing Model");
+
+        Select fuel = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/FuelType")));
+        opt = fuel.getOptions();
+        selText = fuel.getFirstSelectedOption().getText();
+        found = false;
+        for (WebElement ele : opt) {
+            String temp = ele.getText();
+            if (temp.equalsIgnoreCase(selText)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Fuel type not auto-selected for Existing Model");
+
+        Select segment = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Segment")));
+        opt = segment.getOptions();
+        selText = segment.getFirstSelectedOption().getText();
+        found = false;
+        for (WebElement ele : opt) {
+            String temp = ele.getText();
+            if (temp.equalsIgnoreCase(selText)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Segment type is not auto-selected for Existing Model");
+
+        Select size = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/SegmentSize")));
+        opt = size.getOptions();
+        selText = size.getFirstSelectedOption().getText();
+        found = false;
+        for (WebElement ele : opt) {
+            String temp = ele.getText();
+            if (temp.equalsIgnoreCase(selText)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Size type is not auto-selected for Existing Model");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are auto selected for Existing Model");
+    }
+
+    public void AddAndVerifyVehicleScreen() throws Exception {
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Add Button");
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+        webDriver.WaitloadingComplete();
+        webDriver.WaitforControlClickable(inventoryLoc.getlocator("//locators/vehicleDetail"));
+
+        boolean f1=webDriver.IsPresent(inventoryLoc.getlocator("//locators/vehicleDetail"));
+        boolean f2=webDriver.IsPresent(inventoryLoc.getlocator("//locators/VehicleTabs"));
+        Assert.assertTrue(f1&&f2, "Verified : Vehicle Detail Screen Loaded and Vehicle Added Successfully");
+
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Save")));
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
     }
 
     public void AddNewVehicleAndValidation() throws Exception {
