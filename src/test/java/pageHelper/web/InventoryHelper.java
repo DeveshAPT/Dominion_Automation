@@ -445,9 +445,10 @@ public class InventoryHelper {
     public void AddAndVerifyVehicleScreen() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
         ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Add Button");
+        webDriver.WaitloadingComplete();
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
-        webDriver.WaitloadingComplete();
+
         webDriver.WaitforControlClickable(inventoryLoc.getlocator("//locators/vehicleDetail"));
 
         boolean f1=webDriver.IsPresent(inventoryLoc.getlocator("//locators/vehicleDetail"));
@@ -455,6 +456,7 @@ public class InventoryHelper {
         Assert.assertTrue(f1&&f2, "Verified : Vehicle Detail Screen Loaded and Vehicle Added Successfully");
 
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Save")));
+        webDriver.WaitloadingComplete();
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
 
