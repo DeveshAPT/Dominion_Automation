@@ -15,7 +15,7 @@ public class maiUtility {
 	   
       String to = pr.readproperty("to");
       // Sender's email ID needs to be mentioned
-      String from = "ashwanis@360logica.com";
+      String from = "devesh.k@360logica.com";
 
       // Assuming you are sending email from localhost
       String host = "smtp.gmail.com";

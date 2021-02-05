@@ -374,7 +374,7 @@ public class driver extends pageController
 	@AfterSuite(alwaysRun = true)
 	public void AfterSuite() throws IOException, ClientApiException {
 
-		String message="<p>Hi All,</p><p>A Test Execution build was triggered and the execution has been completed.</p><p>For the detailed Informationâ€™s, please refer the attached html report.</p><p>Thanks,<br/>QA Team</p>";
+		 String message="<p>Hi All,</p><p>Please find the attached report with respect to the last execution </p><p>Thanks,<br/>Automation Team</p>";
 		 maiUtility ml=new maiUtility();
 	     ml.SendEmail(message,"ExtentReports//ExtentReportResults.html");
 	}

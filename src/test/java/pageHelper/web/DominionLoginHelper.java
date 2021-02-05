@@ -3,6 +3,7 @@ package pageHelper.web;
 import java.io.IOException;
 import java.util.List;
 
+import io.qameta.allure.Step;
 import org.dom4j.DocumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,7 @@ public class DominionLoginHelper {
         System.out.println("First Constructor");
     }
 
+    @Step("Open Application and Verify Login Page Content")
     public void OpenDominion() throws Exception {
         //Thread.sleep(5000);
         webDriver.WaitForpageload();
@@ -59,6 +61,7 @@ public class DominionLoginHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Login Screen");
     }
 
+    @Step("Click on Need Additional Help? Link")
     public void ClickAdditionalHelp() throws Exception {
         tabCount=webDriver.TabSize();
         webDriver.Clickon(webDriver.getwebelement(loginLoc.getlocator("//locators/AdditionalHelp")));
@@ -67,6 +70,7 @@ public class DominionLoginHelper {
         webDriver.WaitforPageToBeReady();
     }
 
+    @Step("Click on Forgot Password")
     public void ClickForgotPassword() throws Exception {
         tabCount=webDriver.TabSize();
         webDriver.Clickon(webDriver.getwebelement(loginLoc.getlocator("//locators/ForgotPasswordLink")));
@@ -75,6 +79,7 @@ public class DominionLoginHelper {
         webDriver.WaitforPageToBeReady();
     }
 
+    @Step("Verify Forgot Password Screen and Click On GO after Entering Email-ID")
     public void VerifyForgotPasswordScreen() throws InterruptedException, DocumentException
     {
         WebElement h3=webDriver.getwebelement(loginLoc.getlocator("//locators/ForgotPasswordLabel"));
@@ -91,6 +96,7 @@ public class DominionLoginHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : 'GO' Button is displayed");
     }
 
+    @Step("Verify Forgot Password Screen after Go Click")
     public void ForgotPasswordValidation() throws Exception {
         webDriver.SendKeys(webDriver.getwebelement(loginLoc.getlocator("//locators/ForgoPasswordEmail")), "Kumar.devesh89@yahoo.com" + Keys.TAB);
         webDriver.Clickon(webDriver.getwebelement(loginLoc.getlocator("//locators/LoginGo")));
@@ -110,7 +116,7 @@ public class DominionLoginHelper {
 
     }
 
-
+    @Step("Verify Need Additional Help? Page and Content")
     public void VerifyAdditionalHelpPage() throws Exception {
         int newCount=webDriver.TabSize();
         Assert.assertTrue(newCount-tabCount==1,"Browser New Tab is not open after 'Need  Additional Help ?' Click action");
@@ -140,6 +146,7 @@ public class DominionLoginHelper {
         webDriver.CloseAllTabs();
     }
 
+    @Step("Login into Application")
     public void DominionLogin() throws Exception {
         webDriver.SendKeys(webDriver.getwebelement(loginLoc.getlocator("//locators/UserName")), propertyreader.readproperty("UserName") + Keys.TAB);
 
@@ -159,6 +166,7 @@ public class DominionLoginHelper {
 
     }
 
+    @Step("Verify User Name and Logout")
     public void Logout() throws Exception {
         webDriver.WaitforPageToBeReady();
         webDriver.Clickon(webDriver.getwebelement(loginLoc.getlocator("//locators/UserNameButton")));
@@ -178,7 +186,7 @@ public class DominionLoginHelper {
         Assert.assertTrue(webDriver.IsPresent(loginLoc.getlocator("//locators/AdditionalHelp")), "'Need Additional Help?' Link Not found");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : User is moved to SSO Login Screen after Logout");
     }
-
+    @Step("Click on Menu Item : {0}")
     public void ClickOnMenu(String menuItem) throws Exception {
         List<WebElement> menuList = webDriver.getwebelements(menuLoc.getlocator("//locators/MainMenu"));
         int index = -1;
@@ -204,7 +212,7 @@ public class DominionLoginHelper {
         }
 
     }
-
+    @Step("Click on Menu Item : {0} sub item {1}")
     public void ClickOnMenuSubMenu(String menuItem, String SubMenu) throws Exception {
         ClickOnMenu("Dealer Overview");
         WebElement main = webDriver.getwebelement(menuLoc.getlocator("//locators/Preferences"));
@@ -251,6 +259,7 @@ public class DominionLoginHelper {
 
     }
 
+    @Step("Verify Page Content on Navigation to : {0}")
     public void VerifyMenuNavigation(String menuItem) throws Exception {
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();

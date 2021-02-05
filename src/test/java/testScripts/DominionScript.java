@@ -13,11 +13,10 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Login Logout Functionality")
-    @Epic("Automation")
+    @Description("VinMotion - Log in, Log Off")
+    @Epic("VinMotion")
     @Feature("Feature Login")
-    @Story("MICTEST-236")
-    @Step("Verify Login")
+    @Story("MCITEST-236")
     public void MCITEST_236(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -28,12 +27,11 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Forgot Password Functionality")
-    @Epic("Automation")
+    @Description("Log in screen > Forgot Password")
+    @Epic("Log in screen")
     @Feature("Forgot Password")
-    @Story("MICTEST-240")
-    @Step("Verify Forgot Password")
-    public void MICTEST_240(String Browser) throws Throwable {
+    @Story("MCITEST-240")
+    public void MCITEST_240(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickForgotPassword();
         domLogin.get().VerifyForgotPasswordScreen();
@@ -43,12 +41,11 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Additional Help Functionality")
-    @Epic("Automation")
-    @Feature("Additional Help Link")
-    @Story("MICTEST-243")
-    @Step("Verify Additional Help")
-    public void MICTEST_243(String Browser) throws Throwable {
+    @Description("Log in screen > Need additional help?")
+    @Epic("Log in screen")
+    @Feature("Need additional help?")
+    @Story("MCITEST-243")
+    public void MCITEST_243(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickAdditionalHelp();
         domLogin.get().VerifyAdditionalHelpPage();
@@ -56,12 +53,12 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Menu Navigation Functionality")
-    @Epic("Automation")
+    @Description("VinMotion- Left Screen Navigation Menu Functionality")
+    @Epic("VinMotion")
     @Feature("Menu Navigation")
-    @Story("MICTEST-239")
-    @Step("Verify Menu Navigation")
-    public void MICTEST_239(String Browser) throws Throwable {
+    @Story("MCITEST-239")
+
+    public void MCITEST_239(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
@@ -96,11 +93,11 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Dealer Change on Franchise")
-    @Epic("Automation")
+    @Description("VinMotion- Franchise and Dealer Selector")
+    @Epic("VinMotion")
     @Feature("Default Dealer")
     @Story("MICTEST-241")
-    @Step("Verify Default Dealer Change")
+
     public void MCITEST_241(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -116,11 +113,11 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
-    @Description("Verify Adding new Car Functionality")
-    @Epic("Automation")
-    @Feature("Add Car")
-    @Story("MICTEST-308")
-    @Step("Verify Adding new Car")
+    @Description("Add Passenger Vehicle")
+    @Epic("Inventory Grid")
+    @Feature("Add Vehicle")
+    @Story("MCITEST-308")
+
     public void MCITEST_308(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();

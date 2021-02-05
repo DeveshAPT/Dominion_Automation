@@ -4,6 +4,7 @@ import Reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 import core.baseDriverHelper;
 import core.webHelper;
+import io.qameta.allure.Step;
 import org.dom4j.DocumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +28,7 @@ public class InventoryHelper {
         webDriver = new baseDriverHelper(driver);
         System.out.println("First Constructor");
     }
-
+    @Step("Get Existing VIN number")
     public String GetVinNumber() throws InterruptedException, DocumentException {
         List<WebElement> vinlist = webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinNumber"));
         WebElement ele = vinlist.get(0);
@@ -40,6 +41,7 @@ public class InventoryHelper {
         return html;
     }
 
+    @Step("Click on Add Vehicle Plus Icon")
     public void ClickAddVehicle() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddVehicle")));
         ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Green + Icon (Add Vehicle Plus)'");
@@ -47,13 +49,14 @@ public class InventoryHelper {
         webDriver.WaitforPageToBeReady();
     }
 
+    @Step("Select Single Vehicle")
     public void SelectSingleVehicle() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/SingleVehicle")));
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select : 'Single Vehicle'");
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
     }
-
+    @Step("Verify the default selected fields for add vehicle screen")
     public void PopupWithDefaultValues() throws InterruptedException, DocumentException {
         Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/AddVehiclePopUp")), "Add Vehicle Popup is not appeared");
 
@@ -79,6 +82,7 @@ public class InventoryHelper {
 
     }
 
+    @Step("Enter Existing VIN({0}) number and Verify Error message and Blank Fields")
     public void CheckExistingVinNumberAlert(String Vin) throws InterruptedException, DocumentException, IOException {
 
         String year = webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearSpan")));
@@ -111,44 +115,8 @@ public class InventoryHelper {
             sft.assertFalse(true, "Alert Message : 'THIS VIN ALREADY EXISTS.' is not populate for VIN : " + Vin);
         }
 
-        /*Boolean yr=webDriver.IsPresent(inventoryLoc.getlocator("//locators/YearSpan"));
-        System.out.println(yr);
-
-        Boolean mke=webDriver.IsPresent(inventoryLoc.getlocator("//locators/MakeSpan"));
-        System.out.println(yr);
-
-        Boolean mdl=webDriver.IsPresent(inventoryLoc.getlocator("//locators/ModelSpan"));
-        System.out.println(yr);
-
-        stock=webDriver.GetText(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")));
-        System.out.println(stock);
-
-        Assert.assertFalse(yr,"Year is showing blank for VIN ("+Vin+") number ");
-        Assert.assertFalse(stock.isEmpty(),"Stock is showing blank for VIN ("+Vin+") number ");
-        Assert.assertFalse(mke,"Make is Showing blank for VIN ("+Vin+") number ");
-        Assert.assertFalse(mdl,"Model is Showing blank for  VIN ("+Vin+") number ");
-
-        Select yeardropdown=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
-        List<WebElement> selectedYear=yeardropdown.getAllSelectedOptions();
-        String temp1=selectedYear.get(0).getText();
-        System.out.println(temp1);
-
-        Select make=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
-        List<WebElement> selectedMake=make.getAllSelectedOptions();
-        String temp2=selectedMake.get(0).getText();
-        System.out.println(temp2);
-
-        Select model=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
-        List<WebElement> selectedModel=model.getAllSelectedOptions();
-        String temp3=selectedModel.get(0).getText();
-        System.out.println(temp3);
-
-        Assert.assertTrue(year.contains("Year")&& stock!=""&&selectedYear.size()>0&&selectedMake.size()>0&&selectedModel.size()>0
-                ,"Year, Make, Model and Stock are not showing value for empty VIN number ");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Year("+temp1+"),Make("+temp2+"),Model("+temp3+") and Stock("+stock+") displayed for Vin Number : "+ Vin);*/
-
     }
-
+    @Step("Verify Mandatory Fields are Highlighted")
     public void MandatoryFieldVerification() throws Exception {
         List<String> errorList = new ArrayList<String>();
         errorList.add("Please provide a valid Vin.");
@@ -191,6 +159,7 @@ public class InventoryHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : non mandatory fields 'Mileage','Fuel Type','Segment' and 'Segment Size'");
     }
 
+    @Step("Verify Mileage Fields max input length and accept only numeric inputs")
     public void MileageValidation() throws InterruptedException, DocumentException, IOException {
         WebElement mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
         webDriver.ClearAndSendKeys(mileage, "ABCd");
@@ -211,12 +180,14 @@ public class InventoryHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Mileage accept only numeric value and max length upto 9");
     }
 
+    @Step("Enter Mileage as {0}")
     public void EnterMileage(String mileageIN) throws IOException, InterruptedException, DocumentException {
         WebElement mileage = webDriver.getwebelement(inventoryLoc.getlocator("//locators/MileageInput"));
         webDriver.ClearAndSendKeys(mileage, mileageIN);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Enter : Mileage as " + mileageIN);
     }
 
+    @Step("Verify Blank field for Fuel, Segment and Size")
     public void BlankFuelSegmentSize() throws InterruptedException, DocumentException {
         Select fuel = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/FuelType")));
         List<WebElement> opt = fuel.getOptions();
@@ -247,39 +218,31 @@ public class InventoryHelper {
         return str.toString();
     }
 
-    public void AddVehicle() throws Exception {
-        String newVIN = "VIN" + GenerateRandom(14);
+    @Step("Enter Vin Number : {0}")
+    public void EnterVinNumber(String newVIN) throws InterruptedException, DocumentException, IOException {
         System.out.println(newVIN);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), newVIN + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : " + newVIN);
-
-        String stk = GenerateRandom(26);
-        System.out.println(stk);
+    }
+    @Step("Verify Max Length input for Stock")
+    public void VerifyStockMaxLength(String stk) throws InterruptedException, DocumentException, IOException {
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
         WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock"));
         String temp = ele.getAttribute("value");
         Assert.assertTrue(temp.length() == 25, "Failed : Stock can accept more then 25 characters");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Stock can accept max 25 Character : ");
-        stk = "NUM" + GenerateRandom(7);
+    }
+
+    @Step("Enter Stock Value as {0}")
+    public void EnterStockValue(String stk) throws InterruptedException, DocumentException, IOException
+    {
         System.out.println(stk);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : " + stk);
-        YearRangeVerification();
-        SelectYear("2018");
-        SelectMake("Load All Makes...");
-        SelectMake("Audi");
-        SelectModel("Other");
-        CustomMakeAddAndValidation();
-        BlankFieldsForCustomeModel();
-        SelectMake("Ford");
-        SelectModel("Flex");
-        SelectTrims("SEL");
-        SelectStyle("SEL 4dr Crossover");
-        AutoSelectedFieldsForExistingModel();
-        EnterMileage("20");
-        AddAndVerifyVehicleScreen();
     }
 
+
+    @Step("Verify Year Range available i.e 1900 to 2022")
     public void YearRangeVerification() throws Exception {
         Select yearsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
         List<WebElement> years = yearsDrop.getOptions();
@@ -294,12 +257,14 @@ public class InventoryHelper {
 
     }
 
+    @Step("Select Year as { 0 }")
     public void SelectYear(String year) throws Exception {
         Select yearsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/YearDropdown")));
         List<WebElement> years = yearsDrop.getOptions();
         yearsDrop.selectByValue(year);
     }
 
+    @Step("Select Make as { 0 }")
     public void SelectMake(String make) throws Exception {
         Select makeDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Make")));
 
@@ -307,24 +272,27 @@ public class InventoryHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Make As " + make);
     }
 
+    @Step("Select Model as { 0 }")
     public void SelectModel(String model) throws Exception {
         Select modelDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Model")));
         modelDrop.selectByVisibleText(model);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Model As " + model);
     }
 
+    @Step("Select Trim as { 0 }")
     public void SelectTrims(String trims) throws InterruptedException, DocumentException {
         Select trimsDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Trims")));
         trimsDrop.selectByVisibleText(trims);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Trims As " + trimsDrop);
     }
 
+    @Step("Select Style as { 0 }")
     public void SelectStyle(String styles) throws InterruptedException, DocumentException {
         Select styleDrop = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Styles")));
         styleDrop.selectByVisibleText(styles);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Trims As " + styles);
     }
-
+    @Step("Verify User Can Enter Other Make , Model and Style ")
     public void CustomMakeAddAndValidation() throws Exception {
         Random rnd = new Random();
         Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CustomModelSpan")), "Failed : Custom Model is not display for other Model");
@@ -351,7 +319,8 @@ public class InventoryHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : User Can enter Other Model also");
     }
 
-    public void BlankFieldsForCustomeModel() throws InterruptedException, DocumentException {
+    @Step("Verify Blank Fields for Custom Model")
+    public void BlankFieldsForCustomModel() throws InterruptedException, DocumentException {
         Select engine = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Engine")));
         List<WebElement> opt = engine.getAllSelectedOptions();
         Assert.assertTrue(opt.isEmpty(), "Fuel type is auto-selected for Other Model");
@@ -373,7 +342,7 @@ public class InventoryHelper {
         Assert.assertTrue(opt.size() == 1, "Size type is not auto-selected for Other Model");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are not auto selected  for Other Model");
     }
-
+    @Step("Verify Auto Populated Fields for Existing Model")
     public void AutoSelectedFieldsForExistingModel() throws InterruptedException, DocumentException {
         Select engine = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Engine")));
         String selText = engine.getFirstSelectedOption().getText();
@@ -441,7 +410,7 @@ public class InventoryHelper {
         Assert.assertTrue(found, "Size type is not auto-selected for Existing Model");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are auto selected for Existing Model");
     }
-
+    @Step("Click on Add Button and Verify Vehicle detail screen should display")
     public void AddAndVerifyVehicleScreen() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
         ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Add Button");
@@ -472,6 +441,26 @@ public class InventoryHelper {
         MandatoryFieldVerification();
         MileageValidation();
         BlankFuelSegmentSize();
-        AddVehicle();
+        String newVIN = "VIN" + GenerateRandom(14);
+        EnterVinNumber(newVIN);
+        String stk = GenerateRandom(26);
+        System.out.println(stk);
+        VerifyStockMaxLength(stk);
+        stk = "NUM" + GenerateRandom(7);
+        EnterStockValue(stk);
+        YearRangeVerification();
+        SelectYear("2018");
+        SelectMake("Load All Makes...");
+        SelectMake("Audi");
+        SelectModel("Other");
+        CustomMakeAddAndValidation();
+        BlankFieldsForCustomModel();
+        SelectMake("Ford");
+        SelectModel("Flex");
+        SelectTrims("SEL");
+        SelectStyle("SEL 4dr Crossover");
+        AutoSelectedFieldsForExistingModel();
+        EnterMileage("20");
+        AddAndVerifyVehicleScreen();
     }
 }

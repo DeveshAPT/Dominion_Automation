@@ -3,6 +3,7 @@ import Reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 import core.baseDriverHelper;
 import core.webHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -126,6 +127,7 @@ public class DealerOverViewHelper {
 
     }
 
+    @Step("Verify Default Dealer Populate on Change in Franchise")
     public void VerifyDefaultDealerChanges() throws Exception {
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
@@ -140,6 +142,7 @@ public class DealerOverViewHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, TestMessage);
     }
 
+    @Step("Verify Changed Dealer Should reflect on Screen ")
     public void ChangeDealerVerification() throws Exception {
         WebElement ele ;
 
@@ -159,6 +162,7 @@ public class DealerOverViewHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Change display on screen");
     }
 
+    @Step("Verify Dealer Should not Change on Cancel Click ")
     public void DealerNotChangeCancel() throws Exception {
         WebElement ele ;
         displaydealer1= DisplayDealer();
@@ -177,7 +181,7 @@ public class DealerOverViewHelper {
         Assert.assertTrue(webDriver.IsPresent(dealerLoc.getlocator("//locators/FranchisePopup")), "Franchise Pop up is not disappeared");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Franchise Pop up is disappeared");
     }
-
+    @Step("Verify Dealer List disappeared on Clicking outside the box")
     public void ClickOutSideDealerSelectionBox() throws Exception
     {
         ClickFranchise();
