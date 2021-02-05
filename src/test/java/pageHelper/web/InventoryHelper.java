@@ -21,6 +21,7 @@ import java.util.Random;
 
 public class InventoryHelper {
     xmlreader inventoryLoc = new xmlreader("src\\test\\resources\\locators\\Inventory.xml");
+    xmlreader dealerLoc = new xmlreader("src\\test\\resources\\locators\\DealerOverView.xml");
     public webHelper webDriver;
 
 
@@ -29,8 +30,49 @@ public class InventoryHelper {
         System.out.println("First Constructor");
     }
     @Step("Get Existing VIN number")
-    public String GetVinNumber() throws InterruptedException, DocumentException {
+    public String GetVinNumber() throws Exception {
         List<WebElement> vinlist = webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinNumber"));
+        /*if(vinlist.isEmpty()||vinlist.size()==0)
+        {
+            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/Franchise")));
+            ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Franchise'");
+            webDriver.WaitForpageload();
+            webDriver.WaitforPageToBeReady();
+
+            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/Franchise")));
+            ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Franchise'");
+            webDriver.WaitForpageload();
+            webDriver.WaitforPageToBeReady();
+
+            WebElement ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerNames"));
+            String displaydealer1 = ele.getAttribute("value");
+            System.out.println(displaydealer1);
+
+            Select drop = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/FranchiseDropdown")));
+            WebElement option = drop.getFirstSelectedOption();
+            String  franchise = option.getText();
+            ExtentTestManager.getTest().log(LogStatus.PASS, " Selected Franchise  : '" + franchise + "' and Selected  Dealer '" + displaydealer1 + "'");
+
+            List<WebElement> op = drop.getOptions();
+            int size = op.size();
+            for (int i = 0; i < size; i++) {
+                String options = op.get(i).getText();
+                if (!franchise.equalsIgnoreCase(options)) {
+                    ExtentTestManager.getTest().log(LogStatus.PASS, "Franchise Changes to : ' " + options + " '");
+                    drop.selectByIndex(i);
+                    webDriver.WaitForpageload();
+                    webDriver.WaitforPageToBeReady();
+                    break;
+                }
+            }
+            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerNames"));
+            String displaydealer2 = ele.getAttribute("value");
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Default Dealer Change to : '" + displaydealer2 + "'");
+            System.out.println(displaydealer1);
+            System.out.println(displaydealer2);
+            Assert.assertFalse(displaydealer1.equalsIgnoreCase(displaydealer2), "Default Dealer not Change on Franchise Changes");
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Default Dealer Changes on Change in Franchise");
+        }*/
         WebElement ele = vinlist.get(0);
         String html = ele.getAttribute("innerHTML");
         System.out.println("%n" + html);

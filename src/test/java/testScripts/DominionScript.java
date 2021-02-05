@@ -17,6 +17,7 @@ public class DominionScript extends driver {
     @Epic("VinMotion")
     @Feature("Feature Login")
     @Story("MCITEST-236")
+    @Severity(SeverityLevel.CRITICAL)
     public void MCITEST_236(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -31,6 +32,7 @@ public class DominionScript extends driver {
     @Epic("Log in screen")
     @Feature("Forgot Password")
     @Story("MCITEST-240")
+    @Severity(SeverityLevel.CRITICAL)
     public void MCITEST_240(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickForgotPassword();
@@ -45,6 +47,7 @@ public class DominionScript extends driver {
     @Epic("Log in screen")
     @Feature("Need additional help?")
     @Story("MCITEST-243")
+    @Severity(SeverityLevel.NORMAL)
     public void MCITEST_243(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickAdditionalHelp();
@@ -57,7 +60,7 @@ public class DominionScript extends driver {
     @Epic("VinMotion")
     @Feature("Menu Navigation")
     @Story("MCITEST-239")
-
+    @Severity(SeverityLevel.CRITICAL)
     public void MCITEST_239(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -97,7 +100,7 @@ public class DominionScript extends driver {
     @Epic("VinMotion")
     @Feature("Default Dealer")
     @Story("MICTEST-241")
-
+    @Severity(SeverityLevel.NORMAL)
     public void MCITEST_241(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -117,7 +120,7 @@ public class DominionScript extends driver {
     @Epic("Inventory Grid")
     @Feature("Add Vehicle")
     @Story("MCITEST-308")
-
+    @Severity(SeverityLevel.CRITICAL)
     public void MCITEST_308(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
