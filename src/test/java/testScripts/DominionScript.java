@@ -127,4 +127,79 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Inventory");
         invent.get().AddNewVehicleAndValidation();
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : CoreData")
+    @Epic("VinMotion")
+    @Feature("Add Permission CoreData")
+    @Story("MCITEST-280")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_280(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("CoreData");
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Setting")
+    @Epic("VinMotion")
+    @Feature("Add Permission Setting")
+    @Story("MCITEST-281")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_281(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Setting");
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Sourcing")
+    @Epic("VinMotion")
+    @Feature("Add Permission Sourcing")
+    @Story("MCITEST-282")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_282(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Sourcing");
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Dashboard")
+    @Epic("VinMotion")
+    @Feature("Add Permission Dashboard")
+    @Story("MCITEST-283")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_283(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Dashboard");
+       // invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Reports")
+    @Epic("VinMotion")
+    @Feature("Add Permission Reports")
+    @Story("MCITEST-283")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_286(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Reports");
+        //invent.get().ClickOnFooterSave();
+    }
 }

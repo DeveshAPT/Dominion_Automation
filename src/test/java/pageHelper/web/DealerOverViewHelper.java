@@ -181,6 +181,7 @@ public class DealerOverViewHelper {
         Assert.assertTrue(webDriver.IsPresent(dealerLoc.getlocator("//locators/FranchisePopup")), "Franchise Pop up is not disappeared");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Franchise Pop up is disappeared");
     }
+
     @Step("Verify Dealer List disappeared on Clicking outside the box")
     public void ClickOutSideDealerSelectionBox() throws Exception
     {
@@ -202,4 +203,6 @@ public class DealerOverViewHelper {
         Assert.assertFalse(dealers2.size()>0, "Dealer Popup is still visible");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Popup is disappeared");
     }
+
+
 }

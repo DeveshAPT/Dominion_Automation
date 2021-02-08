@@ -25,7 +25,7 @@ tags= "@SIT",
 dryRun=false
 )
 
-public class SouthernwaterRunner extends AbstractTestNGCucumberTests {
+public class BDDRunner extends AbstractTestNGCucumberTests {
 public static String message;
 	
 	@AfterSuite

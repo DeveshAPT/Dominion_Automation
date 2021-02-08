@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+    <AllBtn>//div[@id='facetItems']//input[@id='All']/parent::label</AllBtn>
+    <ActiveBtn>//div[@id='facetItems']//input[@id='Active']/parent::label</ActiveBtn>
+    <InactiveBtn>//div[@id='facetItems']//input[@id='Inactive']/parent::label</InactiveBtn>
+    <UserTableHeading>//table[@class='ui-jqgrid-htable']//th</UserTableHeading>
+    <UserRows>//table[@id='jqgUsers']//tr</UserRows>
+    <UserColumnVal>//table[@id='jqgUsers']//tr[trindex]//td[tdindex]</UserColumnVal>
+    <FirstName>//div[@id='EditUserPanel']//input[@id='FirstName']</FirstName>
+    <Permission>//div[@id='headingUserPermissions']//button</Permission>
+    <PermissionArea>//select[@id='Area']</PermissionArea>
+</locators>

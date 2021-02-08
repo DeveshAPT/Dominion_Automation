@@ -9,6 +9,7 @@
 	<test name="Chrome" junit="false" preserve-order="true">
 		<parameter name="Browser" value="Chrome" />
 		<!--<parameter name="Browser" value="headless" />-->
+
 		<groups>
 			<run>
 				<include name="web" />
@@ -17,18 +18,23 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="MCITEST_236" />
+					<!--<include name="MCITEST_236" />
 					<include name="MCITEST_240" />
 					<include name="MCITEST_243" />
 					<include name="MCITEST_239" />
 					<include name="MCITEST_308"/>
-					<include name="MCITEST_241"/>
+					<include name="MCITEST_241"/>-->
+					<include name="MCITEST_280"/>
+					<include name="MCITEST_281"/>
+					<include name="MCITEST_282"/>
+					<include name="MCITEST_283"/>
+					<include name="MCITEST_286"/>
 				</methods>
 			</class>
 		</classes>
 
 	</test>
-<test name="Firefox" junit="false" preserve-order="true">
+<!--<test name="Firefox" junit="false" preserve-order="true">
 		<parameter name="Browser" value="Firefox" />
 		<groups>
 			<run>
@@ -44,6 +50,11 @@
 					<include name="MCITEST_239" />
 					<include name="MCITEST_241"/>
 					<include name="MCITEST_308"/>
+					<include name="MCITEST_280"/>
+					<include name="MCITEST_281"/>
+					<include name="MCITEST_282"/>
+					<include name="MCITEST_283"/>
+					<include name="MCITEST_286"/>
 				</methods>
 			</class>
 		</classes>
@@ -64,8 +75,13 @@
 					<include name="MCITEST_239" />
 					<include name="MCITEST_241"/>
 					<include name="MCITEST_308"/>
+					<include name="MCITEST_280"/>
+					<include name="MCITEST_281"/>
+					<include name="MCITEST_282"/>
+					<include name="MCITEST_283"/>
+					<include name="MCITEST_286"/>
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test>-->
 </suite>

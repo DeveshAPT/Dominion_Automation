@@ -4,7 +4,7 @@
 <test name="BDD- Web" junit="false" preserve-order="true">
 <parameter name = "Browser" value="FireFox"/>
 		<classes>
-			<class name="bddRunner.SouthernwaterRunner">	
+			<class name="bddRunner.BDDRunner">
 			</class>
 		</classes>	
 	</test>

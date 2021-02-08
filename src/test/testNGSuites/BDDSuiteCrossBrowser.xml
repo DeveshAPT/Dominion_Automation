@@ -10,7 +10,7 @@
 	<parameter name = "browserVersion" value="ANY"/>
 	<parameter name = "platform" value="windows"/>
 		<classes>
-			<class name="bddRunner.SouthernwaterRunner"/>
+			<class name="bddRunner.BDDRunner"/>
 		</classes>	
 	</test>
 
@@ -20,7 +20,7 @@
 	<parameter name = "browserVersion" value="ANY"/>
 	<parameter name = "platform" value="windows"/>
 		<classes>
-			<class name="bddRunner.SouthernwaterRunner"/>
+			<class name="bddRunner.BDDRunner"/>
 		</classes>	
 	</test>
 </suite>

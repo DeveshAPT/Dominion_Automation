@@ -662,7 +662,7 @@ public class baseDriverHelper implements apiHelper, webHelper {
     @Override
     public void Moveon(WebElement el) {
         Actions action = new Actions(driver);
-        action.moveToElement(el).build().perform();
+        action.moveToElement(el).click().build().perform();
     }
     @Override
     public void MoveonAndClick(String locator1, String  locator2) throws InterruptedException {

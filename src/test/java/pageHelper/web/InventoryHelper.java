@@ -466,11 +466,17 @@ public class InventoryHelper {
         boolean f2=webDriver.IsPresent(inventoryLoc.getlocator("//locators/VehicleTabs"));
         Assert.assertTrue(f1&&f2, "Verified : Vehicle Detail Screen Loaded and Vehicle Added Successfully");
 
+
+
+    }
+
+    @Step("Click on Save")
+    public void ClickOnFooterSave() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Save")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Save'  button");
         webDriver.WaitloadingComplete();
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
-
     }
 
     public void AddNewVehicleAndValidation() throws Exception {
@@ -504,5 +510,6 @@ public class InventoryHelper {
         AutoSelectedFieldsForExistingModel();
         EnterMileage("20");
         AddAndVerifyVehicleScreen();
+        ClickOnFooterSave();
     }
 }
