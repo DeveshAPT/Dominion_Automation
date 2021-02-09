@@ -10,4 +10,20 @@
     <Save>//div[@class='modal-content']//button[text()='SAVE']</Save>
     <FranchisePopup>//div[@id='divFranchise']</FranchisePopup>
     <DealerPopupDiv>//div[@class='dropdown-menu medium show']</DealerPopupDiv>
+    <Tabs>//ul[@id='ulTabs']//li//a</Tabs>
+    <BarNA>(//div[@id='chartContainer']//*[text()='N/A'])[1]</BarNA>
+    <Bar13>//div[@id='chartContainer']//*[text()='1 - 30']</Bar13>
+    <Bar3160>//div[@id='chartContainer']//*[text()='31 - 60']</Bar3160>
+    <Bar6190>//div[@id='chartContainer']//*[text()='61 - 90']</Bar6190>
+    <Bar91plus>//div[@id='chartContainer']//*[text()='91+']</Bar91plus>
+    <DaysSupplyHeading>//table[@class='ui-jqgrid-htable']//th//div</DaysSupplyHeading>
+    <DaysSupplyRows>//table[@id='jqgDaysSupply']//tr[@class!='jqgfirstrow']</DaysSupplyRows>
+    <DaysSupplyColumn>//table[@id='jqgDaysSupply']//tr[@class!='jqgfirstrow'][rowind]//td[colind]</DaysSupplyColumn>
+    <TooHighBtn>//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Too High']//following-sibling::*</TooHighBtn>
+    <HighBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='High']//following-sibling::*)[1]</HighBtn>
+    <OptimalBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Optimal']//following-sibling::*)[1]</OptimalBtn>
+    <LowBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Low']//following-sibling::*)[1]</LowBtn>
+    <TooLowBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Too Low']//following-sibling::*)[1]</TooLowBtn>
+    <NABtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='N/A']//following-sibling::*)[1]</NABtn>
+    <GraphBar>//div[@id='chartContainer']//*[@fill='MyColour']</GraphBar>
 </locators>

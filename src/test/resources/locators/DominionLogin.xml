@@ -17,4 +17,5 @@
     <ForgotPasswordLabel>//div[@class='panel-black sso-login-panel']//h3</ForgotPasswordLabel>
     <ForgotPasswordMessage>//div[@class='panel-black sso-login-panel']//p</ForgotPasswordMessage>
     <ForgoPasswordEmail>//input[@id='Username']</ForgoPasswordEmail>
+
 </locators>

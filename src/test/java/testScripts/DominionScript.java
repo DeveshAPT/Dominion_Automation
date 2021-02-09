@@ -17,7 +17,7 @@ public class DominionScript extends driver {
     @Epic("VinMotion")
     @Feature("Feature Login")
     @Story("MCITEST-236")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void MCITEST_236(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
@@ -32,7 +32,7 @@ public class DominionScript extends driver {
     @Epic("Log in screen")
     @Feature("Forgot Password")
     @Story("MCITEST-240")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void MCITEST_240(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().ClickForgotPassword();
@@ -201,5 +201,22 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Users");
         user.get().AddPermission("Reports");
         //invent.get().ClickOnFooterSave();
+    }
+
+    //VinMotion-
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Dealer Overview>Days Supply")
+    @Epic("VinMotion")
+    @Feature("Dealer Overview>Days Supply")
+    @Story("MCITEST-258")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_258(String Browser) throws Throwable
+    {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Dealer Overview");
+        //dealer.get().ClickDifferentRangeAndVerify();
+        dealer.get().ColouredButtonToggleValidation();
     }
 }
