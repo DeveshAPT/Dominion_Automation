@@ -660,8 +660,9 @@ public class baseDriverHelper implements apiHelper, webHelper {
     }
 
     @Override
-    public void Moveon(WebElement el) {
+    public void Moveon(WebElement el) throws InterruptedException {
         Actions action = new Actions(driver);
+        Thread.sleep(4000);
         action.moveToElement(el).click().build().perform();
     }
     @Override
@@ -1168,25 +1169,10 @@ public class baseDriverHelper implements apiHelper, webHelper {
     }
 
 	@Override
-    public void WaitForpageload() throws Exception {
-
-
-
-        wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
-
-        /*Thread.sleep(1500);
-        try {
-            for (int i = 0; i <= 10; i++) {
-                while (isElementPresent("//html[contains(@class,'loading')]")) {
-                    Thread.sleep(500);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage().toString());
-        }*/
+    public void WaitForpageload() throws Exception
+    {
+   wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         Thread.sleep(5000);
-      //  waitForpageloadmask();
-      //  WaitforPageToBeReady();
     }
 
     public void waitForpageloadmask() throws InterruptedException {
@@ -1386,6 +1372,15 @@ public class baseDriverHelper implements apiHelper, webHelper {
             Thread.sleep(2000);
 
         }
+    }
+
+    @Override
+    public void WaitforElementClickable(WebElement ele) throws Exception {
+        WaitForpageload();
+        wait.until(ExpectedConditions.elementToBeClickable(ele));
+        System.out.println("Code for Loading");
+        Thread.sleep(2000);
+
     }
 
     @Override

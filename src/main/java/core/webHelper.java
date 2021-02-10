@@ -168,7 +168,7 @@ public interface webHelper {
 	boolean IsNotPresent(String locator);
 	public void ClearAndSendKeys(WebElement el,String value) throws InterruptedException, IOException;
 	public void SafeJavaScriptClick(WebElement element) throws InterruptedException;
-	public void Moveon(WebElement el);
+	public void Moveon(WebElement el) throws InterruptedException;
 	public void switchtofram(WebElement el);
 	public void switchtodefault();
 	public void ScrollWindowDownVertically(WebDriver driver) throws InterruptedException;
@@ -180,6 +180,7 @@ public interface webHelper {
 	public void WaitforControlClickable(String loc) throws Exception;
 	public void WaitloadingComplete() throws InterruptedException;
 	public void MoveonAndClick(String  loc1, String loc2) throws InterruptedException;
+	public void WaitforElementClickable(WebElement ele)throws Exception;
 	public void JavaScriptMouseHover(WebElement element);
 	public void ScrollIntoView(WebElement element) throws InterruptedException;
 	public String GetText(WebElement el);

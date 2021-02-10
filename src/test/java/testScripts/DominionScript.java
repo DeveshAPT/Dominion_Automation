@@ -261,7 +261,7 @@ public class DominionScript extends driver {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
-        //dealer.get().ClickDifferentRangeAndVerify();
+        dealer.get().ClickDifferentRangeAndVerify();
         dealer.get().ColouredButtonToggleValidation();
     }
 }
