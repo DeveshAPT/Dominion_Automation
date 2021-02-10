@@ -26,4 +26,7 @@
     <TooLowBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Too Low']//following-sibling::*)[1]</TooLowBtn>
     <NABtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='N/A']//following-sibling::*)[1]</NABtn>
     <GraphBar>//div[@id='chartContainer']//*[@fill='MyColour']</GraphBar>
+    <AttentionLoc>//div[@class='dashboard-Attention-Menu-Body']//div[contains(@class,'attention-Div')]//div[-10]</AttentionLoc>
+    <CallToActionCount>//span[@id='spanCallToActionGridHeader']</CallToActionCount>
+
 </locators>

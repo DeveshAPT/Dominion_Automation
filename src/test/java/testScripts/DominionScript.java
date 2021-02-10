@@ -263,5 +263,6 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Dealer Overview");
         dealer.get().ClickDifferentRangeAndVerify();
         dealer.get().ColouredButtonToggleValidation();
+        dealer.get().AttentionMenuValueVerification();
     }
 }

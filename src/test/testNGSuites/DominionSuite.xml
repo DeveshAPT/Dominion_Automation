@@ -18,7 +18,7 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-				<!--	<include name="MCITEST_236"/>
+					<include name="MCITEST_236"/>
 					<include name="MCITEST_240"/>
 					<include name="MCITEST_243"/>
 					<include name="MCITEST_239"/>
@@ -31,7 +31,7 @@
 					<include name="MCITEST_281"/>
 					<include name="MCITEST_282"/>
 					<include name="MCITEST_283"/>
-					<include name="MCITEST_286"/>-->
+					<include name="MCITEST_286"/>
 					<include name="MCITEST_258"/>
 				</methods>
 			</class>
@@ -48,17 +48,21 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="MCITEST_236" />
-					<include name="MCITEST_240" />
-					<include name="MCITEST_243" />
-					<include name="MCITEST_239" />
-					<include name="MCITEST_241"/>
+					<include name="MCITEST_236"/>
+					<include name="MCITEST_240"/>
+					<include name="MCITEST_243"/>
+					<include name="MCITEST_239"/>
 					<include name="MCITEST_308"/>
+					<include name="MCITEST_241"/>
+					<include name="MCITEST_277"/>
+					<include name="MCITEST_278"/>
+					<include name="MCITEST_279"/>
 					<include name="MCITEST_280"/>
 					<include name="MCITEST_281"/>
 					<include name="MCITEST_282"/>
 					<include name="MCITEST_283"/>
 					<include name="MCITEST_286"/>
+					<include name="MCITEST_258"/>
 				</methods>
 			</class>
 		</classes>
@@ -73,17 +77,21 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<include name="MCITEST_236" />
-					<include name="MCITEST_240" />
-					<include name="MCITEST_243" />
-					<include name="MCITEST_239" />
-					<include name="MCITEST_241"/>
+					<include name="MCITEST_236"/>
+					<include name="MCITEST_240"/>
+					<include name="MCITEST_243"/>
+					<include name="MCITEST_239"/>
 					<include name="MCITEST_308"/>
+					<include name="MCITEST_241"/>
+					<include name="MCITEST_277"/>
+					<include name="MCITEST_278"/>
+					<include name="MCITEST_279"/>
 					<include name="MCITEST_280"/>
 					<include name="MCITEST_281"/>
 					<include name="MCITEST_282"/>
 					<include name="MCITEST_283"/>
 					<include name="MCITEST_286"/>
+					<include name="MCITEST_258"/>
 				</methods>
 			</class>
 		</classes>

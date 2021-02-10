@@ -156,26 +156,6 @@ public class DealerOverViewHelper {
         return k;
     }
 
-    @Step("Open Dealers Overview Tab {0}")
-    public void ClickOnTab(String tabName) throws Exception {
-        List<WebElement> tabs = webDriver.getwebelements(dealerLoc.getlocator("//locators/Tabs"));
-        Assert.assertTrue(tabs.size() > 0, "Dealers Overview Tabs are not Loaded/Display ");
-        boolean found = false;
-        for (WebElement el : tabs) {
-            String text = commn.RemoveAllSpace(el.getText());
-            if (commn.RemoveAllSpace(tabName).equalsIgnoreCase(text)) {
-                found = true;
-                webDriver.Clickon(el);
-                Thread.sleep(5000);
-                webDriver.WaitForpageload();
-                webDriver.WaitforPageToBeReady();
-                break;
-            }
-        }
-        Assert.assertTrue(found, "Dealers Overview Tab : " + tabName + " not found");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Tab  : '" + tabName + "'");
-    }
-
     public void ClickDifferentRangeAndVerify() throws Exception {
         ClickOnTab("Days Supply");
         int daysindex = GetColIndex("Days Supply");
@@ -236,6 +216,87 @@ public class DealerOverViewHelper {
         ColourButtonClick("N/A");
         ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  N/A **************" );
 
+    }
+
+    public void EnterTestStep(String TestMessage) {
+        ExtentTestManager.getTest().log(LogStatus.PASS, TestMessage);
+    }
+
+    public void AttentionMenuValueVerification() throws Exception {
+        String genericLoc=dealerLoc.getlocator("//locators/AttentionLoc");
+        String labelLoc=genericLoc.replace("-10","1");
+        String valueLoc=genericLoc.replace("-10","2");
+        System.out.println(labelLoc);
+        System.out.println(valueLoc);
+        List<WebElement> labels=webDriver.getwebelements(labelLoc);
+        List<WebElement> values=webDriver.getwebelements(valueLoc);
+        Assert.assertTrue(labels.size() > 0, "Dealers Overview Attention Call to Action Menu not display/loaded ");
+        for(int i=0;i<labels.size();i++)
+        {
+            WebElement label=labels.get(i);
+            String labelName=label.getText();
+            WebElement valueEle=values.get(i);
+            String labelvalue=valueEle.getText();
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Get : Label Name "+ labelName+"  and Values  "+ labelvalue);
+            webDriver.Clickon(label);
+            webDriver.WaitForpageload();
+            webDriver.WaitforPageToBeReady();
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Click On label : "+ labelName);
+            VerifyActiveTab("Call To Action");
+            AttentionLabelAndValueVerification(labelName,labelvalue);
+        }
+    }
+
+    @Step("Verify Call to Action for Label {0} and Values {1} ")
+    public void AttentionLabelAndValueVerification(String label, String values) throws DocumentException, InterruptedException
+    {
+        Thread.sleep(5000);
+        WebElement ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/CallToActionCount"));
+        String displayText=ele.getText();
+        Assert.assertTrue(displayText.equalsIgnoreCase(values),"Attention Label : "+ label+ " not matched Call To Action count : "+displayText);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify  : Label Name "+ label+"  and Values  "+ values + " matched ");
+
+    }
+
+    @Step("Verify Dealers Overview Tab is Active {0}")
+    public void VerifyActiveTab(String tabName) throws InterruptedException, DocumentException {
+
+        List<WebElement> tabs = webDriver.getwebelements(dealerLoc.getlocator("//locators/Tabs"));
+        Assert.assertTrue(tabs.size() > 0, "Dealers Overview Tabs are not Loaded/Display ");
+        boolean found = false;
+        String className = null;
+        for (WebElement el : tabs) {
+            String text = commn.RemoveAllSpace(el.getText());
+            className = el.getAttribute("class");
+            if (commn.RemoveAllSpace(tabName).equalsIgnoreCase(text)) {
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Dealers Overview Tab : " + tabName + " not found");
+        Assert.assertTrue(className.contains("active"), "Tab Name : " + tabName + " is not Open");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Tab Name  : '" + tabName + "' is Open");
+
+    }
+
+    @Step("Open Dealers Overview Tab {0}")
+    public void ClickOnTab(String tabName) throws Exception {
+        List<WebElement> tabs = webDriver.getwebelements(dealerLoc.getlocator("//locators/Tabs"));
+        Assert.assertTrue(tabs.size() > 0, "Dealers Overview Tabs are not Loaded/Display ");
+        boolean found = false;
+        for (WebElement el : tabs) {
+            String text = commn.RemoveAllSpace(el.getText());
+            if (commn.RemoveAllSpace(tabName).equalsIgnoreCase(text)) {
+                found = true;
+                webDriver.Clickon(el);
+                Thread.sleep(5000);
+                webDriver.WaitForpageload();
+                webDriver.WaitforPageToBeReady();
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Dealers Overview Tab : " + tabName + " not found");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Tab  : '" + tabName + "'");
     }
 
     @Step("Click on Colour Button {0} and verify Toggle State")
@@ -440,10 +501,6 @@ public class DealerOverViewHelper {
         ClickFranchise();
         ChangeFranchise();
         CancelClick();
-    }
-
-    public void EnterTestStep(String TestMessage) {
-        ExtentTestManager.getTest().log(LogStatus.PASS, TestMessage);
     }
 
     @Step("Verify Changed Dealer Should reflect on Screen ")
