@@ -130,6 +130,51 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
+    @Description("Assign User Permission Area ")
+    @Epic("VinMotion")
+    @Feature("Access User Permissions")
+    @Story("MCITEST-277")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_277(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().OpenPermission();
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Inventory")
+    @Epic("VinMotion")
+    @Feature("Add Permission Inventory")
+    @Story("MCITEST-278")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_278(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Inventory");
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Assign User Permission Area : Appraisal")
+    @Epic("VinMotion")
+    @Feature("Add Permission Appraisal")
+    @Story("MCITEST-279")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_279(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Users");
+        user.get().AddPermission("Appraisal");
+        //invent.get().ClickOnFooterSave();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
     @Description("Assign User Permission Area : CoreData")
     @Epic("VinMotion")
     @Feature("Add Permission CoreData")
