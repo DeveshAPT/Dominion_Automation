@@ -24,6 +24,9 @@
 					<include name="MCITEST_239"/>
 					<include name="MCITEST_308"/>
 					<include name="MCITEST_241"/>
+					<include name="MCITEST_277"/>
+					<include name="MCITEST_278"/>
+					<include name="MCITEST_279"/>
 					<include name="MCITEST_280"/>
 					<include name="MCITEST_281"/>
 					<include name="MCITEST_282"/>
