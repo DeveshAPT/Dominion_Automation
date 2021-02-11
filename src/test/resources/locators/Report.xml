@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locators>
+    <AddReport>//div[@id='addReportButton']</AddReport>
+    <ReportType>//select[@id='ReportType']</ReportType>
+    <SortyBy>//button[@id='btnSortDropdown']</SortyBy>
+    <SortLi>//div[@id='sortDropdown']//li//label</SortLi>
+    <Filter>//select[@id='Filter']</Filter>
+    <AllDealers>//div[@id='AllDealers']//input[@id='HasAllDealers']</AllDealers>
+    <VehicleCondition>//select[@id='VehicleCondition']</VehicleCondition>
+    <VehicleState>//select[@id='VehicleState']</VehicleState>
+    <Frequency>//select[@id='FrequencyDuration']</Frequency>
+    <TimeOfDay>//select[@id='TimeOfDay']</TimeOfDay>
+    <DayOfWeek>//select[@id='DayOfWeek']</DayOfWeek>
+    <DayOfMonth>//select[@id='DayOfMonth']</DayOfMonth>
+    <MonthOfYear>//select[@id='MonthOfYear']</MonthOfYear>
+    <Recipients>//div[@id='Recipients']//input</Recipients>
+    <SaveBtn>//button[@id='btnSaveReportSchedule']</SaveBtn>
+    <DisableBtn>//button[@id='btnDisableReportSchedule']</DisableBtn>
+    <Container>//div[@class='container']</Container>
+</locators>

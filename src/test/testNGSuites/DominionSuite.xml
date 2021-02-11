@@ -33,8 +33,9 @@
 					<include name="MCITEST_283"/>
 					<include name="MCITEST_286"/>
 					<include name="MCITEST_258"/>
-					<include name="MCITEST_260"/>-->
-					<include name="MCITEST_261"/>
+					<include name="MCITEST_260"/>
+					<include name="MCITEST_261"/>-->
+					<include name="MCITEST_266"/>
 				</methods>
 			</class>
 		</classes>

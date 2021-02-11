@@ -500,58 +500,6 @@ public class DealerOverViewHelper {
 
     }
 
-    @Step("Verifying Toggle for Button {0}")
-    public void VerifyToggleStateButtonClick(String btnName, String colourName) throws Exception {
-
-        String fillcolour = "NA";
-        WebElement ele;
-        switch (btnName) {
-            case "Too High":
-
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/TooHighBtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            case "High":
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/HighBtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            case "Optimal":
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/OptimalBtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            case "Low":
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/LowBtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            case "Too Low":
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/TooLowBtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            case "N/A":
-                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/NABtn"));
-                fillcolour = ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
-                break;
-            default:
-                System.out.println("Button(" + btnName + ")  Not found");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Click on 'Too High' Button ");
-                break;
-        }
-        webDriver.WaitForpageload();
-        webDriver.WaitforPageToBeReady();
-    }
-
     @Step("Verify Vehicle Count with Chart")
     public void VerifyInventoryVehicleCount(String count, String range) throws InterruptedException, DocumentException {
         WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/VehicleCount"));
@@ -676,6 +624,5 @@ public class DealerOverViewHelper {
         Assert.assertFalse(dealers2.size() > 0, "Dealer Popup is still visible");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Dealer Popup is disappeared");
     }
-
 
 }

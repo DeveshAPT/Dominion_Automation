@@ -6,12 +6,9 @@ import org.openqa.selenium.WebDriver;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import pageHelper.web.DealerOverViewHelper;
-import pageHelper.web.DominionLoginHelper;
+import pageHelper.web.*;
 import pageHelper.api.EmployeeHelper;
 import pageHelper.api.SPQR;
-import pageHelper.web.InventoryHelper;
-import pageHelper.web.UserHelper;
 
 
 public class pageController {
@@ -22,6 +19,7 @@ public class pageController {
 		public static final ThreadLocal<DealerOverViewHelper> dealer= new InheritableThreadLocal<>();
 		public static final ThreadLocal<InventoryHelper> invent= new InheritableThreadLocal<>();
 		public static final ThreadLocal<UserHelper> user= new InheritableThreadLocal<>();
+		public static final ThreadLocal<ReportHelper> report= new InheritableThreadLocal<>();
 
 		
 		public void initPage(WebDriver driver) throws IOException
@@ -37,6 +35,9 @@ public class pageController {
 
 			UserHelper Us=new UserHelper(driver);
 			user.set(Us);
+
+			ReportHelper Rp=new ReportHelper(driver);
+			report.set(Rp);
 		}
 		
 		public void initPage(RequestSpecification dr,Response respoence)

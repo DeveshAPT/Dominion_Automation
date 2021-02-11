@@ -295,4 +295,19 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Dealer Overview");
         dealer.get().MonthPickerVerification();
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Reports>Scheduler")
+    @Epic("VinMotion")
+    @Feature("Reports>Scheduler")
+    @Story("MCITEST-266")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_266(String Browser) throws Throwable
+    {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Reports");
+        report.get().CreatingReport_Scheduler();
+    }
 }
