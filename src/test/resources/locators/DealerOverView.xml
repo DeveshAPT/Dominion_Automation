@@ -29,4 +29,13 @@
     <AttentionLoc>//div[@class='dashboard-Attention-Menu-Body']//div[contains(@class,'attention-Div')]//div[-10]</AttentionLoc>
     <CallToActionCount>//span[@id='spanCallToActionGridHeader']</CallToActionCount>
     <MarketRadius>//select[@id='VehicleMarketRadiusCurrent']</MarketRadius>
+    <DashBoardSelection>//button[@id='btnDashboardSelect']</DashBoardSelection>
+    <DashBoardSelectionItems>//div[@class='dropdown-menu show']//a</DashBoardSelectionItems>
+    <CarScoreHeading>//div[@class='card card-carscore-details']//h5</CarScoreHeading>
+    <MonthPicker>//div[@role='button']//label</MonthPicker>
+    <ActiveMonths>//div[@class='rmp-popup range light show']//li[@class='rmp-btn range ']</ActiveMonths>
+    <NextBtn>//div[@class='rmp-pad']//*[@class='rmp-tab rmp-btn next ']</NextBtn>
+    <MonthPickerCancel>//div[@class='dds-button-drawer']//button[@class='btn btn-secondary']</MonthPickerCancel>
+    <MonthPickerUpdate>//div[@class='dds-button-drawer']//button[@class='btn btn-primary']</MonthPickerUpdate>
+
 </locators>

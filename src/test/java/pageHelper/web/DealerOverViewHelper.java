@@ -255,6 +255,78 @@ public class DealerOverViewHelper {
         Thread.sleep(5000);
     }
 
+    public void DealersOverviewDropdown(String values) throws Exception {
+        webDriver.WaitforPageToBeReady();
+        List<WebElement> options = webDriver.getwebelements(dealerLoc.getlocator("//locators/DashBoardSelectionItems"));
+        boolean found = false;
+        String temp = null;
+        for (int i = 0; i < options.size(); i++) {
+            temp = options.get(i).getText();
+            if (commn.RemoveAllSpace(temp).equalsIgnoreCase(commn.RemoveAllSpace(values))) {
+                webDriver.Clickon(options.get(i));
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "Failed Due to Values " + values + " not found in Dropdown");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Selecting  Dropdown Value : " + values);
+    }
+
+    public void MonthPickerVerification() throws Exception {
+        SelectCARScore();
+        VerifyCARScoreOpen();
+        SelectMonth();
+        ClickCancel();
+    }
+
+    @Step("Open Month Picker and Selecting Month")
+    public  void SelectMonth() throws Exception
+    {
+        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/MonthPicker")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Month Picker Control");
+        Thread.sleep(2500);
+        List<WebElement> months = webDriver.getwebelements(dealerLoc.getlocator("//locators/ActiveMonths"));
+        if (months.size() == 0 || months.isEmpty())
+        {
+            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/NextBtn")));
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Next in Month Picker");
+            Thread.sleep(2500);
+            months = webDriver.getwebelements(dealerLoc.getlocator("//locators/ActiveMonths"));
+        }
+        webDriver.Clickon(months.get(1));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Month Picked : "+months.get(1).getText());
+    }
+
+    @Step("Click On Cancel")
+    public  void ClickCancel() throws Exception
+    {
+        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/MonthPickerCancel")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Month Picker Cancel");
+        Thread.sleep(2500);
+    }
+
+    @Step("Selecting C.A.R Score in Dealers Overview")
+    public void SelectCARScore() throws Exception {
+        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/DashBoardSelection")));
+        Thread.sleep(4000);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Dropdown");
+        DealersOverviewDropdown("C.A.R.Score Dashboard");
+
+    }
+
+    @Step("Verifying C.A.R.Score board is open")
+    public void VerifyCARScoreOpen() throws InterruptedException, DocumentException {
+        WebElement ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/DashBoardSelection"));
+        String temp=ele.getText();
+        System.out.println(temp);
+        Assert.assertTrue(commn.RemoveAllSpace("C.A.R.Score").equalsIgnoreCase(commn.RemoveAllSpace(temp)),"C.A.R.Score is not selected");
+        ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/CarScoreHeading"));
+        temp=ele.getText();
+        System.out.println(temp);
+        Assert.assertTrue(commn.RemoveAllSpace("C.A.R.Score Details").equalsIgnoreCase(commn.RemoveAllSpace(temp)),"C.A.R.Score Detail Section is not open");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : C.A.R.Score is selected and C.A.R.Score details section loaded ");
+    }
+
     @Step("Reading Selected Values of Market Radius ")
     public String GetRadiusValue() throws InterruptedException, DocumentException {
         Select radius = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/MarketRadius")));
@@ -281,6 +353,7 @@ public class DealerOverViewHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Change market Radius To : "+temp);
         return  temp;
     }
+
     @Step("Verify Market Radius Change to {0} ")
     public void VerifymarketRadiusUpdated(String newValue) throws InterruptedException, DocumentException {
         Select radius = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/MarketRadius")));

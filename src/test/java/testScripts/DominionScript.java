@@ -280,4 +280,19 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Dealer Overview");
         dealer.get().MarketRadiusChangeVerification();
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Dealer Overview>Market Radius")
+    @Epic("VinMotion")
+    @Feature("Dealer Overview>Market Radius")
+    @Story("MCITEST-261")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_261(String Browser) throws Throwable
+    {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Dealer Overview");
+        dealer.get().MonthPickerVerification();
+    }
 }
