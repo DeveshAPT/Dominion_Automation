@@ -179,12 +179,11 @@ public class DealerOverViewHelper {
             System.out.println(loc2);
             ele = webDriver.getwebelement(loc2);
             String range = ele.getText();
-            String temp=countValue==null||countValue==""?"0":countValue;
-            String temp2="Get Vehicle Count  :"+temp+" for range "+range;
+            String temp = countValue == null || countValue == "" ? "0" : countValue;
+            String temp2 = "Get Vehicle Count  :" + temp + " for range " + range;
             System.out.println(temp2);
-            ExtentTestManager.getTest().log(LogStatus.PASS,  temp2);
-            if(!range.equalsIgnoreCase("TOTAL"))
-            {
+            ExtentTestManager.getTest().log(LogStatus.PASS, temp2);
+            if (!range.equalsIgnoreCase("TOTAL")) {
                 BarClick(range, loc2);
                 //Verify The Count
                 VerifyInventoryVehicleCount(countValue, range);
@@ -196,25 +195,25 @@ public class DealerOverViewHelper {
 
     public void ColouredButtonToggleValidation() throws Exception {
         ClickOnTab("Days Supply");
-        String fillColour=null;
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Too High ------->>" );
+        String fillColour = null;
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Too High ------->>");
         ColourButtonClick("Too High");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of Too High **************" );
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For High ------->>" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of Too High **************");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For High ------->>");
         ColourButtonClick("High");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of High **************" );
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Optimal ------->>" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of High **************");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Optimal ------->>");
         ColourButtonClick("Optimal");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of Optimal **************" );
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Low ------->>" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "************** End of Optimal **************");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Low ------->>");
         ColourButtonClick("Low");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  Low **************" );
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Too Low ------->>" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  Low **************");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Too Low ------->>");
         ColourButtonClick("Too Low");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  Too Low **************" );
-        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For N/A ------->>" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  Too Low **************");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For N/A ------->>");
         ColourButtonClick("N/A");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  N/A **************" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "**************End of  N/A **************");
 
     }
 
@@ -223,38 +222,82 @@ public class DealerOverViewHelper {
     }
 
     public void AttentionMenuValueVerification() throws Exception {
-        String genericLoc=dealerLoc.getlocator("//locators/AttentionLoc");
-        String labelLoc=genericLoc.replace("-10","1");
-        String valueLoc=genericLoc.replace("-10","2");
+        String genericLoc = dealerLoc.getlocator("//locators/AttentionLoc");
+        String labelLoc = genericLoc.replace("-10", "1");
+        String valueLoc = genericLoc.replace("-10", "2");
         System.out.println(labelLoc);
         System.out.println(valueLoc);
-        List<WebElement> labels=webDriver.getwebelements(labelLoc);
-        List<WebElement> values=webDriver.getwebelements(valueLoc);
+        List<WebElement> labels = webDriver.getwebelements(labelLoc);
+        List<WebElement> values = webDriver.getwebelements(valueLoc);
         Assert.assertTrue(labels.size() > 0, "Dealers Overview Attention Call to Action Menu not display/loaded ");
-        for(int i=0;i<labels.size();i++)
-        {
-            WebElement label=labels.get(i);
-            String labelName=label.getText();
-            WebElement valueEle=values.get(i);
-            String labelvalue=valueEle.getText();
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Get : Label Name "+ labelName+"  and Values  "+ labelvalue);
+        for (int i = 0; i < labels.size(); i++) {
+            WebElement label = labels.get(i);
+            String labelName = label.getText();
+            WebElement valueEle = values.get(i);
+            String labelvalue = valueEle.getText();
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Get : Label Name " + labelName + "  and Values  " + labelvalue);
             webDriver.Clickon(label);
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Click On label : "+ labelName);
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Click On label : " + labelName);
             VerifyActiveTab("Call To Action");
-            AttentionLabelAndValueVerification(labelName,labelvalue);
+            AttentionLabelAndValueVerification(labelName, labelvalue);
         }
     }
 
-    @Step("Verify Call to Action for Label {0} and Values {1} ")
-    public void AttentionLabelAndValueVerification(String label, String values) throws DocumentException, InterruptedException
-    {
+    public void MarketRadiusChangeVerification() throws DocumentException, InterruptedException {
         Thread.sleep(5000);
-        WebElement ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/CallToActionCount"));
-        String displayText=ele.getText();
-        Assert.assertTrue(displayText.equalsIgnoreCase(values),"Attention Label : "+ label+ " not matched Call To Action count : "+displayText);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify  : Label Name "+ label+"  and Values  "+ values + " matched ");
+        String currentRadius = GetRadiusValue();
+        Thread.sleep(5000);
+        String radius = ChangeRadiusValue(currentRadius);
+        Thread.sleep(5000);
+        VerifymarketRadiusUpdated(radius);
+        Thread.sleep(5000);
+    }
+
+    @Step("Reading Selected Values of Market Radius ")
+    public String GetRadiusValue() throws InterruptedException, DocumentException {
+        Select radius = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/MarketRadius")));
+        String selected = radius.getFirstSelectedOption().getText();
+        System.out.println(selected);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Currently Selected Market Radius is : "+selected);
+        return selected;
+    }
+
+    @Step("Changing market Radius to Other then {0}")
+    public String ChangeRadiusValue( String currentValues) throws InterruptedException, DocumentException {
+        Select radius = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/MarketRadius")));
+        List<WebElement> options=radius.getOptions();
+        String temp=null;
+        for(WebElement el: options)
+        {
+         temp=el.getText();
+         if(!commn.RemoveAllSpace(temp).equalsIgnoreCase(commn.RemoveAllSpace(currentValues)))
+         {
+             radius.selectByVisibleText(temp);
+             break;
+         }
+        }
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Change market Radius To : "+temp);
+        return  temp;
+    }
+    @Step("Verify Market Radius Change to {0} ")
+    public void VerifymarketRadiusUpdated(String newValue) throws InterruptedException, DocumentException {
+        Select radius = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/MarketRadius")));
+        String selected = radius.getFirstSelectedOption().getText();
+        System.out.println(selected);
+        Assert.assertTrue(commn.RemoveAllSpace(newValue).equalsIgnoreCase(commn.RemoveAllSpace(selected)));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Market Radius is Updated to  : "+selected);
+
+    }
+
+    @Step("Verify Call to Action for Label {0} and Values {1} ")
+    public void AttentionLabelAndValueVerification(String label, String values) throws DocumentException, InterruptedException {
+        Thread.sleep(5000);
+        WebElement ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/CallToActionCount"));
+        String displayText = ele.getText();
+        Assert.assertTrue(displayText.equalsIgnoreCase(values), "Attention Label : " + label + " not matched Call To Action count : " + displayText);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify  : Label Name " + label + "  and Values  " + values + " matched ");
 
     }
 
@@ -300,43 +343,43 @@ public class DealerOverViewHelper {
     }
 
     @Step("Click on Colour Button {0} and verify Toggle State")
-    public void  ColourButtonClick(String btnName) throws Exception {
+    public void ColourButtonClick(String btnName) throws Exception {
 
-        String fillcolour="NA";
-        String newcolour="NA";
-        String locForBar="NA";
+        String fillcolour = "NA";
+        String newcolour = "NA";
+        String locForBar = "NA";
         List<WebElement> barList;
         List<WebElement> newbarList;
         WebElement ele;
         List<WebElement> btnlist;
-        String currentBtnLoc=null;
+        String currentBtnLoc = null;
         switch (btnName) {
             case "Too High":
-                currentBtnLoc=dealerLoc.getlocator("//locators/TooHighBtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/TooHighBtn");
                 break;
             case "High":
-                currentBtnLoc= dealerLoc.getlocator("//locators/HighBtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/HighBtn");
                 break;
             case "Optimal":
-                currentBtnLoc=  dealerLoc.getlocator("//locators/OptimalBtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/OptimalBtn");
                 break;
             case "Low":
-                currentBtnLoc= dealerLoc.getlocator("//locators/LowBtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/LowBtn");
                 break;
             case "Too Low":
-                currentBtnLoc=  dealerLoc.getlocator("//locators/TooLowBtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/TooLowBtn");
                 break;
             case "N/A":
-                currentBtnLoc=  dealerLoc.getlocator("//locators/NABtn");
+                currentBtnLoc = dealerLoc.getlocator("//locators/NABtn");
                 break;
             default:
                 System.out.println("Button(" + btnName + ")  Not found");
                 break;
 
         }
-        btnlist=webDriver.getwebelements(currentBtnLoc);
-        ele=btnlist.get(0);
-        fillcolour=ele.getAttribute("fill");
+        btnlist = webDriver.getwebelements(currentBtnLoc);
+        ele = btnlist.get(0);
+        fillcolour = ele.getAttribute("fill");
 
         //making Active
         if (fillcolour.equalsIgnoreCase("#cccccc")) {
@@ -344,15 +387,15 @@ public class DealerOverViewHelper {
             webDriver.Moveon(btnlist.get(0));
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
-            btnlist=webDriver.getwebelements(currentBtnLoc);
-            ele=btnlist.get(0);
-            fillcolour=ele.getAttribute("fill");
+            btnlist = webDriver.getwebelements(currentBtnLoc);
+            ele = btnlist.get(0);
+            fillcolour = ele.getAttribute("fill");
         }
 
-        locForBar= dealerLoc.getlocator("//locators/GraphBar");
-        locForBar=locForBar.replace("MyColour",fillcolour);
+        locForBar = dealerLoc.getlocator("//locators/GraphBar");
+        locForBar = locForBar.replace("MyColour", fillcolour);
         System.out.println(locForBar);
-        barList=webDriver.getwebelements(locForBar);
+        barList = webDriver.getwebelements(locForBar);
         Thread.sleep(4000);
         webDriver.Moveon(btnlist.get(0));
         webDriver.WaitForpageload();
@@ -360,16 +403,15 @@ public class DealerOverViewHelper {
         //webDriver.PageRefresh();
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on '"+btnName+"' Button ");
-        ele=webDriver.getwebelement(currentBtnLoc);
-        newcolour=ele.getAttribute("fill");
-        newbarList=webDriver.getwebelements(locForBar);
-        Assert.assertFalse(newcolour.equalsIgnoreCase(fillcolour),"Button :"+btnName+" not change the colour");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Button "+btnName+" Change the Colour on Click");
-        if(barList.size()>0)
-        {
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on '" + btnName + "' Button ");
+        ele = webDriver.getwebelement(currentBtnLoc);
+        newcolour = ele.getAttribute("fill");
+        newbarList = webDriver.getwebelements(locForBar);
+        Assert.assertFalse(newcolour.equalsIgnoreCase(fillcolour), "Button :" + btnName + " not change the colour");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Button " + btnName + " Change the Colour on Click");
+        if (barList.size() > 0) {
             Assert.assertTrue(newbarList.size() == 0 || newbarList.isEmpty(), "Button :" + btnName + " not change the colour");
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Graph Bar toggle on  "+btnName+" Click");
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Graph Bar toggle on  " + btnName + " Click");
         }
         //Change Make Active again
         if (newcolour.equalsIgnoreCase("#cccccc")) {
@@ -378,8 +420,7 @@ public class DealerOverViewHelper {
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
 
-        }
-        else {
+        } else {
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
         }
@@ -387,50 +428,50 @@ public class DealerOverViewHelper {
     }
 
     @Step("Verifying Toggle for Button {0}")
-    public void  VerifyToggleStateButtonClick(String btnName, String colourName) throws Exception {
+    public void VerifyToggleStateButtonClick(String btnName, String colourName) throws Exception {
 
-        String fillcolour="NA";
+        String fillcolour = "NA";
         WebElement ele;
         switch (btnName) {
             case "Too High":
 
-                ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/TooHighBtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/TooHighBtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             case "High":
-                ele  =webDriver.getwebelement(dealerLoc.getlocator("//locators/HighBtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/HighBtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             case "Optimal":
-                ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/OptimalBtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/OptimalBtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             case "Low":
-                ele= webDriver.getwebelement(dealerLoc.getlocator("//locators/LowBtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/LowBtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             case "Too Low":
-                ele=webDriver.getwebelement(dealerLoc.getlocator("//locators/TooLowBtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/TooLowBtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             case "N/A":
-                ele= webDriver.getwebelement(dealerLoc.getlocator("//locators/NABtn"));
-                fillcolour=ele.getAttribute("fill");
-                Assert.assertTrue(fillcolour!=colourName,"Colour Button '"+ btnName+"' not Change/toggled ");
-                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : "+ btnName);
+                ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/NABtn"));
+                fillcolour = ele.getAttribute("fill");
+                Assert.assertTrue(fillcolour != colourName, "Colour Button '" + btnName + "' not Change/toggled ");
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Verify Toggle State for Button : " + btnName);
                 break;
             default:
-                System.out.println("Button("+btnName+")  Not found");
+                System.out.println("Button(" + btnName + ")  Not found");
                 ExtentTestManager.getTest().log(LogStatus.PASS, "Click on 'Too High' Button ");
                 break;
         }
@@ -439,12 +480,11 @@ public class DealerOverViewHelper {
     }
 
     @Step("Verify Vehicle Count with Chart")
-    public void VerifyInventoryVehicleCount(String count, String range) throws InterruptedException, DocumentException
-    {
+    public void VerifyInventoryVehicleCount(String count, String range) throws InterruptedException, DocumentException {
         WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/VehicleCount"));
         String text = ele.getText();
         System.out.println(text);
-        String[] vals=text.split("\\s+");
+        String[] vals = text.split("\\s+");
         System.out.println(vals[0]);
         if (count == "" || count.isEmpty() || count == null) {
             Assert.assertTrue(vals[0].equalsIgnoreCase("0"), "Vehicle Count not matched");

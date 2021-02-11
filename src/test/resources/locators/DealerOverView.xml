@@ -28,5 +28,5 @@
     <GraphBar>//div[@id='chartContainer']//*[@fill='MyColour']</GraphBar>
     <AttentionLoc>//div[@class='dashboard-Attention-Menu-Body']//div[contains(@class,'attention-Div')]//div[-10]</AttentionLoc>
     <CallToActionCount>//span[@id='spanCallToActionGridHeader']</CallToActionCount>
-
+    <MarketRadius>//select[@id='VehicleMarketRadiusCurrent']</MarketRadius>
 </locators>
