@@ -19,6 +19,8 @@
     <DaysSupplyHeading>//table[@class='ui-jqgrid-htable']//th//div</DaysSupplyHeading>
     <DaysSupplyRows>//table[@id='jqgDaysSupply']//tr[@class!='jqgfirstrow']</DaysSupplyRows>
     <DaysSupplyColumn>//table[@id='jqgDaysSupply']//tr[@class!='jqgfirstrow'][rowind]//td[colind]</DaysSupplyColumn>
+    <DaysInInventoryRows>//table[@id='jqgDaysInInventory']//tr[@class!='jqgfirstrow']</DaysInInventoryRows>
+    <DaysInInventoryColumn>//table[@id='jqgDaysInInventory']//tr[@class!='jqgfirstrow'][rowind]//td[colind]</DaysInInventoryColumn>
     <TooHighBtn>//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Too High']//following-sibling::*</TooHighBtn>
     <HighBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='High']//following-sibling::*)[1]</HighBtn>
     <OptimalBtn>(//div[@id='chartContainer']//*[contains(@class,'legendGroup')]//*[text()='Optimal']//following-sibling::*)[1]</OptimalBtn>
@@ -30,6 +32,7 @@
     <CallToActionCount>//span[@id='spanCallToActionGridHeader']</CallToActionCount>
     <MarketRadius>//select[@id='VehicleMarketRadiusCurrent']</MarketRadius>
     <DashBoardSelection>//button[@id='btnDashboardSelect']</DashBoardSelection>
+    <InventorySelection>(//button[@class='btn btn-link dropdown-toggle'])[2]</InventorySelection>
     <DashBoardSelectionItems>//div[@class='dropdown-menu show']//a</DashBoardSelectionItems>
     <CarScoreHeading>//div[@class='card card-carscore-details']//h5</CarScoreHeading>
     <MonthPicker>//div[@role='button']//label</MonthPicker>

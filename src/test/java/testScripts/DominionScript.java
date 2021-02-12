@@ -25,7 +25,6 @@ public class DominionScript extends driver {
 
     }
 
-
     @Parameters("Browser")
     @Test(groups = {"web"})
     @Description("Log in screen > Forgot Password")
@@ -39,7 +38,6 @@ public class DominionScript extends driver {
         domLogin.get().VerifyForgotPasswordScreen();
         domLogin.get().ForgotPasswordValidation();
     }
-
 
     @Parameters("Browser")
     @Test(groups = {"web"})
@@ -230,7 +228,7 @@ public class DominionScript extends driver {
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Users");
         user.get().AddPermission("Dashboard");
-       // invent.get().ClickOnFooterSave();
+        // invent.get().ClickOnFooterSave();
     }
 
     @Parameters("Browser")
@@ -256,13 +254,30 @@ public class DominionScript extends driver {
     @Feature("Dealer Overview>Days Supply")
     @Story("MCITEST-258")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_258(String Browser) throws Throwable
-    {
+    public void MCITEST_253(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
-        dealer.get().ClickDifferentRangeAndVerify();
-        dealer.get().ColouredButtonToggleValidation();
+        dealer.get().SelectInventory();
+        dealer.get().ClickDifferentRangeDaysInventoryAndVerify();
+        dealer.get().ColouredButtonToggleValidation("Days In Inventory");
+        dealer.get().AttentionMenuValueVerification();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Dealer Overview>Days Supply")
+    @Epic("VinMotion")
+    @Feature("Dealer Overview>Days Supply")
+    @Story("MCITEST-258")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_258(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Dealer Overview");
+        dealer.get().SelectInventory();
+        dealer.get().ClickDifferentRangeDaysSupplyAndVerify();
+        dealer.get().ColouredButtonToggleValidation("Days Supply");
         dealer.get().AttentionMenuValueVerification();
     }
 
@@ -273,8 +288,7 @@ public class DominionScript extends driver {
     @Feature("Dealer Overview>Market Radius")
     @Story("MCITEST-260")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_260(String Browser) throws Throwable
-    {
+    public void MCITEST_260(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
@@ -288,8 +302,7 @@ public class DominionScript extends driver {
     @Feature("Dealer Overview>Market Radius")
     @Story("MCITEST-261")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_261(String Browser) throws Throwable
-    {
+    public void MCITEST_261(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
@@ -303,8 +316,7 @@ public class DominionScript extends driver {
     @Feature("Reports>Scheduler")
     @Story("MCITEST-266")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_266(String Browser) throws Throwable
-    {
+    public void MCITEST_266(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Reports");
@@ -319,8 +331,7 @@ public class DominionScript extends driver {
     @Feature("Reports>Scheduler")
     @Story("MCITEST-267")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_267(String Browser) throws Throwable
-    {
+    public void MCITEST_267(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Reports");
@@ -335,8 +346,7 @@ public class DominionScript extends driver {
     @Feature("Reports>Scheduler")
     @Story("MCITEST-268")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_268(String Browser) throws Throwable
-    {
+    public void MCITEST_268(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Reports");

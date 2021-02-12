@@ -156,7 +156,43 @@ public class DealerOverViewHelper {
         return k;
     }
 
-    public void ClickDifferentRangeAndVerify() throws Exception {
+    public void ClickDifferentRangeDaysInventoryAndVerify() throws Exception {
+        ClickOnTab("Days In Inventory");
+        int daysindex = GetColIndex("Days In Inventory");
+        int countindex = GetColIndex("Count");
+        String countValue;
+        int k = 0;
+        List<WebElement> rows = webDriver.getwebelements(dealerLoc.getlocator("//locators/DaysInInventoryRows"));
+        Assert.assertTrue(rows.size() > 0, "Days In Inventory Grid is not loaded/displayed properly");
+        for (int i = 0; i < rows.size(); i++) {
+            if (i != 0)
+                ClickOnTab("Days In Inventory");
+            k = i + 1;
+            String loc1 = dealerLoc.getlocator("//locators/DaysInInventoryColumn");
+            String loc2 = loc1.replace("rowind", Integer.toString(k)).replace("colind", Integer.toString(countindex));
+            System.out.println(loc2);
+            WebElement ele = webDriver.getwebelement(loc2);
+            countValue = ele.getText();
+            System.out.println("");
+            System.out.println(countValue);
+            loc2 = loc1.replace("rowind", Integer.toString(k)).replace("colind", Integer.toString(daysindex));
+            System.out.println(loc2);
+            ele = webDriver.getwebelement(loc2);
+            String range = ele.getText();
+            String temp = countValue == null || countValue == "" ? "0" : countValue;
+            String temp2 = "Get Vehicle Count  :" + temp + " for range " + range;
+            System.out.println(temp2);
+            ExtentTestManager.getTest().log(LogStatus.PASS, temp2);
+            if (!range.equalsIgnoreCase("TOTAL")) {
+                BarClick(range, loc2);
+                //Verify The Count
+                VerifyInventoryVehicleCount(countValue, range);
+                ClickOnMenu("Dealer Overview");
+            }
+        }
+    }
+
+    public void ClickDifferentRangeDaysSupplyAndVerify() throws Exception {
         ClickOnTab("Days Supply");
         int daysindex = GetColIndex("Days Supply");
         int countindex = GetColIndex("Count");
@@ -193,8 +229,9 @@ public class DealerOverViewHelper {
         }
     }
 
-    public void ColouredButtonToggleValidation() throws Exception {
-        ClickOnTab("Days Supply");
+    public void ColouredButtonToggleValidation(String TabName) throws Exception {
+       // ClickOnTab("Days Supply");
+        ClickOnTab(TabName);
         String fillColour = null;
         ExtentTestManager.getTest().log(LogStatus.PASS, "<<------- Start Working For Too High ------->>");
         ColourButtonClick("Too High");
@@ -306,11 +343,26 @@ public class DealerOverViewHelper {
     }
 
     @Step("Selecting C.A.R Score in Dealers Overview")
-    public void SelectCARScore() throws Exception {
-        webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/DashBoardSelection")));
-        Thread.sleep(4000);
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Dropdown");
-        DealersOverviewDropdown("C.A.R.Score Dashboard");
+    public void SelectCARScore() throws Exception
+    {
+        if(webDriver.IsPresent(dealerLoc.getlocator("//locators/InventorySelection"))) {
+            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/InventorySelection")));
+            Thread.sleep(4000);
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Dropdown");
+            DealersOverviewDropdown("C.A.R.Score Dashboard");
+        }
+
+    }
+
+    @Step("Selecting Inventory in Dealers Overview")
+    public void SelectInventory() throws Exception {
+        if(webDriver.IsPresent(dealerLoc.getlocator("//locators/DashBoardSelection")))
+        {
+            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/DashBoardSelection")));
+            Thread.sleep(4000);
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Dealers Overview Dropdown");
+            DealersOverviewDropdown("Inventory Dashboard");
+        }
 
     }
 
