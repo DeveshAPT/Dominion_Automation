@@ -311,4 +311,36 @@ public class DominionScript extends driver {
         report.get().CreatingReport_Scheduler();
         report.get().EditExistingReportAndDisable();
     }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Reports>Scheduler")
+    @Epic("VinMotion")
+    @Feature("Reports>Scheduler")
+    @Story("MCITEST-267")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_267(String Browser) throws Throwable
+    {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Reports");
+        report.get().CreatingReport_Scheduler();
+        report.get().EditExistingReportAndDisable();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Reports>Scheduler")
+    @Epic("VinMotion")
+    @Feature("Reports>Scheduler")
+    @Story("MCITEST-268")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_268(String Browser) throws Throwable
+    {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Reports");
+        report.get().CreatingReport_Scheduler();
+        report.get().EditExistingReportAndDisable();
+    }
 }
