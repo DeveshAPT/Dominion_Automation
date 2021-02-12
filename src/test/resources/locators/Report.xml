@@ -13,8 +13,10 @@
     <DayOfWeek>//select[@id='DayOfWeek']</DayOfWeek>
     <DayOfMonth>//select[@id='DayOfMonth']</DayOfMonth>
     <MonthOfYear>//select[@id='MonthOfYear']</MonthOfYear>
+    <AllRecipients>//input[@id='HasAllRecipients']</AllRecipients>
     <Recipients>//div[@id='Recipients']//input</Recipients>
     <SaveBtn>//button[@id='btnSaveReportSchedule']</SaveBtn>
     <DisableBtn>//button[@id='btnDisableReportSchedule']</DisableBtn>
-    <Container>//div[@class='container']</Container>
+    <Container>//div[@id='scheduleReport']//div[@class='modal-content']</Container>
+    <ExistingReports>//table[@id='jqgReportScheduler']//tr[@class!='jqgfirstrow']</ExistingReports>
 </locators>

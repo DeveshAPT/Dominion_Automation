@@ -163,7 +163,8 @@ public class DominionLoginHelper {
         System.out.println("");
         System.out.println(user);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Displayed User Name '" + user + "' after Login");
-
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
     }
 
     @Step("Verify User Name and Logout")

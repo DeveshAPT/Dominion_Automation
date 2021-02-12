@@ -309,5 +309,6 @@ public class DominionScript extends driver {
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Reports");
         report.get().CreatingReport_Scheduler();
+        report.get().EditExistingReportAndDisable();
     }
 }

@@ -38,10 +38,19 @@ public class ReportHelper
         SelectStatus("Active");
         SelectFrequency("Daily");
         SelectTime("01:00");
-        SelectRecipients();
+        SelectAllRecipient();
+        SelectOneRecipients();
         SaveClick();
 
     }
+
+    public void EditExistingReportAndDisable() throws Exception {
+        OpenExistingSchedule();
+        EditExistingReport();
+        SaveClick();
+        DisableScheduleReport();
+    }
+
     public boolean OptionPresent(List<WebElement> lst, String inpText)
     {
         boolean found = false;
@@ -102,22 +111,39 @@ public class ReportHelper
 
     @Step("Select Sort Type As {0}")
     public void SelectSortBy(String sort) throws Exception
-    {
+    {   webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
         webDriver.Clickon(webDriver.getwebelement(rptLoc.getlocator("//locators/SortyBy")));
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
 
         List<WebElement> sortsOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/SortLi"));
-        Assert.assertTrue(OptionPresent(sortsOptions,sort),"Sort Type "+ sort+ " not available" );
+
+        boolean found = false;
+        for (WebElement el : sortsOptions) {
+            String text = commn.RemoveAllSpace(el.getText());
+            System.out.println(text);
+            text=text.replace("|","");
+            System.out.println(text);
+            if (commn.RemoveAllSpace(sort).equalsIgnoreCase(text)) {
+                found = true;
+                break;
+            }
+        }
+
+        Assert.assertTrue(found,"Sort Type "+ sort+ " not available" );
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select Sort Type : "+sort);
         webDriver.Clickon(webDriver.getwebelement(rptLoc.getlocator("//locators/Container")));
+
     }
 
     @Step("Select Filter Type As {0}")
     public void SelectFilterBy(String filter) throws Exception
     {
-        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/Filter"));
+        Select filters=new Select(webDriver.getwebelement(rptLoc.getlocator("//locators/Filter")));
+        List<WebElement> filterOptions=filters.getOptions();
         Assert.assertTrue(OptionPresent(filterOptions,filter),"Filter Type "+ filter+ " not available" );
+        filters.selectByVisibleText(filter);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select Filter  Type : "+filter);
     }
 
@@ -136,38 +162,62 @@ public class ReportHelper
     @Step("Select Condition Type As {0}")
     public void SelectCondition(String cndtn) throws Exception
     {
-        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/VehicleCondition"));
+        Select conditions=new Select(webDriver.getwebelement(rptLoc.getlocator("//locators/VehicleCondition")));
+        List<WebElement> filterOptions=conditions.getOptions();
         Assert.assertTrue(OptionPresent(filterOptions,cndtn),"Condition Type "+ cndtn+ " not available" );
+        conditions.selectByVisibleText(cndtn);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select Condition  Type : "+cndtn);
     }
 
     @Step("Select Status Type As {0}")
     public void SelectStatus(String status) throws Exception
     {
-        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/VehicleState"));
+        Select statusList=new Select(webDriver.getwebelement(rptLoc.getlocator("//locators/VehicleState")));
+        List<WebElement> filterOptions=statusList.getOptions();
         Assert.assertTrue(OptionPresent(filterOptions,status),"Condition Type "+ status+ " not available" );
+        statusList.selectByVisibleText(status);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select Status  Type : "+status);
     }
 
     @Step("Select Condition Type As {0}")
     public void SelectFrequency(String frq) throws Exception
     {
-        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/Frequency"));
+        Select freqList=new Select(webDriver.getwebelement(rptLoc.getlocator("//locators/Frequency")));
+        List<WebElement> filterOptions=freqList.getOptions();
         Assert.assertTrue(OptionPresent(filterOptions,frq),"Frequency Type "+ frq+ " not available" );
+        freqList.selectByVisibleText(frq);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Frequency Status  Type : "+frq);
     }
 
     @Step("Select Time of Day Type As {0}")
     public void SelectTime(String time) throws Exception
     {
-        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/TimeOfDay"));
+        Select times=new Select(webDriver.getwebelement(rptLoc.getlocator("//locators/TimeOfDay")));
+        List<WebElement> filterOptions=times.getOptions();
         Assert.assertTrue(OptionPresent(filterOptions,time),"Time of Day "+ time+ " not available" );
+        times.selectByVisibleText(time);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Time of Day : "+time);
     }
 
-    @Step("Select Recipient")
-    public void SelectRecipients() throws Exception
+    @Step("Select All Recipient")
+    public void SelectAllRecipient() throws Exception
     {
+        webDriver.Clickon(webDriver.getwebelement(rptLoc.getlocator("//locators/AllRecipients")));
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select All Recipient");
+    }
+
+    @Step("Select One Recipient")
+    public void SelectOneRecipients() throws Exception
+    {
+        WebElement all=webDriver.getwebelement(rptLoc.getlocator("//locators/AllRecipients"));
+        String classVal=all.getAttribute("class");
+        if(classVal.equalsIgnoreCase("dirty"))
+        {   webDriver.Clickon(all);
+            webDriver.WaitForpageload();
+            webDriver.WaitforPageToBeReady();
+        }
         List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/Recipients"));
        for(WebElement el: filterOptions)
        {
@@ -182,8 +232,37 @@ public class ReportHelper
        }
     }
 
+    @Step("Adding More Then One Recipient")
+    public void MoreThenRecipients() throws Exception
+    {
+        WebElement all=webDriver.getwebelement(rptLoc.getlocator("//locators/AllRecipients"));
+        String classVal=all.getAttribute("class");
+        if(classVal.equalsIgnoreCase("dirty"))
+        {   webDriver.Clickon(all);
+            webDriver.WaitForpageload();
+            webDriver.WaitforPageToBeReady();
+        }
+        List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/Recipients"));
+        int count=0;
+        for(WebElement el: filterOptions)
+        {
+            String className= el.getAttribute("class");
+            if(!className.equalsIgnoreCase("dirty"))
+            {
+                count++;
+                webDriver.Clickon(el);
+                ExtentTestManager.getTest().log(LogStatus.PASS, "Select Recipients : "+el.getText() );
+
+            }
+            if(count>1)
+                break;
+
+        }
+    }
+
     @Step("Click on Save")
-    public void SaveClick() throws Exception {
+    public void SaveClick() throws Exception
+    {
         webDriver.Clickon(webDriver.getwebelement(rptLoc.getlocator("//locators/SaveBtn")));
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
@@ -193,4 +272,34 @@ public class ReportHelper
         webDriver.WaitforPageToBeReady();
     }
 
+    @Step("Open Existing Report Schedule")
+    public void OpenExistingSchedule() throws Exception {
+        List<WebElement> rows=webDriver.getwebelements(rptLoc.getlocator("//locators/ExistingReports"));
+        Assert.assertTrue(rows.size()>0,"No Existing Report Schedule is Present");
+        webDriver.Clickon(rows.get(0));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Open the Existing Report");
+    }
+
+    @Step("Open Existing Report Schedule")
+    public void EditExistingReport() throws Exception {
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+        MoreThenRecipients();
+    }
+
+    @Step("Click on Disable to Disable the Report Scheduler")
+    public void DisableScheduleReport() throws Exception {
+
+        OpenExistingSchedule();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+        webDriver.Clickon(webDriver.getwebelement(rptLoc.getlocator("//locators/DisableBtn")));
+        webDriver.AcceptJavaScriptMethod();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Disable Button");
+        webDriver.WaitloadingComplete();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+    }
 }
