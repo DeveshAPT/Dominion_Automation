@@ -152,11 +152,15 @@ public class ReportHelper
     {
        WebElement ele=webDriver.getwebelement(rptLoc.getlocator("//locators/AllDealers"));
        String classname=ele.getAttribute("class");
-       if(!commn.RemoveAllSpace(classname).equalsIgnoreCase(commn.RemoveAllSpace("dirty")))
+        String classname1=ele.getAttribute("className");
+       if(!(commn.RemoveAllSpace(classname).equalsIgnoreCase("dirty")||
+               commn.RemoveAllSpace(classname1).equalsIgnoreCase("dirty")))
        {
            webDriver.Clickon(ele);
            ExtentTestManager.getTest().log(LogStatus.PASS, "Select All Dealers");
        }
+        webDriver.Clickon(ele);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select All Dealers");
     }
 
     @Step("Select Condition Type As {0}")
@@ -213,7 +217,10 @@ public class ReportHelper
     {
         WebElement all=webDriver.getwebelement(rptLoc.getlocator("//locators/AllRecipients"));
         String classVal=all.getAttribute("class");
-        if(classVal.equalsIgnoreCase("dirty"))
+        String classVal1=all.getAttribute("className");
+        System.out.println(classVal);
+        System.out.println(classVal1);
+        if(classVal.equalsIgnoreCase("dirty")||classVal1.equalsIgnoreCase("dirty"))
         {   webDriver.Clickon(all);
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
@@ -221,8 +228,10 @@ public class ReportHelper
         List<WebElement> filterOptions=webDriver.getwebelements(rptLoc.getlocator("//locators/Recipients"));
        for(WebElement el: filterOptions)
        {
+
+           classVal1=el.getAttribute("className");
            String className= el.getAttribute("class");
-           if(!className.equalsIgnoreCase("dirty"))
+           if(!(className.equalsIgnoreCase("dirty")||classVal1.equalsIgnoreCase("dirty")))
            {
                webDriver.Clickon(el);
                ExtentTestManager.getTest().log(LogStatus.PASS, "Select Recipients : "+el.getText() );
@@ -237,7 +246,8 @@ public class ReportHelper
     {
         WebElement all=webDriver.getwebelement(rptLoc.getlocator("//locators/AllRecipients"));
         String classVal=all.getAttribute("class");
-        if(classVal.equalsIgnoreCase("dirty"))
+        String classVal1=all.getAttribute("className");
+        if(classVal.equalsIgnoreCase("dirty")||classVal1.equalsIgnoreCase("dirty"))
         {   webDriver.Clickon(all);
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
@@ -246,8 +256,9 @@ public class ReportHelper
         int count=0;
         for(WebElement el: filterOptions)
         {
+            classVal1=el.getAttribute("className");
             String className= el.getAttribute("class");
-            if(!className.equalsIgnoreCase("dirty"))
+            if(!(className.equalsIgnoreCase("dirty")||classVal1.equalsIgnoreCase("dirty")))
             {
                 count++;
                 webDriver.Clickon(el);
