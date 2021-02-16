@@ -5,8 +5,15 @@
     <BatchVehicle>//div[@id='addVehicleLinkContainer']//div[text()='Batch Vehicles']</BatchVehicle>
     <AddVehiclePopUp>//div[@id='addVehicleModal']//div[@id='addToInventoryBody']</AddVehiclePopUp>
     <Passenger>//input[@id='Passenger']</Passenger>
+    <MotorCycle>//input[@id='Motorcycle']</MotorCycle>
+    <RV>//input[@id='RV']</RV>
+    <New>//input[@id='New']</New>
     <Used>//input[@id='Used']</Used>
+    <Certified>//input[@id='Certified']</Certified>
+    <Rough>//input[@id='Rough']</Rough>
     <Average>//input[@id='Average']</Average>
+    <Clean>//input[@id='Clean']</Clean>
+    <ExtraClean>//input[@id='ExtraClean']</ExtraClean>
     <AlertMessage>//div[@id='alertMessageAddVehicle']</AlertMessage>
     <VinNumber>//div[@class='vehicleInformation']//span</VinNumber>
     <VinInput>//input[@id='Vin']</VinInput>

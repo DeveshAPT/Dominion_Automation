@@ -128,6 +128,20 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
+    @Description("Inventory Grid - Add RV")
+    @Epic("Inventory Grid")
+    @Feature("AAdd RV")
+    @Story("MCITEST-310")
+    @Severity(SeverityLevel.CRITICAL)
+    public void MCITEST_310(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Inventory");
+        invent.get().AddRV();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
     @Description("Assign User Permission Area ")
     @Epic("VinMotion")
     @Feature("Access User Permissions")

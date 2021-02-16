@@ -417,8 +417,20 @@ public class InventoryHelper {
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are auto selected for Existing Model");
     }
 
+
+
+    @Step("Click on Add Button")
+    public void ClickAddNewVehicle() throws Exception {
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Add Button");
+        webDriver.WaitloadingComplete();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
+    }
+
     @Step("Click on Add Button and Verify Vehicle detail screen should display")
-    public void AddAndVerifyVehicleScreen() throws Exception {
+    public void VerifyAddVehicleScreen() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
         ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Add Button");
         webDriver.WaitloadingComplete();
@@ -539,6 +551,120 @@ public class InventoryHelper {
 
     }
 
+    @Step("Select Vehicle Type as {0}")
+    public void SelectVehicleType(String type) throws Exception {
+        String locatme=null;
+        if(type.equalsIgnoreCase("Passenger"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Passenger");
+        }
+        else if(type.equalsIgnoreCase("Motorcycle"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/MotorCycle");
+        }
+        else if(type.equalsIgnoreCase("RV"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/RV");
+        }
+        else
+        {
+            System.out.println("Specify the Correct Vehicle Type");
+            Assert.fail("Please Specify the Correct Vehicle Type");
+        }
+        webDriver.Clickon(webDriver.getwebelement(locatme));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click >> Vehicle Type as : "+type );
+        webDriver.WaitforPageToBeReady();
+    }
+
+    @Step("Select Vehicle Condition as {0}")
+    public void SelectVehicleCondition(String cndtn) throws Exception {
+        String locatme=null;
+        if(cndtn.equalsIgnoreCase("New"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/New");
+        }
+        else if(cndtn.equalsIgnoreCase("Used"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Used");
+        }
+        else if(cndtn.equalsIgnoreCase("Certified"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Certified");
+        }
+        else
+        {
+            System.out.println("Specify the Correct Vehicle Condition Type");
+            Assert.fail("Please Specify the Correct Vehicle Condition Type");
+        }
+        webDriver.Clickon(webDriver.getwebelement(locatme));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click >> Vehicle Condition Type as : "+cndtn );
+        webDriver.WaitforPageToBeReady();
+    }
+
+    @Step("Select Vehicle Classification as {0}")
+    public void SelectVehicleClassification(String vClass) throws Exception {
+        String locatme=null;
+        if(vClass.equalsIgnoreCase("Rough"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Rough");
+        }
+        else if(vClass.equalsIgnoreCase("Average"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Average");
+        }
+        else if(vClass.equalsIgnoreCase("Clean"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/Clean");
+        }
+        else if(vClass.equalsIgnoreCase("Extra Clean"))
+        {
+            locatme=inventoryLoc.getlocator("//locators/ExtraClean");
+        }
+        else
+        {
+            System.out.println("Specify the Correct Vehicle Class Type");
+            Assert.fail("Please Specify the Correct Vehicle Class Type");
+        }
+        webDriver.Clickon(webDriver.getwebelement(locatme));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click >> Vehicle Class Type as : "+vClass );
+        webDriver.WaitforPageToBeReady();
+    }
+
+    public void AddRV() throws Exception {
+        String vinNumber = GetVinNumber();
+        ClickAddVehicle();
+        SelectSingleVehicle();
+        SelectVehicleType("RV");
+        String newVIN = "VIN" + GenerateRandom(14);
+        EnterVinNumber(newVIN);
+        String stk = GenerateRandom(26);
+        System.out.println(stk);
+        VerifyStockMaxLength(stk);
+        stk = "NUM" + GenerateRandom(7);
+        EnterStockValue(stk);
+        SelectYear("2017");
+        Thread.sleep(5000);
+        SelectMake("Alfa");
+        Thread.sleep(5000);
+        SelectModel("Ideal 29 RL");
+        Thread.sleep(5000);
+        EnterMileage("15");
+        SelectVehicleCondition("New");
+        SelectVehicleCondition("Used");
+        SelectVehicleCondition("Certified");
+        SelectVehicleCondition("Used");
+        SelectVehicleClassification("Rough");
+        SelectVehicleClassification("Average");
+        SelectVehicleClassification("Clean");
+        SelectVehicleClassification("Extra Clean");
+        SelectVehicleClassification("Average");
+        ClickAddNewVehicle();
+        VerifyAddVehicleScreen();
+        ClickOnFooterSave();
+
+
+    }
+
     public void AddNewVehicleAndValidation() throws Exception {
 
         String vinNumber = GetVinNumber();
@@ -569,7 +695,8 @@ public class InventoryHelper {
         SelectStyle("SEL 4dr Crossover");
         AutoSelectedFieldsForExistingModel();
         EnterMileage("20");
-        AddAndVerifyVehicleScreen();
+        ClickAddNewVehicle();
+        VerifyAddVehicleScreen();
         ClickOnFooterSave();
     }
 }
