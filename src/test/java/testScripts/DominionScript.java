@@ -284,6 +284,22 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
+    @Description("Left Screen Navigation Menu>Dealer Overview>Call To Action")
+    @Epic("VinMotion")
+    @Feature("Dealer Overview>Call To Action")
+    @Story("MCITEST-259")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_259(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Dealer Overview");
+        dealer.get().SelectInventory();
+        dealer.get(). ClickOnTab("Call To Action");
+        dealer.get().AttentionMenuValueVerification();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
     @Description("Left Screen Navigation Menu>Dealer Overview>Market Radius")
     @Epic("VinMotion")
     @Feature("Dealer Overview>Market Radius")
