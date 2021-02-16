@@ -16,6 +16,7 @@ import utils.xmlreader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ public class InventoryHelper {
     xmlreader inventoryLoc = new xmlreader("src\\test\\resources\\locators\\Inventory.xml");
     xmlreader dealerLoc = new xmlreader("src\\test\\resources\\locators\\DealerOverView.xml");
     public webHelper webDriver;
-
+    CommonFunctions comm=new CommonFunctions();
 
     public InventoryHelper(WebDriver driver) {
         webDriver = new baseDriverHelper(driver);
@@ -32,47 +33,6 @@ public class InventoryHelper {
     @Step("Get Existing VIN number")
     public String GetVinNumber() throws Exception {
         List<WebElement> vinlist = webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinNumber"));
-        /*if(vinlist.isEmpty()||vinlist.size()==0)
-        {
-            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/Franchise")));
-            ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Franchise'");
-            webDriver.WaitForpageload();
-            webDriver.WaitforPageToBeReady();
-
-            webDriver.Clickon(webDriver.getwebelement(dealerLoc.getlocator("//locators/Franchise")));
-            ExtentTestManager.getTest().log(LogStatus.PASS, "ClickOn : 'Franchise'");
-            webDriver.WaitForpageload();
-            webDriver.WaitforPageToBeReady();
-
-            WebElement ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerNames"));
-            String displaydealer1 = ele.getAttribute("value");
-            System.out.println(displaydealer1);
-
-            Select drop = new Select(webDriver.getwebelement(dealerLoc.getlocator("//locators/FranchiseDropdown")));
-            WebElement option = drop.getFirstSelectedOption();
-            String  franchise = option.getText();
-            ExtentTestManager.getTest().log(LogStatus.PASS, " Selected Franchise  : '" + franchise + "' and Selected  Dealer '" + displaydealer1 + "'");
-
-            List<WebElement> op = drop.getOptions();
-            int size = op.size();
-            for (int i = 0; i < size; i++) {
-                String options = op.get(i).getText();
-                if (!franchise.equalsIgnoreCase(options)) {
-                    ExtentTestManager.getTest().log(LogStatus.PASS, "Franchise Changes to : ' " + options + " '");
-                    drop.selectByIndex(i);
-                    webDriver.WaitForpageload();
-                    webDriver.WaitforPageToBeReady();
-                    break;
-                }
-            }
-            ele = webDriver.getwebelement(dealerLoc.getlocator("//locators/DealerNames"));
-            String displaydealer2 = ele.getAttribute("value");
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Default Dealer Change to : '" + displaydealer2 + "'");
-            System.out.println(displaydealer1);
-            System.out.println(displaydealer2);
-            Assert.assertFalse(displaydealer1.equalsIgnoreCase(displaydealer2), "Default Dealer not Change on Franchise Changes");
-            ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Default Dealer Changes on Change in Franchise");
-        }*/
         WebElement ele = vinlist.get(0);
         String html = ele.getAttribute("innerHTML");
         System.out.println("%n" + html);
@@ -98,6 +58,7 @@ public class InventoryHelper {
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
     }
+
     @Step("Verify the default selected fields for add vehicle screen")
     public void PopupWithDefaultValues() throws InterruptedException, DocumentException {
         Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/AddVehiclePopUp")), "Add Vehicle Popup is not appeared");
@@ -158,6 +119,7 @@ public class InventoryHelper {
         }
 
     }
+
     @Step("Verify Mandatory Fields are Highlighted")
     public void MandatoryFieldVerification() throws Exception {
         List<String> errorList = new ArrayList<String>();
@@ -266,6 +228,7 @@ public class InventoryHelper {
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), newVIN + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : " + newVIN);
     }
+
     @Step("Verify Max Length input for Stock")
     public void VerifyStockMaxLength(String stk) throws InterruptedException, DocumentException, IOException {
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
@@ -282,7 +245,6 @@ public class InventoryHelper {
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : " + stk);
     }
-
 
     @Step("Verify Year Range available i.e 1900 to 2022")
     public void YearRangeVerification() throws Exception {
@@ -334,6 +296,7 @@ public class InventoryHelper {
         styleDrop.selectByVisibleText(styles);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Select  : Trims As " + styles);
     }
+
     @Step("Verify User Can Enter Other Make , Model and Style ")
     public void CustomMakeAddAndValidation() throws Exception {
         Random rnd = new Random();
@@ -384,6 +347,7 @@ public class InventoryHelper {
         Assert.assertTrue(opt.size() == 1, "Size type is not auto-selected for Other Model");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are not auto selected  for Other Model");
     }
+
     @Step("Verify Auto Populated Fields for Existing Model")
     public void AutoSelectedFieldsForExistingModel() throws InterruptedException, DocumentException {
         Select engine = new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Engine")));
@@ -452,6 +416,7 @@ public class InventoryHelper {
         Assert.assertTrue(found, "Size type is not auto-selected for Existing Model");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Engine Type,Transmission Type, Fuel Type, Segment and Segment Size are auto selected for Existing Model");
     }
+
     @Step("Click on Add Button and Verify Vehicle detail screen should display")
     public void AddAndVerifyVehicleScreen() throws Exception {
         webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddButton")));
@@ -477,6 +442,101 @@ public class InventoryHelper {
         webDriver.WaitloadingComplete();
         webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
+    }
+
+    @Step("Click on Action")
+    public void ClickActionButton() throws Exception {
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/ActionButton")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Action Button");
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+    }
+
+    @Step("Verify 'Add' under Single Vehicle Action")
+    public void VerifyAddUnderSingleAction() throws InterruptedException, DocumentException {
+        List<WebElement> lst=webDriver.getwebelements(inventoryLoc.getlocator("//locators/ActionSingleVehicle"));
+        Assert.assertTrue(lst.size()>0,"'Add' Action not found under Single Vehicle Action");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : 'Add' under Single Vehicle Action ");
+    }
+
+    @Step("Click On Add and Verify Add Vehicle Pop Up")
+    public void SelectAddVerifyPopUp() throws Exception {
+        Select actions=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/SelectAction")));
+        actions.selectByVisibleText("Add");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select : 'Add' under Single vehicle ");
+        //webDriver.WaitloadingComplete();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
+        List<WebElement> lst=webDriver.getwebelements(inventoryLoc.getlocator("//locators/AddVehiclePopUp"));
+        Assert.assertTrue(lst.size()>0,"Add Vehicle pop-up is not open for 'Add' Selection under Single vehicle ");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : Add Vehicle pop-up is opened for 'Add' Selection under Single vehicle ");
+
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/ActionButton")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Action Button");
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
+    }
+
+    @Step("Click On Add and Verify Add Vehicle Pop Up")
+    public void CloseAddVehiclePopUpByX() throws Exception {
+
+        webDriver.Clickon(webDriver.getwebelement(inventoryLoc.getlocator("//locators/AddVehicleClose")));
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Click on : Add Vehicle Close Button");
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+
+    }
+
+    @Step("Verify Action Option under Batch Vehicles")
+    public void BatchVehicleActionOptions() throws Exception {
+
+        List<String> actionOption =new ArrayList<>();
+        actionOption.add("Add Batch Photos");
+        actionOption.add("Add Batch Vehicles");
+        actionOption.add("Apply Photo Overlay");
+        actionOption.add("Create Batch Stickers");
+        actionOption.add("Delete All Photos");
+        actionOption.add("Delete Photo Overlays");
+        actionOption.add("Download All Photos");
+        actionOption.add("Mark Condition As New");
+        actionOption.add("Mark Condition As Used");
+        actionOption.add("Mark Status As Active");
+        actionOption.add("Mark Status As Pending");
+        actionOption.add("Mark Status As Sold");
+        actionOption.add("Mark Sale Type As Retail");
+        actionOption.add("Reconditioning step up");
+        actionOption.add("Mark Sale Type As Wholesale");
+        actionOption.add("Reconditioning Step down");
+        actionOption.add("Reconditioning Change step");
+        actionOption.add("Rebuild Story");
+        actionOption.add("Release Photo control");
+        actionOption.add("Request C.A.R Inspection/Re-Inspection");
+        actionOption.add("Syndicate C.A.R Score Report");
+
+        List<WebElement> lst = webDriver.getwebelements(inventoryLoc.getlocator("//locators/ActionBatchVehicle"));
+        Assert.assertTrue(lst.size() > 0, "Batch Vehicle Action Options are Blank");
+        int count = actionOption.size();
+        List<String> newOption = comm.RemoveSpaceOfAllItems(actionOption);
+        for (WebElement el : lst) {
+            String opt = el.getText();
+            opt = comm.RemoveAllSpace(opt);
+            int index = newOption.indexOf(opt);
+            if (index >= 0) {
+                newOption.remove(index);
+            }
+        }
+        if(newOption.size()>0)
+        {
+            for(int i=0;i<newOption.size();i++)
+            {
+                ExtentTestManager.getTest().log(LogStatus.PASS, newOption.get(i).toString());
+            }
+        }
+        Assert.assertFalse(newOption.size()>0,"Not all option visible in Batch Vehicle Action ");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified : All Action option under Batch Vehicle Action");
+
     }
 
     public void AddNewVehicleAndValidation() throws Exception {

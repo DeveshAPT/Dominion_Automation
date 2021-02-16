@@ -135,7 +135,10 @@ public class DealerOverViewHelper {
 
     }
 
-    public int GetColIndex(String colName) throws InterruptedException, DocumentException {
+    public int GetColIndex(String colName) throws Exception {
+        webDriver.WaitforElementVisible(webDriver.getwebelement(dealerLoc.getlocator("//locators/DaysSupplyHeading")));
+        webDriver.WaitforElementClickable(webDriver.getwebelement(dealerLoc.getlocator("//locators/DaysSupplyHeading")));
+
         List<WebElement> headings = webDriver.getwebelements(dealerLoc.getlocator("//locators/DaysSupplyHeading"));
         Assert.assertTrue(headings.size() > 0, "Days Supply does not contain bar for : " + colName);
         boolean found = false;
@@ -194,6 +197,9 @@ public class DealerOverViewHelper {
 
     public void ClickDifferentRangeDaysSupplyAndVerify() throws Exception {
         ClickOnTab("Days Supply");
+        webDriver.WaitloadingComplete();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
         int daysindex = GetColIndex("Days Supply");
         int countindex = GetColIndex("Count");
         String countValue;
@@ -223,8 +229,12 @@ public class DealerOverViewHelper {
                 BarClick(range, loc2);
                 //Verify The Count
                 VerifyInventoryVehicleCount(countValue, range);
+                ClickOnMenu("Dealer Overview");
+                webDriver.WaitloadingComplete();
+                webDriver.WaitForpageload();
+                webDriver.WaitforPageToBeReady();
             }
-            ClickOnMenu("Dealer Overview");
+
 
         }
     }

@@ -137,6 +137,7 @@ public class DominionScript extends driver {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Users");
+        user.get().ClickActiveUsers();
         user.get().OpenPermission();
         //invent.get().ClickOnFooterSave();
     }
@@ -252,7 +253,7 @@ public class DominionScript extends driver {
     @Description("Left Screen Navigation Menu>Dealer Overview>Days Supply")
     @Epic("VinMotion")
     @Feature("Dealer Overview>Days Supply")
-    @Story("MCITEST-258")
+    @Story("MCITEST-253")
     @Severity(SeverityLevel.NORMAL)
     public void MCITEST_253(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
@@ -302,7 +303,7 @@ public class DominionScript extends driver {
     @Feature("Dealer Overview>Market Radius")
     @Story("MCITEST-261")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_261(String Browser) throws Throwable {
+    public void MCITEST_261A(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");
@@ -352,5 +353,24 @@ public class DominionScript extends driver {
         domLogin.get().ClickOnMenu("Reports");
         report.get().CreatingReport_Scheduler();
         report.get().EditExistingReportAndDisable();
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
+    @Description("Inventory Grid - ACTIONS (button)")
+    @Epic("Inventory Grid")
+    @Feature("ACTIONS (button)")
+    @Story("MCITEST-317")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_317(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Inventory");
+        invent.get().ClickActionButton();
+        invent.get().VerifyAddUnderSingleAction();
+        invent.get().SelectAddVerifyPopUp();
+        invent.get().CloseAddVehiclePopUpByX();
+        invent.get().ClickActionButton();
+        invent.get().BatchVehicleActionOptions();
     }
 }

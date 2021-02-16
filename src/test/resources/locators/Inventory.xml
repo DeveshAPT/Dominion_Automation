@@ -39,4 +39,10 @@
     <VehicleTabs>//ul[@id='ulTabs']//li</VehicleTabs>
     <Save>//button[@id='btnSave']</Save>
     <VehicleCount>//div[@id='InventoryGridHeader']</VehicleCount>
+    <ActionButton>//div[@id='facetItems']//input[@id='EnableActions']</ActionButton>
+    <SelectAction>//select[@id='InventoryActions']</SelectAction>
+    <ActionSingleVehicle>//select[@id='InventoryActions']//optgroup[@label='Single Vehicle']//*</ActionSingleVehicle>
+    <ActionBatchVehicle>//select[@id='InventoryActions']//optgroup[@label='Batch Vehicles']/*</ActionBatchVehicle>
+    <AddVehicleClose>//div[@id='addVehicleModal']//button[@class='close']//span</AddVehicleClose>
+
 </locators>

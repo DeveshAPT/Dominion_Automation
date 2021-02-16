@@ -181,6 +181,7 @@ public interface webHelper {
 	public void WaitloadingComplete() throws InterruptedException;
 	public void MoveonAndClick(String  loc1, String loc2) throws InterruptedException;
 	public void WaitforElementClickable(WebElement ele)throws Exception;
+	public void WaitforElementVisible(WebElement ele)throws Exception;
 	public void JavaScriptMouseHover(WebElement element);
 	public void ScrollIntoView(WebElement element) throws InterruptedException;
 	public String GetText(WebElement el);

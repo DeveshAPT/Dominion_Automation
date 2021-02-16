@@ -1384,6 +1384,15 @@ public class baseDriverHelper implements apiHelper, webHelper {
     }
 
     @Override
+    public void WaitforElementVisible(WebElement ele) throws Exception {
+        WaitForpageload();
+        wait.until(ExpectedConditions.visibilityOf(ele));
+        System.out.println("Code for Loading");
+        Thread.sleep(2000);
+
+    }
+
+    @Override
     public void SwitchToLastTab() {
         String parentWinHandle = driver.getWindowHandle();
         Set<String> totalopenwindow = driver.getWindowHandles();

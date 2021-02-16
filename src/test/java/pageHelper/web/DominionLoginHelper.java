@@ -206,6 +206,7 @@ public class DominionLoginHelper {
         if (index > -1) {
             webDriver.Clickon(ele);
             ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Menu Item : " + menuItem);
+            Thread.sleep(5000);
             webDriver.WaitForpageload();
             webDriver.WaitforPageToBeReady();
         } else {
