@@ -281,6 +281,21 @@ public class DominionScript extends driver {
 
     @Parameters("Browser")
     @Test(groups = {"web"})
+    @Description("Inventory Grid - View By list of Standard Views")
+    @Epic("Inventory Grid")
+    @Feature("View By list of Standard Views")
+    @Story("MCITEST-257")
+    @Severity(SeverityLevel.NORMAL)
+    public void MCITEST_257(String Browser) throws Throwable {
+        domLogin.get().OpenDominion();
+        domLogin.get().DominionLogin();
+        domLogin.get().ClickOnMenu("Inventory");
+        invent.get().VerifyDifferentLayoutAndColumns();
+
+    }
+
+    @Parameters("Browser")
+    @Test(groups = {"web"})
     @Description("Left Screen Navigation Menu>Dealer Overview>Days Supply")
     @Epic("VinMotion")
     @Feature("Dealer Overview>Days Supply")
@@ -333,7 +348,7 @@ public class DominionScript extends driver {
     @Feature("Dealer Overview>Market Radius")
     @Story("MCITEST-261")
     @Severity(SeverityLevel.NORMAL)
-    public void MCITEST_261A(String Browser) throws Throwable {
+    public void MCITEST_261(String Browser) throws Throwable {
         domLogin.get().OpenDominion();
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Dealer Overview");

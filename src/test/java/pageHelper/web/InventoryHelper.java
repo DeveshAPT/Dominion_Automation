@@ -636,6 +636,88 @@ public class InventoryHelper {
         webDriver.WaitforPageToBeReady();
     }
 
+    @Step("Select Inventory Layout  as {0}")
+    public void ChangeInventoryLayOut(String opt) throws Exception {
+        Select layout=new Select(webDriver.getwebelement(inventoryLoc.getlocator("//locators/GridLayOut")));
+        layout.selectByVisibleText(opt);
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Select >> Inventory layout as  : "+opt );
+        webDriver.WaitloadingComplete();
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
+    }
+
+    @Step("Verify VinMotion Columns")
+    public void VerifyVinMotionColumns() throws InterruptedException, DocumentException
+    {
+        List<WebElement> rows=webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinGrid"));
+        Assert.assertTrue(rows.size()>1,"No Data Present in Vin Motion Grid");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/LastChange")),"Last Change column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/DaysSupply")),"Days Supply column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Age")),"Age column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Rank")),"Rank column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Price")),"Price column is not present");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified 'Last Change', 'Days Supply', 'Age', 'Rank ' and 'Price' is displayed" );
+    }
+
+    @Step("Verify Comments Columns")
+    public void VerifyCommentsColumns() throws InterruptedException, DocumentException
+    {
+        List<WebElement> rows=webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinGrid"));
+        Assert.assertTrue(rows.size()>1,"No Data Present in Vin Motion Grid");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/VehicleYearName")),"Vehicle Name Year Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/ColVin")),"VIN Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/ColStock")),"Stock Column  is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CommentTxt")),"Comment Input Box is not present");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified 'Last Change', 'Days Supply', 'Age', 'Rank ' and 'Price' is displayed" );
+    }
+
+    @Step("Verify Photo And Video Columns")
+    public void VerifyPhotoColumns() throws InterruptedException, DocumentException
+    {
+        List<WebElement> rows=webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinGrid"));
+        Assert.assertTrue(rows.size()>1,"No Data Present in Vin Motion Grid");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/PhotoDate")),"Photo Date Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Photo")),"Photo # Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Type")),"Type Column  is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/SuperSize")),"Super Size Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Age")),"Age Column is not present");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified 'Last Change', 'Days Supply', 'Age', 'Rank ' and 'Price' is displayed" );
+    }
+
+    @Step("Verify Pricing Columns")
+    public void VerifyPricingColumns() throws InterruptedException, DocumentException
+    {
+        List<WebElement> rows=webDriver.getwebelements(inventoryLoc.getlocator("//locators/VinGrid"));
+        Assert.assertTrue(rows.size()>1,"No Data Present in Vin Motion Grid");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/RetailPrize")),"Retail Price Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/InputPrice")),"Input Retail Price is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/CompPrize")),"Comp Price Column  is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/InputCost")),"Input Comp Prize is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/ACV")),"ACV Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/InputAcv")),"Input ACV is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/Profit")),"Profit Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/InputProfit")),"Input Profit is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/RecPrice")),"Rec Price Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/InputPercent")),"Input Rec Price  is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/ToMarket")),"To Market Column is not present");
+        Assert.assertTrue(webDriver.IsPresent(inventoryLoc.getlocator("//locators/MarketRank")),"Market Rank Column is not present");
+
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified 'Retail Price', 'Comp Price', 'ACV', 'Profit','Rec Price','To Market'  and 'Market Rank ' is displayed" );
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Verified Input Text Box for 'Retail Price', 'Comp Price', 'ACV', 'Profit',and 'Rec Price' is displayed" );
+    }
+
+    public void VerifyDifferentLayoutAndColumns() throws Exception {
+        ChangeInventoryLayOut("VinMotion");
+        VerifyVinMotionColumns();
+        ChangeInventoryLayOut("Comments");
+        VerifyCommentsColumns();
+        ChangeInventoryLayOut("Photos & Videos");
+        VerifyPhotoColumns();
+        ChangeInventoryLayOut("Pricing");
+        VerifyPricingColumns();
+
+    }
+
     public void AddRV() throws Exception
     {
         String vinNumber = GetVinNumber();
@@ -672,7 +754,8 @@ public class InventoryHelper {
 
     }
 
-    public void AddNewVehicleAndValidation() throws Exception {
+    public void AddNewVehicleAndValidation() throws Exception
+    {
 
         String vinNumber = GetVinNumber();
         ClickAddVehicle();

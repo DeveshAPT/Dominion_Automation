@@ -16,6 +16,33 @@
     <ExtraClean>//input[@id='ExtraClean']</ExtraClean>
     <AlertMessage>//div[@id='alertMessageAddVehicle']</AlertMessage>
     <VinNumber>//div[@class='vehicleInformation']//span</VinNumber>
+    <VinGrid>//table[@id='jqgInventory']//tr</VinGrid>
+    <VehicleYearName>//div[@class='vehicleYmmt text-truncate']</VehicleYearName>
+    <ColVin>//span//b[text()='VIN:']</ColVin>
+    <ColStock>//span//b[contains(text(),'Stock')]</ColStock>
+    <LastChange>//div[text()='LAST CHANGE']</LastChange>
+    <DaysSupply>//div[text()='DAYS SUPPLY']</DaysSupply>
+    <Age>//div[text()='AGE']</Age>
+    <Rank>//div[text()='RANK']</Rank>
+    <Price>//a[contains(@href,'/Inventory/Pricing/Index')]//div</Price>
+    <CommentTxt>//textarea[contains(@class,'gridTextArea')]</CommentTxt>
+    <PhotoDate>//div[text()='Photo Date']</PhotoDate>
+    <Photo>//td//div[text()='Photo #']</Photo>
+    <Type>//td//div[text()='Type']</Type>
+    <SuperSize>//td//div[text()='Super Size']</SuperSize>
+    <RetailPrize>//div[text()='RETAIL PRICE']</RetailPrize>
+    <InputPrice>//input[@name='Price']</InputPrice>
+    <CompPrize>//div[text()='COMP PRICE']</CompPrize>
+    <InputCost>//input[@name='Cost']</InputCost>
+    <ACV>//div[text()='ACV']</ACV>
+    <InputAcv>//input[@name='Acv']</InputAcv>
+    <Profit>//div[text()='PROFIT']</Profit>
+    <InputProfit>//input[@id='txtProfit']</InputProfit>
+    <RecPrice>//div[text()='REC PRICE']</RecPrice>
+    <InputPercent>//input[@id='txtPercentToMarket']</InputPercent>
+    <ToMarket>//div[text()='% TO MKT']</ToMarket>
+    <MarketRank>//div[text()='MKT RANK']</MarketRank>
+    <GridLayOut>//select[@id='gridLayoutsDDL']</GridLayOut>
     <VinInput>//input[@id='Vin']</VinInput>
     <MandatoryMessage>//div[@id='allFieldsRequiredMessage']</MandatoryMessage>
     <YearSpan>//span[@id='select2-Years-container']//span</YearSpan>
@@ -51,5 +78,6 @@
     <ActionSingleVehicle>//select[@id='InventoryActions']//optgroup[@label='Single Vehicle']//*</ActionSingleVehicle>
     <ActionBatchVehicle>//select[@id='InventoryActions']//optgroup[@label='Batch Vehicles']/*</ActionBatchVehicle>
     <AddVehicleClose>//div[@id='addVehicleModal']//button[@class='close']//span</AddVehicleClose>
+
 
 </locators>
