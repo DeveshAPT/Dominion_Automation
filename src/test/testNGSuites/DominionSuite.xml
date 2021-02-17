@@ -18,7 +18,7 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<!--<include name="MCITEST_236"/>
+					<include name="MCITEST_236"/>
 					<include name="MCITEST_240"/>
 					<include name="MCITEST_243"/>
 					<include name="MCITEST_239"/>
@@ -40,7 +40,7 @@
 					<include name="MCITEST_267"/>
 					<include name="MCITEST_268"/>
 					<include name="MCITEST_317"/>
-					<include name="MCITEST_259"/>-->
+					<include name="MCITEST_259"/>
 					<include name="MCITEST_310"/>
 				</methods>
 			</class>
