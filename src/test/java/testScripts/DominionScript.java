@@ -168,7 +168,7 @@ public class DominionScript extends driver {
         domLogin.get().DominionLogin();
         domLogin.get().ClickOnMenu("Users");
         user.get().AddPermission("Inventory");
-        //invent.get().ClickOnFooterSave();
+        invent.get().ClickOnFooterSave();
     }
 
     @Parameters("Browser")
