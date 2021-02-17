@@ -645,7 +645,6 @@ public class InventoryHelper {
         String newVIN = "VIN" + GenerateRandom(14);
         EnterVinNumber(newVIN);
         String stk = GenerateRandom(26);
-        Thread.sleep(5000);
         System.out.println(stk);
         VerifyStockMaxLength(stk);
         stk = "NUM" + GenerateRandom(7);
@@ -668,7 +667,6 @@ public class InventoryHelper {
         SelectVehicleClassification("Extra Clean");
         SelectVehicleClassification("Average");
         ClickAddNewVehicle();
-        //VerifyAddVehicleScreen();
         ClickOnFooterSave();
 
 
