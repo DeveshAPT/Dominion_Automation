@@ -223,27 +223,32 @@ public class InventoryHelper {
     }
 
     @Step("Enter Vin Number : {0}")
-    public void EnterVinNumber(String newVIN) throws InterruptedException, DocumentException, IOException {
+    public void EnterVinNumber(String newVIN) throws Exception {
         System.out.println(newVIN);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/VinInput")), newVIN + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered : VIN number as : " + newVIN);
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
     }
 
     @Step("Verify Max Length input for Stock")
-    public void VerifyStockMaxLength(String stk) throws InterruptedException, DocumentException, IOException {
+    public void VerifyStockMaxLength(String stk) throws Exception {
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
         WebElement ele = webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock"));
         String temp = ele.getAttribute("value");
         Assert.assertTrue(temp.length() == 25, "Failed : Stock can accept more then 25 characters");
         ExtentTestManager.getTest().log(LogStatus.PASS, "Verified  : Stock can accept max 25 Character : ");
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
     }
 
     @Step("Enter Stock Value as {0}")
-    public void EnterStockValue(String stk) throws InterruptedException, DocumentException, IOException
-    {
+    public void EnterStockValue(String stk) throws Exception {
         System.out.println(stk);
         webDriver.ClearAndSendKeys(webDriver.getwebelement(inventoryLoc.getlocator("//locators/Stock")), stk + Keys.TAB);
         ExtentTestManager.getTest().log(LogStatus.PASS, "Entered  : Stock as : " + stk);
+        webDriver.WaitForpageload();
+        webDriver.WaitforPageToBeReady();
     }
 
     @Step("Verify Year Range available i.e 1900 to 2022")
@@ -573,6 +578,7 @@ public class InventoryHelper {
         }
         webDriver.Clickon(webDriver.getwebelement(locatme));
         ExtentTestManager.getTest().log(LogStatus.PASS, "Click >> Vehicle Type as : "+type );
+        webDriver.WaitForpageload();
         webDriver.WaitforPageToBeReady();
     }
 
@@ -630,7 +636,8 @@ public class InventoryHelper {
         webDriver.WaitforPageToBeReady();
     }
 
-    public void AddRV() throws Exception {
+    public void AddRV() throws Exception
+    {
         String vinNumber = GetVinNumber();
         ClickAddVehicle();
         SelectSingleVehicle();
@@ -638,10 +645,12 @@ public class InventoryHelper {
         String newVIN = "VIN" + GenerateRandom(14);
         EnterVinNumber(newVIN);
         String stk = GenerateRandom(26);
+        Thread.sleep(5000);
         System.out.println(stk);
         VerifyStockMaxLength(stk);
         stk = "NUM" + GenerateRandom(7);
         EnterStockValue(stk);
+        Thread.sleep(5000);
         SelectYear("2017");
         Thread.sleep(5000);
         SelectMake("Alfa");
@@ -659,7 +668,7 @@ public class InventoryHelper {
         SelectVehicleClassification("Extra Clean");
         SelectVehicleClassification("Average");
         ClickAddNewVehicle();
-        VerifyAddVehicleScreen();
+        //VerifyAddVehicleScreen();
         ClickOnFooterSave();
 
 
