@@ -18,7 +18,7 @@
 		<classes>
 			<class name="testScripts.DominionScript">
 				<methods>
-					<!--<include name="MCITEST_236"/>
+					<include name="MCITEST_236"/>
 					<include name="MCITEST_240"/>
 					<include name="MCITEST_243"/>
 					<include name="MCITEST_239"/>
@@ -41,14 +41,14 @@
 					<include name="MCITEST_268"/>
 					<include name="MCITEST_317"/>
 					<include name="MCITEST_259"/>
-					<include name="MCITEST_310"/>-->
+					<include name="MCITEST_310"/>
 					<include name="MCITEST_257"/>
 				</methods>
 			</class>
 		</classes>
 
 	</test>
-	<!--<test name="Headless" junit="false" preserve-order="true">
+	<test name="Headless" junit="false" preserve-order="true">
 
 		<parameter name="Browser" value="headless" />
 
@@ -155,5 +155,5 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 </suite>
