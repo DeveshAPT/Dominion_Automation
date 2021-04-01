@@ -19,9 +19,9 @@
 			<class name="testScripts.DominionScript">
 				<methods>
 					<include name="MCITEST_236"/>
-					<!--<include name="MCITEST_240"/>
+					<include name="MCITEST_240"/>
 					<include name="MCITEST_243"/>
-					<include name="MCITEST_239"/>
+					<!--<include name="MCITEST_239"/>
 					<include name="MCITEST_308"/>
 					<include name="MCITEST_241"/>
 					<include name="MCITEST_277"/>
