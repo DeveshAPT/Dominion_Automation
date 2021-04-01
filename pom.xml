@@ -97,6 +97,14 @@
 			<version>4.3.0</version>
 		</dependency>
 		<!-- End json schema Dependency -->
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+
 		<!-- Start Apache POI Dependencies -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>

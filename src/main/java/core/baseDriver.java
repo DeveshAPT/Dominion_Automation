@@ -11,6 +11,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.windows.WindowsDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -51,7 +52,7 @@ public class baseDriver implements apiDriver, webDriver,desktopDriver,mobileDriv
 		if(!Grid==true) {
 		if(browser.equalsIgnoreCase("chrome"))
 		{
-
+			WebDriverManager.chromedriver().setup();
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			ChromeOptions options = new ChromeOptions();
 			if(proxyRequired==true) {
@@ -91,8 +92,9 @@ public class baseDriver implements apiDriver, webDriver,desktopDriver,mobileDriv
 			capabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
 
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			System.setProperty("webdriver.chrome.driver","./lib/chromedriver.exe");
-			dr= new ChromeDriver(capabilities);
+			dr=new ChromeDriver(options);
+			//System.setProperty("webdriver.chrome.driver","./lib/chromedriver.exe");
+			//dr= new ChromeDriver(capabilities);
 			dr.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			dr.manage().deleteAllCookies();
 			dr.get(BaseURL);
