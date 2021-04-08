@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="3" verbose="1" name="Dominion_Test"
+<suite thread-count="1" verbose="1" name="Dominion_Test"
 	annotations="JDK">
 	<listeners>
 		<listener class-name="Listeners.TestListener" />
