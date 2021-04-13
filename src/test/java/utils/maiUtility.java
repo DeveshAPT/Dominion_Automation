@@ -78,7 +78,7 @@ public class maiUtility {
          message.setContent(multipart );
 
          // Send message
-         Transport.send(message);
+        // Transport.send(message);
          System.out.println("Sent message successfully....");
       } catch (MessagingException mex) {
          mex.printStackTrace();
